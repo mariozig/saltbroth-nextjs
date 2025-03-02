@@ -1,0 +1,125 @@
+/***************************************
+ * Salt Broth Styles
+ * 
+ * Table of Contents:
+ * 1. Base Effects
+ * 2. Text Styles
+ * 3. Components
+ *    - Cards
+ *    - Buttons
+ *    - Dividers
+ * 4. Utilities
+ ***************************************/
+
+/* =================================
+   1. Base Effects
+   ================================= */
+
+/* Glass morphism effect with gradient and blur 
+   Used for: Navigation bars, cards, and subtle UI elements
+   Example: <div class="glass"> */
+.glass {
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, rgba(59, 130, 246, 0.02) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =================================
+   2. Text Styles
+   ================================= */
+
+/* Gradient text effect
+   Used for: Headlines and important text that needs emphasis
+   Example: <h1 class="gradient-text"> */
+.gradient-text {
+    background: linear-gradient(to right, #8B5CF6, #3B82F6, #EC4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Glow effect
+   Used for: Adding emphasis to important headlines
+   Example: <h1 class="gradient-text glow"> */
+.glow {
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+/* Text balance for better typography
+   Used for: Improving readability of headlines
+   Example: <h2 class="text-balance"> */
+.text-balance {
+    text-wrap: balance;
+}
+
+/* =================================
+   3. Components
+   ================================= */
+
+/* --- Cards --- */
+
+/* Category card with hover effects
+   Used for: Interactive card elements that respond to hover
+   Example: <div class="category-card"> */
+.category-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Buttons --- */
+
+/* Primary gradient button
+   Used for: Main call-to-action buttons
+   Example: <a href="#" class="gradient-button"> */
+.gradient-button {
+    background: linear-gradient(to right, #8B5CF6, #3B82F6);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #3B82F6, #EC4899);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gradient-button:hover::before {
+    opacity: 1;
+}
+
+/* --- Dividers --- */
+
+/* Gradient divider
+   Used for: Section separators with subtle gradient
+   Example: <div class="divider"> */
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, 
+        rgba(139, 92, 246, 0.1), 
+        rgba(59, 130, 246, 0.2), 
+        rgba(236, 73, 153, 0.1)
+    );
+}
+
+/* =================================
+   4. Utilities
+   ================================= */
+
+.tab-btn.active {
+    border-bottom: 2px solid currentColor;
+    text-decoration: underline;
+    text-decoration-color: #8B5CF6;
+}
+
+/* No utility classes defined */

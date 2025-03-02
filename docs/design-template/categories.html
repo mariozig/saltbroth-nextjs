@@ -1,0 +1,335 @@
+<!--
+/**
+ * Categories Overview Page
+ * 
+ * This document serves as the main/root category navigation hub for Salt Broth's prompt marketplace.
+ * For the complete category structure, attributes, and definitions, refer to:
+ * @see /docs/categorization-of-prompts.md
+ * 
+ * The site implements a three-tier category system defined as follows:
+ * 
+ * Tier 1 (Root Categories):
+ * - Primary content domains defined in the master category tree
+ * - Examples: Creative Writing, Business, Visual Arts, Educational, Technical, Marketing
+ * - Each category includes rich descriptive content:
+ *   · Brief and detailed category descriptions
+ *   · Cross-references to related categories
+ *   · Highlighted featured subcategories
+ * 
+ * Tier 2 (Specialized Domains):
+ * - Topic-specific categories within each root category
+ * - Examples from Creative Writing:
+ *   · Stories & Narratives
+ *   · Character Development
+ *   · Plot Generation
+ * - Each includes its own descriptive content and relationships as defined in categorization-of-prompts.md
+ * 
+ * Tier 3 (Prompt Collections):
+ * - Specific prompt groupings within specialized domains
+ * - Organized by use case and difficulty as defined in the category template
+ * - Each collection presents:
+ *   · Detailed parameters and instructions
+ *   · Example outputs and use cases
+ *   · Discoverable search terms and related prompts
+ *   · Community ratings and feedback
+ * 
+ * File Naming Convention:
+ * - Tier 1: categories.html
+ * - Tier 2: category-[root-name].html (e.g., category-creative-writing.html)
+ * - Tier 3: prompts-[specialized-domain].html (e.g., prompts-character-development.html)
+ * 
+ * @see /docs/categorization-of-prompts.md for the complete category tree and content structure
+ */
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salt Broth - Browse Prompt Categories</title>
+    <meta name="description" content="Explore our curated collection of AI prompts across various categories. Find the perfect prompt for your creative, business, or educational needs.">
+    <meta name="keywords" content="AI prompts, creative prompts, business prompts, educational prompts, visual arts prompts">
+    <meta property="og:title" content="Salt Broth - Browse Prompt Categories">
+    <meta property="og:description" content="Discover our curated collection of AI prompts across various categories.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Salt Broth - Categories">
+    <meta name="twitter:description" content="Discover our curated collection of AI prompts across various categories.">
+    <link rel="canonical" href="https://saltbroth.com/categories">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+    <script src="js/main.js"></script>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-xl font-bold gradient-text">SALT BROTH</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="/categories" class="text-white font-medium">Categories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 min-h-screen">
+        <!-- Hero Section -->
+        <section class="px-6 py-12">
+            <div class="max-w-6xl mx-auto text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold gradient-text glow leading-tight pb-2">
+                    Browse AI Prompt Categories
+                </h1>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Find the perfect prompts for your next project
+                </p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="px-6 mb-12">
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input type="text" 
+                           placeholder="Search categories..." 
+                           class="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/5 transition-all">
+                    <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Root Categories -->
+        <section class="px-6 py-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Creative Writing -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-100/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-100/10 flex items-center justify-center">
+                                <i class="fas fa-pen-nib text-2xl text-accent-100"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-100 transition-colors">Creative Writing</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Tools and prompts for all forms of creative and narrative writing.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-100/30 mr-3"></span>
+                                Stories & Narratives
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-100/30 mr-3"></span>
+                                Character Development
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-100/30 mr-3"></span>
+                                Plot Generation
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-100 border-b border-transparent group-hover:border-accent-100 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Business -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-200/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-200/10 flex items-center justify-center">
+                                <i class="fas fa-briefcase text-2xl text-accent-200"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-200 transition-colors">Business</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Professional prompts for business communications and documentation.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-200/30 mr-3"></span>
+                                Email Templates
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-200/30 mr-3"></span>
+                                Proposals
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-200/30 mr-3"></span>
+                                Reports
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-200 border-b border-transparent group-hover:border-accent-200 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Arts -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-300/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-300/10 flex items-center justify-center">
+                                <i class="fas fa-paint-brush text-2xl text-accent-300"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-300 transition-colors">Visual Arts</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Prompts for creating visual content using AI art generation tools.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
+                                Illustrations
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
+                                Digital Paintings
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
+                                Character Design
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-300 border-b border-transparent group-hover:border-accent-300 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Educational -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-400/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-400/10 flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-2xl text-accent-400"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-400 transition-colors">Educational</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Prompts for creating educational content and teaching materials.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-400/30 mr-3"></span>
+                                Study Guides
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-400/30 mr-3"></span>
+                                Lesson Plans
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-400/30 mr-3"></span>
+                                Explanations
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-400 border-b border-transparent group-hover:border-accent-400 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Technical -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-500/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-500/10 flex items-center justify-center">
+                                <i class="fas fa-code text-2xl text-accent-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-500 transition-colors">Technical</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Prompts for creating technical documentation and code-related content.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-500/30 mr-3"></span>
+                                Code Examples
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-500/30 mr-3"></span>
+                                API Documentation
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-500/30 mr-3"></span>
+                                Technical Guides
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-500 border-b border-transparent group-hover:border-accent-500 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Marketing -->
+                    <div class="category-card glass rounded-3xl p-8 hover:bg-accent-600/5 cursor-pointer group">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-accent-600/10 flex items-center justify-center">
+                                <i class="fas fa-bullhorn text-2xl text-accent-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent-600 transition-colors">Marketing</h3>
+                        </div>
+                        <p class="text-gray-400 mb-6">Prompts for creating persuasive marketing content across multiple channels.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-600/30 mr-3"></span>
+                                Social Media
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-600/30 mr-3"></span>
+                                Ad Copy
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-600/30 mr-3"></span>
+                                Landing Pages
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-6">
+                            <span class="text-accent-600 border-b border-transparent group-hover:border-accent-600 pb-0.5">Browse prompts <i class="fas fa-arrow-right ml-2"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="px-6 py-12 md:py-20 border-t border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="col-span-2 md:col-span-1 space-y-4">
+                    <h3 class="text-lg font-semibold gradient-text">Salt Broth</h3>
+                    <p class="text-sm text-gray-400">Empowering everyone to use AI confidently and effectively.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-medium text-white/80">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Examples</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-medium text-white/80">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">About</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-medium text-white/80">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-accent-100 transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-sm text-gray-400">&copy; 2025 Salt Broth. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-accent-100 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent-100 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

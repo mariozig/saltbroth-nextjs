@@ -1,0 +1,267 @@
+<!--
+Basic Template: Simple Meeting Follow-Up Generator
+Style: Lightweight & Direct
+Features:
+- Simplified single-column layout
+- Basic meeting summary structure
+- Minimal styling with essential functionality
+- Mobile-responsive design
+- Focused on quick generation
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Follow-Up Email Generator | Salt Broth</title>
+    <meta name="description" content="Generate professional meeting follow-up emails with key points and action items">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-black text-white min-h-screen font-sans text-base leading-relaxed tracking-normal">
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-3xl mx-auto px-4 h-14 flex items-center">
+            <a href="/" class="text-lg font-semibold tracking-tight hover:text-accent-100 transition-colors">Salt Broth</a>
+        </div>
+    </nav>
+
+    <main class="pt-20 px-4 pb-12 max-w-3xl mx-auto space-y-10">
+        <header class="space-y-4">
+            <h1 class="text-3xl sm:text-4xl font-bold gradient-text tracking-tight leading-[1.1]">Meeting Follow-Up<br>Email Generator</h1>
+            <p class="text-gray-400 text-lg sm:text-xl leading-relaxed max-w-2xl">Create professional follow-up emails that capture key points and action items from your meetings.</p>
+        </header>
+
+        <section class="glass rounded-2xl p-4 sm:p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="font-semibold text-lg tracking-tight">Prompt Template</h2>
+                <button onclick="copyContent('promptContent')" class="copy-btn flex items-center gap-2 px-4 py-2 text-sm rounded-full bg-white/5 hover:bg-white/10 transition-colors">
+                    <i class="fas fa-copy"></i>
+                    <span class="font-medium">Copy</span>
+                </button>
+            </div>
+            <pre id="promptContent" class="font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Meeting Date: [Date]
+Duration: [Duration]
+Location: [Location]
+
+Attendees:
+[List of attendees with their roles]
+
+Key Discussion Points:
+[List the main topics discussed]
+
+Action Items:
+[List specific tasks, who is responsible, and deadlines]
+
+Next Steps:
+[Outline the next steps and timeline]</pre>
+        </section>
+
+        <section class="space-y-6">
+            <h2 class="font-semibold text-lg tracking-tight px-1">Example Outputs</h2>
+            
+            <div class="flex gap-3 overflow-x-auto pb-2">
+                <button class="llm-tab active px-4 py-2 text-sm font-medium rounded-full bg-white/5 hover:bg-white/10 transition-colors tracking-tight" data-tab="chatgpt">ChatGPT</button>
+                <button class="llm-tab px-4 py-2 text-sm font-medium rounded-full bg-white/5 hover:bg-white/10 transition-colors tracking-tight" data-tab="claude">Claude</button>
+                <button class="llm-tab px-4 py-2 text-sm font-medium rounded-full bg-white/5 hover:bg-white/10 transition-colors tracking-tight" data-tab="llama">Llama</button>
+            </div>
+
+            <div class="glass rounded-2xl overflow-hidden">
+                <div id="chatgpt-panel" class="llm-panel">
+                    <div class="flex items-center justify-between p-4 sm:p-5 border-b border-white/10">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#10a37f]"></span>
+                            <span class="font-semibold tracking-tight">ChatGPT</span>
+                        </div>
+                        <button onclick="copyContent('chatgpt-content')" class="copy-btn text-gray-400 hover:text-white">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre id="chatgpt-content" class="p-4 sm:p-5 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: Q1 Performance Review - Summary & Action Items
+
+Dear Team,
+
+Thank you for participating in today's Q1 review meeting. Here's a summary of our discussion:
+
+Meeting Details:
+- Date: March 1, 2024
+- Duration: 60 minutes
+- Location: Virtual Room A
+
+Key Points Discussed:
+1. Q1 Performance Review
+   - Sales exceeded targets by 15%
+   - Marketing campaign results
+   - Product roadmap updates
+
+Action Items:
+1. John (Sales): Q2 forecast due March 8
+2. Sarah (Marketing): Budget revision due March 5
+3. Mike (Product): Beta schedule due March 3
+
+Next Steps:
+- Weekly progress updates via email
+- Follow-up meeting: March 15, 10 AM EST
+
+Best regards,
+[Name]</pre>
+                </div>
+
+                <div id="claude-panel" class="llm-panel hidden">
+                    <div class="flex items-center justify-between p-4 sm:p-5 border-b border-white/10">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#8e44ef]"></span>
+                            <span class="font-semibold tracking-tight">Claude</span>
+                        </div>
+                        <button onclick="copyContent('claude-content')" class="copy-btn text-gray-400 hover:text-white">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre id="claude-content" class="p-4 sm:p-5 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: Meeting Recap - Q1 Review & Next Steps
+
+Hi team,
+
+Quick summary of today's Q1 review meeting:
+
+MEETING DETAILS
+When: March 1, 2024, 10-11 AM EST
+Where: Virtual Room A
+
+KEY POINTS
+• Q1 Sales: +15% above target
+• Marketing: Social campaign success
+• Product: Q2 roadmap confirmed
+
+ACTION ITEMS
+→ John: Q2 sales projection (Due Mar 8)
+→ Sarah: Budget revision (Due Mar 5)
+→ Mike: Beta timeline (Due Mar 3)
+
+NEXT STEPS
+• Weekly updates start Monday
+• Next meeting: March 15 @ 10 AM
+
+Questions? Just reply to this email.
+
+Best,
+[Name]</pre>
+                </div>
+
+                <div id="llama-panel" class="llm-panel hidden">
+                    <div class="flex items-center justify-between p-4 sm:p-5 border-b border-white/10">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#4f46e5]"></span>
+                            <span class="font-semibold tracking-tight">Llama</span>
+                        </div>
+                        <button onclick="copyContent('llama-content')" class="copy-btn text-gray-400 hover:text-white">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre id="llama-content" class="p-4 sm:p-5 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: 📋 Q1 Review Meeting Summary
+
+Team,
+
+Here's a recap of our Q1 review meeting:
+
+📅 Meeting Info
+• Date: March 1, 2024
+• Time: 60 min
+• Place: Virtual Room A
+
+💡 Key Topics
+1. Sales
+   * Q1: Exceeded by 15%
+   * New clients up 25%
+
+2. Marketing
+   * Social: +40% engagement
+   * Leads: +30% growth
+
+3. Product
+   * v2.0: Q2 launch on track
+   * Beta: Next week start
+
+✅ Action Items
+• John → Q2 forecast (Mar 8)
+• Sarah → Budget update (Mar 5)
+• Mike → Beta plan (Mar 3)
+
+📌 Next Up
+• Weekly email updates
+• Meet again: Mar 15, 10am
+
+-[Name]</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('.llm-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.llm-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                document.querySelectorAll('.llm-panel').forEach(panel => {
+                    panel.classList.add('hidden');
+                });
+                document.getElementById(`${tab.dataset.tab}-panel`).classList.remove('hidden');
+            });
+        });
+
+        function copyContent(elementId) {
+            const element = document.getElementById(elementId);
+            const button = element.parentElement.querySelector('.copy-btn');
+            
+            navigator.clipboard.writeText(element.textContent).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.classList.add('text-green-400');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('text-green-400');
+                }, 2000);
+            });
+        }
+    </script>
+
+    <style>
+        @media (max-width: 640px) {
+            pre {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        }
+
+        pre::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        pre::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .llm-tab.active {
+            background-color: rgb(255 255 255 / 0.1);
+            color: white;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Follow-Up Email Generator | Salt Broth</title>
+    <meta name="description" content="Generate professional meeting follow-up emails with key points and action items">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-black text-white min-h-screen font-sans text-base leading-relaxed tracking-normal selection:bg-accent-100/30 selection:text-white">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-accent-100/5 to-black"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]"></div>
+        <div class="noise-pattern"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-xl font-bold gradient-text">SALT BROTH</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="/categories" class="text-white font-medium">Categories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 px-4 pb-12">
+        <!-- Hero Section -->
+        <div class="max-w-5xl mx-auto mb-24">
+            <div class="relative">
+                <!-- Decorative elements -->
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-accent-100/10 rounded-full blur-3xl"></div>
+                <div class="absolute -top-10 -right-10 w-48 h-48 bg-accent-200/10 rounded-full blur-3xl"></div>
+                
+                <!-- Main content -->
+                <div class="relative">                    
+                    <h1 class="text-4xl md:text-6xl xl:text-7xl font-space font-bold tracking-tight leading-[1.1] bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/50 mb-8">
+                        Meeting Follow-Up<br>Email Generator
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-400 max-w-3xl font-normal leading-relaxed mb-4">
+                        Transform your meetings into actionable outcomes. Generate professional follow-up emails that capture every key point and next step, ensuring nothing falls through the cracks.
+                    </p>
+                    
+                    <nav aria-label="Category navigation" class="mb-4">
+                        <div class="flex items-center gap-3 opacity-80">
+                            <a href="#" class="relative text-sm text-gray-400 hover:text-white transition-colors group">
+                                <span class="relative">Business</span>
+                                <span class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white/0 via-white/20 to-white/0 group-hover:via-white/40 transition-all"></span>
+                            </a>
+                            <svg class="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <a href="#" class="relative text-sm text-gray-400 hover:text-white transition-colors group">
+                                <span class="relative">Professional Content</span>
+                                <span class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white/0 via-white/20 to-white/0 group-hover:via-white/40 transition-all"></span>
+                            </a>
+                            <svg class="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="relative text-sm text-accent-100 font-medium">
+                                <span class="relative">Email Templates</span>
+                                <span class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-accent-100/0 via-accent-100 to-accent-100/0"></span>
+                            </span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+            <!-- Prompt Section -->
+            <section class="glass-morphism rounded-3xl p-8 relative group">
+                <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-100/10 via-accent-200/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative">
+                    <div class="flex items-center justify-between gap-4 mb-2">
+                        <h2 class="font-space text-2xl font-bold tracking-tight">The Prompt</h2>
+                        <div class="flex items-center gap-2">
+                            <button class="copy-button bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors relative group">
+                                <span class="relative z-10 flex items-center gap-2">
+                                    Copy
+                                    <i class="fas fa-copy"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <p class="text-sm text-gray-400">This is your template for creating professional meeting follow-up emails using AI. Here's how to use it:</p>
+                        <ol class="text-sm text-gray-400 list-decimal list-inside space-y-1.5">
+                            <li>Click the copy button above to copy the template</li>
+                            <li>Go to ChatGPT, Claude, or your preferred AI assistant</li>
+                            <li>Paste the template and replace the [bracketed] text with your meeting details</li>
+                            <li>Or modify the template to better fit your specific needs</li>
+                        </ol>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-accent-100/20 via-accent-200/20 to-accent-100/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div class="relative flex items-center gap-2 px-4 py-3 rounded-t-xl bg-white/5 border-b border-white/10">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                            </div>
+                            <span class="text-xs text-gray-500">prompt-template.txt</span>
+                            <div class="relative ml-auto group/tooltip">
+                                <button onclick="copyContent('promptContent')" class="copy-btn flex items-center gap-2 px-3 py-1.5 rounded-md bg-accent-100/10 hover:bg-accent-100/20 transition-colors text-sm text-accent-100">
+                                    <i class="fas fa-copy"></i>
+                                    <span class="font-medium">Copy to Use</span>
+                                </button>
+                                <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/90 text-xs text-white rounded-md whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity">
+                                    Copy this template to use in ChatGPT, Claude, etc.
+                                </div>
+                            </div>
+                        </div>
+                        <pre id="promptContent" class="font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight p-6 rounded-b-xl bg-black/20 border border-white/10 border-t-0 select-all">Meeting Date: [Date]
+Duration: [Duration]
+Location: [Location]
+Attendees: [List of attendees]
+
+Key Discussion Points:
+1. [Point 1]
+2. [Point 2]
+3. [Point 3]
+
+Action Items:
+1. [Person 1]: [Task] (Due: [Date])
+2. [Person 2]: [Task] (Due: [Date])
+3. [Person 3]: [Task] (Due: [Date])
+
+Next Steps:
+- [Next step 1]
+- [Next step 2]
+- [Next step 3]
+
+Please write a professional follow-up email summarizing this meeting.</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LLM Outputs -->
+            <section class="glass-morphism rounded-3xl p-8 relative group">
+                <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-200/10 via-accent-100/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div class="relative space-y-6">
+                    <div class="flex items-center justify-between gap-4 mb-2">
+                        <h2 class="font-space text-2xl font-bold tracking-tight">Example Outputs</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-6">Compare how different AI models format and structure the follow-up email. Each model may emphasize different aspects or use unique styling.</p>
+                    
+                    <!-- Output Tabs -->
+                    <div class="relative flex flex-col">
+                        <div class="flex flex-wrap gap-0 relative">
+                            <button class="llm-tab active group" data-tab="chatgpt">
+                                <span class="relative z-10 flex items-center gap-2 px-6 py-3 text-sm font-medium">
+                                    <span class="w-2 h-2 rounded-full bg-[#10a37f]"></span>
+                                    ChatGPT
+                                    <span class="absolute inset-x-0 -bottom-px h-0.5 bg-[#10a37f]"></span>
+                                </span>
+                            </button>
+                            <button class="llm-tab group" data-tab="claude">
+                                <span class="relative z-10 flex items-center gap-2 px-6 py-3 text-sm font-medium">
+                                    <span class="w-2 h-2 rounded-full bg-[#8e44ef]"></span>
+                                    Claude
+                                    <span class="absolute inset-x-0 -bottom-px h-0.5 bg-[#8e44ef] opacity-0 transition-opacity group-hover:opacity-100"></span>
+                                </span>
+                            </button>
+                            <button class="llm-tab group" data-tab="llama">
+                                <span class="relative z-10 flex items-center gap-2 px-6 py-3 text-sm font-medium">
+                                    <span class="w-2 h-2 rounded-full bg-[#4f46e5]"></span>
+                                    Llama
+                                    <span class="absolute inset-x-0 -bottom-px h-0.5 bg-[#4f46e5] opacity-0 transition-opacity group-hover:opacity-100"></span>
+                                </span>
+                            </button>
+                            <div class="absolute bottom-0 left-0 right-0 h-px bg-white/10"></div>
+                        </div>
+                        <div class="relative mt-4">
+                            <div class="absolute -inset-3 bg-gradient-to-b from-white/5 to-transparent opacity-0 transition-opacity"></div>
+                        </div>
+                    </div>
+
+                    <!-- Output Panels -->
+                    <div class="relative">
+                        <!-- ChatGPT Output -->
+                        <div id="chatgpt-panel" class="llm-panel">
+                            <div class="flex items-center justify-between p-4 border-b border-white/10">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-2 h-2 rounded-full bg-[#10a37f]"></span>
+                                    <span class="font-space font-bold tracking-tight">ChatGPT</span>
+                                </div>
+                                <button onclick="copyContent('chatgpt-content')" class="copy-btn text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="chatgpt-content" class="p-4 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: Q1 Performance Review & Strategic Planning - Comprehensive Meeting Summary
+
+Dear Team,
+
+I hope this email finds you well. I wanted to provide a detailed summary of our quarterly review meeting, which covered several critical aspects of our business strategy and future initiatives.
+
+Meeting Details:
+- Date: March 1, 2024
+- Duration: 90 minutes (extended from planned 60 minutes due to productive discussions)
+- Location: Virtual Conference Room A (Recording available upon request)
+- Attendance: 100% participation from all key stakeholders
+
+Key Points Discussed:
+1. Q1 Performance Analysis
+   - Sales performance exceeded quarterly targets by 15%, primarily driven by our new enterprise solutions
+   - Customer acquisition costs reduced by 23% through optimization of marketing channels
+   - Net Promoter Score (NPS) improved from 45 to 62, indicating significant progress in customer satisfaction
+
+2. Marketing Initiatives Impact
+   - Social media engagement metrics showed exceptional growth across all platforms
+   - Content marketing strategy resulted in 40% increase in qualified leads
+   - Brand awareness: 65% increase in target markets
+
+3. Product Development Progress
+   - Version 2.0 development is proceeding ahead of schedule
+   - Beta testing group expanded to include 50 premium customers
+   - New feature requests prioritized based on customer feedback analysis
+
+Action Items (High Priority):
+1. John (Sales): 
+   - Prepare comprehensive Q2 forecast incorporating new market expansion
+   - Develop strategic account planning framework
+   - Partner program expansion
+   Due: March 8, EOD PST
+
+2. Sarah (Marketing):
+   - Revise Q2 budget allocation based on Q1 channel performance
+   - Create detailed content calendar for product launch
+   - Influencer program proposal
+   Due: March 5, 12 PM EST
+
+3. Mike (Product):
+   - Finalize beta testing schedule and participant communication
+   - Complete feature prioritization matrix for Q2-Q3
+   - Due: March 3, 3 PM EST
+
+Next Steps & Important Dates:
+- Daily standup meetings starting next Monday (9 AM EST)
+- Weekly progress reviews every Thursday (2 PM EST)
+- Monthly stakeholder presentation: March 15, 10 AM EST
+- Q2 Planning Workshop: March 22, Full Day Event
+
+Please review these items and confirm your action items by EOD today. If you need any clarification or support, don't hesitate to reach out.
+
+Best regards,
+[Name]
+
+CC: Executive Team</pre>
+                        </div>
+
+                        <!-- Claude Output -->
+                        <div id="claude-panel" class="llm-panel hidden">
+                            <div class="flex items-center justify-between p-4 border-b border-white/10">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-2 h-2 rounded-full bg-[#8e44ef]"></span>
+                                    <span class="font-space font-bold tracking-tight">Claude</span>
+                                </div>
+                                <button onclick="copyContent('claude-content')" class="copy-btn text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="claude-content" class="p-4 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: Comprehensive Q1 Review & Strategic Planning Summary
+
+Hi team,
+
+I wanted to provide a thorough recap of today's quarterly review meeting, which covered significant ground in terms of our performance analysis and future planning.
+
+MEETING CONTEXT
+• When: March 1, 2024, 10:00 AM - 11:30 AM EST
+• Where: Virtual Conference Room A
+• Recording: Check Slack for link
+• Participants: Full attendance from all departments
+
+PERFORMANCE HIGHLIGHTS
+→ Revenue & Growth
+  • Q1: Crushed targets by 15%
+  • Market share: +8% in key segments
+  • Customer satisfaction: 92% (all-time high)
+
+→ Marketing Achievements
+  • Social engagement: 40% above benchmark
+  • Lead generation: 30% more qualified prospects
+  • Brand awareness: 65% increase in target markets
+
+→ Product Development
+  • v2.0: Development ahead of schedule
+  • Performance: 60% faster response times
+  • User testing: 95% positive feedback
+
+CRITICAL ACTION ITEMS
+1. Sales Division (Owner: John)
+   → Complete Q2 forecast with regional breakdowns
+   → Update sales enablement materials
+   → Partner program expansion
+   Due: March 8 (End of day)
+
+2. Marketing Team (Owner: Sarah)
+   → Revise Q2 budget allocation based on new attribution model
+   → Prepare launch communications strategy
+   → Influencer program proposal
+   Due: March 5 (Noon)
+
+3. Product Group (Owner: Mike)
+   → Finalize beta testing parameters
+   → Document API changes for partners
+   → Performance optimization plan
+   Due: March 3 (3 PM)
+
+UPCOMING MILESTONES
+• Daily: Team sync-ups (9:15 AM EST)
+• Weekly: Progress reviews (Thursday, 2 PM EST)
+• Monthly: Stakeholder updates (15th of each month)
+• Quarterly: Planning session (March 22-23)
+
+Please acknowledge receipt and confirm your action items. Questions or concerns? Let's discuss them before our next daily sync.
+
+Best,
+[Name]
+
+Note: This email contains confidential information - please do not forward.</pre>
+                        </div>
+
+                        <!-- Llama Output -->
+                        <div id="llama-panel" class="llm-panel hidden">
+                            <div class="flex items-center justify-between p-4 border-b border-white/10">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-2 h-2 rounded-full bg-[#4f46e5]"></span>
+                                    <span class="font-space font-bold tracking-tight">Llama</span>
+                                </div>
+                                <button onclick="copyContent('llama-content')" class="copy-btn text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre id="llama-content" class="p-4 font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight">Subject: 📊 Q1 Strategic Review & Action Plan Summary
+
+Team,
+
+Sharing a detailed breakdown of our quarterly review meeting that went deeper than planned but yielded valuable insights and action items.
+
+📅 Meeting Specifics
+• Date: March 1, 2024
+• Time: 90min (extended from 60min)
+• Location: Virtual Room A
+• Attendance: Full team present
+• Recording: Check Slack for link
+
+💫 Key Achievements
+1. Revenue & Market Position
+   * Q1: Crushed targets by 15%
+   * Market share: +8% in key segments
+   * Customer satisfaction: 94% (all-time high)
+
+2. Marketing Wins
+   * Social engagement: 40% above benchmark
+   * Lead generation: 30% more qualified prospects
+   * Brand awareness: 65% increase in target markets
+
+3. Product Evolution
+   * v2.0: Development ahead of schedule
+   * Performance: 60% faster response times
+   * User testing: 95% positive feedback
+
+🎯 Critical Next Steps
+→ Sales (John)
+  • Comprehensive Q2 forecast
+  • Territory optimization plan
+  • Partner program expansion
+  Due: March 8 (End of day)
+
+→ Marketing (Sarah)
+  • Q2 budget reallocation
+  • Launch strategy revision
+  • Influencer program proposal
+  Due: March 5 (Noon)
+
+→ Product (Mike)
+  • Beta testing roadmap
+  • Feature priority matrix
+  • Performance optimization plan
+  Due: March 3 (3 PM)
+
+📌 Important Dates & Deadlines
+• Daily standups: 9 AM EST (Starting Monday)
+• Weekly reviews: Thursday @ 2 PM EST
+• Monthly board update: March 15 @ 10 AM
+• Q2 planning workshop: March 22 (Full day)
+
+💭 Additional Notes
+• New communication protocol starts next week
+• Updated templates in shared drive
+• Security training deadline approaching
+
+Please confirm receipt and action items ASAP. Questions? Drop them in our Slack channel or catch me in tomorrow's standup.
+
+🚀 Let's crush these goals!
+
+-[Name]
+
+P.S. Don't forget to update your project tracking sheets by EOD</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('.llm-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.llm-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                document.querySelectorAll('.llm-panel').forEach(panel => {
+                    panel.classList.add('hidden');
+                });
+                document.getElementById(`${tab.dataset.tab}-panel`).classList.remove('hidden');
+            });
+        });
+
+        function copyContent(elementId) {
+            const element = document.getElementById(elementId);
+            const button = element.parentElement.querySelector('.copy-btn');
+            
+            navigator.clipboard.writeText(element.textContent).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.classList.add('text-green-400');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('text-green-400');
+                }, 2000);
+            });
+        }
+    </script>
+
+    <style>
+        .font-space {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass-morphism {
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .noise-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+
+        .scrollbar-hidden::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hidden {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .llm-tab {
+            position: relative;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .llm-tab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .llm-tab:hover::before {
+            opacity: 0.03;
+        }
+
+        .llm-tab.active {
+            color: var(--tab-color, rgb(139, 92, 246));
+            background: rgba(255,255,255,0.03);
+        }
+
+        .llm-tab.active::before {
+            opacity: 0.05;
+        }
+
+        .llm-tab[data-tab="chatgpt"] {
+            --tab-color: rgb(16, 163, 127);
+        }
+
+        .llm-tab[data-tab="claude"] {
+            --tab-color: rgb(142, 68, 239);
+        }
+
+        .llm-tab[data-tab="llama"] {
+            --tab-color: rgb(79, 70, 229);
+        }
+
+        .tab-content.active {
+            animation: tabFadeIn 0.3s ease forwards;
+        }
+
+        @keyframes tabFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .copy-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn::after {
+            content: 'Copied!';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-100);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.2s ease;
+        }
+
+        .copy-btn.copied::after {
+            transform: translateY(0);
+        }
+
+        .select-all {
+            cursor: text;
+        }
+    </style>
+
+    <script>
+        document.querySelectorAll('.llm-tab').forEach(tab => {
+            tab.addEventListener('mousemove', e => {
+                const rect = tab.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                tab.style.setProperty('--mouse-x', `${x}px`);
+                tab.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
