@@ -48,7 +48,6 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
     - [x] Installed @revenuecat/purchases-js package
     - [x] Created revenuecat.ts client in lib directory with initialization and helper functions
     - [x] Configured environment variables for RevenueCat API key
-  - [ ] Create mock content structure and hardcode initial content
 
 - [ ] **Database Schema Design**
   - [ ] Design and implement users table
