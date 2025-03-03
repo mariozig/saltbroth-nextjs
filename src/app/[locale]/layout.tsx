@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { Metadata } from 'next';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: "SaltBroth - AI Prompts Marketplace",
@@ -28,7 +28,7 @@ export default async function RootLayout({
   const locale = (await params).locale;
   
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   // Get messages for the current locale
   const messages = await getMessages();
