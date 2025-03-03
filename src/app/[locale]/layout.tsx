@@ -1,17 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-
-// Load the font with a consistent configuration
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'sans-serif'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-plus-jakarta-sans',
-});
 
 export const metadata: Metadata = {
   title: "SaltBroth - AI Prompts Marketplace",
@@ -33,10 +22,10 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Params;
 }) {
-  // Get the locale from params - we need to await it
-  const locale = await Promise.resolve(params.locale);
+  // Get the locale from params
+  const locale = (await params).locale;
   
   // Enable static rendering
   unstable_setRequestLocale(locale);
@@ -45,13 +34,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <head />
-      <body className="font-sans antialiased">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      {children}
+    </NextIntlClientProvider>
   );
 }

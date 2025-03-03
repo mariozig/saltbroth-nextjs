@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-plus-jakarta-sans)', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Color System Documentation
@@ -57,4 +57,4 @@ module.exports = {
     },
   },
   plugins: [],
-} 
+}

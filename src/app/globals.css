@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-/* Remove the theme font definition to avoid conflicts */
-/* @theme {
+/* Font variables will be managed by Next.js font module and applied via the layout */
+@theme {
   --font-sans: "Plus Jakarta Sans", var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-} */
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
