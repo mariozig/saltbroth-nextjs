@@ -1,0 +1,91 @@
+{
+  "common": {
+    "appName": "SaltBroth",
+    "tagline": "AI Prompt Marketplace",
+    "search": "Search",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "subscribe": "Subscribe",
+    "categoriesNav": "Categories",
+    "popular": "Popular",
+    "featured": "Featured",
+    "new": "New",
+    "free": "Free",
+    "premium": "Premium",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "seeMore": "See More",
+    "seeLess": "See Less",
+    "viewAll": "View All",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "categories": {
+      "creative": "Creative Writing",
+      "business": "Business & Marketing",
+      "visualArts": "Visual Arts",
+      "educational": "Educational"
+    },
+    "footer": {
+      "about": "About Us",
+      "contact": "Contact",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "copyright": "© 2023 SaltBroth. All rights reserved."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Discover Premium AI Prompts",
+      "subtitle": "Unlock the full potential of AI with our curated collection of high-quality prompts",
+      "cta": "Explore Prompts"
+    },
+    "featuredCategories": {
+      "title": "Featured Categories",
+      "subtitle": "Browse our most popular prompt categories"
+    },
+    "popularPrompts": {
+      "title": "Popular Prompts",
+      "subtitle": "Discover what others are using"
+    }
+  },
+  "prompt": {
+    "examples": "Example Outputs",
+    "usage": "Usage Instructions",
+    "variables": "Variables",
+    "related": "Related Prompts",
+    "author": "Created by",
+    "updated": "Last updated",
+    "copyPrompt": "Copy Prompt",
+    "subscribe": "Subscribe to Access",
+    "subscribeDescription": "Get unlimited access to all premium prompts"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Log in to your account",
+    "signupTitle": "Create an Account",
+    "signupSubtitle": "Join SaltBroth today",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "subscription": {
+    "title": "Choose Your Plan",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "lifetime": "Lifetime",
+    "monthlyPrice": "$9.99/month",
+    "yearlyPrice": "$99.99/year",
+    "lifetimePrice": "$299.99",
+    "savePercent": "Save {percent}%",
+    "features": {
+      "title": "All plans include:",
+      "accessAll": "Access to all premium prompts",
+      "updates": "Regular updates and new prompts",
+      "support": "Priority support",
+      "noAds": "Ad-free experience"
+    }
+  }
+}

@@ -1,24 +1,154 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-geist-sans);
+/* Remove the theme font definition to avoid conflicts */
+/* @theme {
+  --font-sans: "Plus Jakarta Sans", var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --accent-100: 103, 232, 249; /* cyan-400 */
+  --accent-150: 139, 92, 246; /* violet-500 */
+  --accent-200: 249, 168, 212; /* pink-300 */
+  --accent-250: 253, 224, 71; /* yellow-300 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  /* Font is now handled by the className in layout.tsx */
+}
+
+/***************************************
+ * Salt Broth Styles
+ * 
+ * Table of Contents:
+ * 1. Base Effects
+ * 2. Text Styles
+ * 3. Components
+ *    - Cards
+ *    - Buttons
+ *    - Dividers
+ * 4. Utilities
+ ***************************************/
+
+/* =================================
+   1. Base Effects
+   ================================= */
+
+/* Glass morphism effect with gradient and blur */
+.glass {
+  background: rgba(17, 25, 40, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =================================
+   2. Text Styles
+   ================================= */
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(90deg, #67e8f9, #8b5cf6, #f9a8d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Glow effect */
+.glow {
+  text-shadow: 0 0 20px rgba(103, 232, 249, 0.5), 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+/* Text balance for better typography */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* =================================
+   3. Components
+   ================================= */
+
+/* --- Cards --- */
+
+/* Category card with hover effects */
+.category-card {
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Buttons --- */
+
+/* Primary gradient button */
+.gradient-button {
+  background: linear-gradient(90deg, #67e8f9, #8b5cf6, #f9a8d4);
+  transition: all 0.3s ease;
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Dividers --- */
+
+/* Gradient divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+}
+
+/* =================================
+   4. Utilities
+   ================================= */
+
+.tab-btn.active {
+  border-bottom: 2px solid currentColor;
+  text-decoration: underline;
+  text-decoration-color: #8B5CF6;
+}
+
+.bg-accent-100 {
+  background-color: rgba(var(--accent-100), 0.2);
+}
+
+.bg-accent-150 {
+  background-color: rgba(var(--accent-150), 0.2);
+}
+
+.bg-accent-200 {
+  background-color: rgba(var(--accent-200), 0.2);
+}
+
+.bg-accent-250 {
+  background-color: rgba(var(--accent-250), 0.2);
+}
+
+.text-accent-100 {
+  color: rgb(var(--accent-100));
 }
