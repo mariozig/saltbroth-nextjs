@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: "SaltBroth - AI Prompts Marketplace",
+  title: "SALTBROTH - AI Prompts Marketplace",
   description: "Discover the best AI prompts for your projects",
 };
 

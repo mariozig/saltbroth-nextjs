@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "SaltBroth",
+    "appName": "SALTBROTH",
     "tagline": "Mercado de Prompts de IA",
     "search": "Buscar",
     "login": "Iniciar Sesión",
@@ -32,7 +32,7 @@
       "contact": "Contacto",
       "terms": "Términos de Servicio",
       "privacy": "Política de Privacidad",
-      "copyright": "© 2023 SaltBroth. Todos los derechos reservados."
+      "copyright": " 2023 SALTBROTH. Todos los derechos reservados."
     }
   },
   "home": {
@@ -68,7 +68,7 @@
     "loginTitle": "Bienvenido de Nuevo",
     "loginSubtitle": "Inicia sesión en tu cuenta",
     "signupTitle": "Crear una Cuenta",
-    "signupSubtitle": "Únete a SaltBroth hoy",
+    "signupSubtitle": "Únete a SALTBROTH hoy",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
     "dontHaveAccount": "¿No tienes una cuenta?"
   },
@@ -89,4 +89,4 @@
       "noAds": "Experiencia sin publicidad"
     }
   }
-} 
+}

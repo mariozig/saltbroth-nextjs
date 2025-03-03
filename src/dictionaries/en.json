@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "SaltBroth",
+    "appName": "SALTBROTH",
     "tagline": "AI Prompt Marketplace",
     "search": "Search",
     "login": "Log In",
@@ -32,7 +32,7 @@
       "contact": "Contact",
       "terms": "Terms of Service",
       "privacy": "Privacy Policy",
-      "copyright": "© 2023 SaltBroth. All rights reserved."
+      "copyright": " 2023 SALTBROTH. All rights reserved."
     }
   },
   "home": {
@@ -68,7 +68,7 @@
     "loginTitle": "Welcome Back",
     "loginSubtitle": "Log in to your account",
     "signupTitle": "Create an Account",
-    "signupSubtitle": "Join SaltBroth today",
+    "signupSubtitle": "Join SALTBROTH today",
     "alreadyHaveAccount": "Already have an account?",
     "dontHaveAccount": "Don't have an account?"
   },

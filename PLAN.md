@@ -1,4 +1,4 @@
-# SaltBroth Development Plan
+# SALTBROTH Development Plan
 
 ## Overview
 We'll build a modern, user-friendly marketplace for AI prompts using Next.js, Tailwind CSS, Supabase, and RevenueCat. The site will support free and premium content, with a focus on mobile-first responsive design following the provided design templates in `./docs/design-template`.
