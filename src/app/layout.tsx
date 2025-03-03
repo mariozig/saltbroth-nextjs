@@ -22,11 +22,6 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
 });
 
-export const metadata: Metadata = {
-  title: "SALTBROTH",
-  description: "AI Prompt Marketplace",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

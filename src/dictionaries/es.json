@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "SALTBROTH",
+    "description": "Mercado de Prompts de IA"
+  },
   "common": {
     "appName": "SALTBROTH",
     "tagline": "Mercado de Prompts de IA",
