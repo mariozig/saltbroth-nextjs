@@ -8,7 +8,7 @@ type Params = {
 };
 
 // Generate metadata based on locale
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { locale } = await params;
   
   // Import the messages for the current locale
@@ -38,7 +38,7 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Params;
+  params: Promise<Params>;
 }) {
   // Get the locale from params
   const { locale } = await params;

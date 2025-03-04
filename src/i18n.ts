@@ -7,7 +7,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let requested;
   try {
     requested = await requestLocale;
-  } catch (error) {
+  } catch {
     requested = undefined;
   }
   

@@ -3,7 +3,6 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
 
 export default function BusinessCategoryPage() {
-  const t = useTranslations('home');
   const common = useTranslations('common');
   const categories = useTranslations('common.categories');
   
