@@ -61,7 +61,6 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
     - [x] Created LanguageSwitcher component with dropdown menu
     - [x] Added locale switching functionality
     - [x] Create footer component
-    - [x] Implemented footer with links and copyright information
     - [x] Implement breadcrumb navigation
     - [x] Created Breadcrumbs component with automatic path generation
     - [x] Populate with hardcoded mock navigation content

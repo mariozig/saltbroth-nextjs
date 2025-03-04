@@ -86,7 +86,6 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
               <h2 className="text-2xl font-bold gradient-text">{common('appName')}</h2>
-              <p className="text-gray-400 mt-2">{footer('copyright')}</p>
             </div>
             <div className="flex space-x-8">
               <a href="#" className="text-gray-400 hover:text-white">{footer('about')}</a>
