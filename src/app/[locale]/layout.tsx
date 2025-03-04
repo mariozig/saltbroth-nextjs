@@ -9,7 +9,7 @@ type Params = {
 
 // Generate metadata based on locale
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const locale = params.locale;
+  const { locale } = await params;
   
   // Import the messages for the current locale
   const messages = (await import(`../../dictionaries/${locale}.json`)).default;
@@ -41,7 +41,7 @@ export default async function RootLayout({
   params: Params;
 }) {
   // Get the locale from params
-  const locale = (await params).locale;
+  const { locale } = await params;
   
   // Enable static rendering
   setRequestLocale(locale);
