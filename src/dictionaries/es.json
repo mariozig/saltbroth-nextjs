@@ -86,6 +86,14 @@
         "title": "¡Cuenta Creada Exitosamente!",
         "message": "Por favor revisa tu correo electrónico para encontrar el enlace de verificación. Podrás iniciar sesión después de verificar tu dirección de correo."
       },
+      "verificationSuccess": {
+        "title": "¡Correo Verificado Exitosamente!",
+        "message": "Tu correo electrónico ha sido verificado. Ahora puedes iniciar sesión en tu cuenta."
+      },
+      "resetSuccess": {
+        "title": "Restablecimiento de Contraseña Completado",
+        "message": "Tu contraseña se ha restablecido exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña."
+      },
       "error": {
         "invalidCredentials": "Correo electrónico o contraseña inválidos",
         "generic": "Ocurrió un error al iniciar sesión. Por favor intenta de nuevo."
@@ -112,6 +120,12 @@
       "submitting": "Enviando instrucciones...",
       "success": "¡Instrucciones enviadas!",
       "error": "Error al enviar las instrucciones"
+    },
+    "callback": {
+      "processing": "Procesando Tu Solicitud",
+      "pleaseWait": "Por favor espera mientras completamos tu autenticación...",
+      "success": "¡Autenticación exitosa!",
+      "error": "La autenticación falló. Por favor intenta de nuevo."
     }
   },
   "subscription": {
