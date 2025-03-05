@@ -34,14 +34,23 @@ export default function SignupForm() {
       });
 
       if (error) {
-        setError(error.message);
+        // Map Supabase error messages to our translation keys
+        if (error.message.includes('already registered')) {
+          setError(t('error.emailTaken'));
+        } else if (error.message.includes('valid email')) {
+          setError(t('error.invalidEmail'));
+        } else if (error.message.includes('password')) {
+          setError(t('error.weakPassword'));
+        } else {
+          setError(t('error.generic'));
+        }
         console.error('Signup error:', error.message);
       } else {
         console.log('Signed up:', data);
         router.push('/auth/login?verified=pending');
       }
     } catch (err) {
-      setError('An unexpected error occurred');
+      setError(t('error.generic'));
       console.error('Signup error:', err);
     } finally {
       setLoading(false);

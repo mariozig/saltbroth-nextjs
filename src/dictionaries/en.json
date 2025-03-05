@@ -79,18 +79,34 @@
       "email": "Email address",
       "password": "Password",
       "submit": "Sign in",
-      "resetPassword": "Forgot your password?"
+      "submitting": "Signing in...",
+      "resetPassword": "Forgot your password?",
+      "verificationPending": {
+        "title": "Account Created Successfully!",
+        "message": "Please check your email for a verification link. You'll be able to log in after verifying your email address."
+      }
     },
     "signupForm": {
       "title": "Create a new account",
       "email": "Email address",
       "password": "Password",
-      "submit": "Sign up"
+      "submit": "Sign up",
+      "submitting": "Creating account...",
+      "success": "Account created successfully!",
+      "error": {
+        "generic": "An error occurred while creating your account",
+        "emailTaken": "This email is already registered",
+        "invalidEmail": "Please enter a valid email address",
+        "weakPassword": "Password must be at least 8 characters"
+      }
     },
     "forgotPasswordForm": {
       "title": "Reset your password",
       "email": "Email address",
-      "submit": "Reset password"
+      "submit": "Reset password",
+      "submitting": "Sending reset instructions...",
+      "success": "Reset instructions sent!",
+      "error": "Failed to send reset instructions"
     }
   },
   "subscription": {
