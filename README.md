@@ -1,7 +1,7 @@
 # SALTBROTH
 
 ## Overview
- [SALTBROTH](https://saltbroth.com/)is a modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind CSS, Supabase, and RevenueCat. It supports both free and premium content, focusing on a mobile-first responsive design.
+ [SALTBROTH](https://saltbroth.com/) is a modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind CSS, Supabase, and RevenueCat. It supports both free and premium content, focusing on a mobile-first responsive design.
 
 ## Getting Started
 
