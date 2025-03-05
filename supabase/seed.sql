@@ -3,7 +3,16 @@ INSERT INTO public.categories (name, slug, description) VALUES
     ('Creative Writing', 'creative-writing', 'Prompts for creative writing and storytelling'),
     ('Business & Marketing', 'business-marketing', 'Professional content and marketing materials'),
     ('Visual Arts', 'visual-arts', 'Prompts for generating visual art descriptions'),
-    ('Educational', 'educational', 'Educational content and learning materials');
+    ('Educational', 'educational', 'Educational content and learning materials'),
+    ('Business', 'business', 'Professional content and business materials'),
+    ('Writing', 'writing', 'Prompts for various types of writing');
+
+-- Insert nested level 2 categories
+INSERT INTO public.categories (name, slug, description, parent_id) VALUES
+    ('Business Writing', 'business/writing', 'Professional writing prompts', (SELECT id FROM public.categories WHERE slug = 'business')),
+    ('Proposals', 'business/proposals', 'Business proposal templates', (SELECT id FROM public.categories WHERE slug = 'business')),
+    ('Poems', 'writing/poems', 'Poetry writing prompts', (SELECT id FROM public.categories WHERE slug = 'writing')),
+    ('Song Lyrics', 'writing/song-lyrics', 'Songwriting prompts', (SELECT id FROM public.categories WHERE slug = 'writing'));
 
 -- Insert sample admin user (make sure to replace with actual admin email)
 INSERT INTO auth.users (
@@ -36,6 +45,20 @@ INSERT INTO public.prompts (title, content, user_id, category_id, is_premium) VA
         'Write a creative story opening in the {genre} genre, featuring a character who is {character_trait}.',
         '00000000-0000-0000-0000-000000000000',
         (SELECT id FROM public.categories WHERE slug = 'creative-writing'),
+        true
+    ),
+    (
+        'Business Email Template',
+        'Write a professional email about: {topic}. Tone should be {tone} and length should be {length}.',
+        '00000000-0000-0000-0000-000000000000',
+        (SELECT id FROM public.categories WHERE slug = 'business/writing'),
+        false
+    ),
+    (
+        'Creative Poem Starter',
+        'Write a creative poem in the {style} style, featuring a theme of {theme}.',
+        '00000000-0000-0000-0000-000000000000',
+        (SELECT id FROM public.categories WHERE slug = 'writing/poems'),
         true
     );
 
