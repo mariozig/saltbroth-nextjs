@@ -5,6 +5,13 @@ A modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind
 
 Hosting is handled by Vercel.
 
+Localization is supported for English and Spanish (right now). Localized content should look like this: 
+
+- site.com/page-title (for English)
+- site.com/es/page-title-es (for Spanish)
+- site.com/it/page-title (for Italian)
+- ...etc
+
 ## Tech Stack
 - Next.js (latest version)
 - Tailwind CSS (latest)
@@ -99,10 +106,15 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
   - [ ] Set up seed data for development and testing
 
 - [ ] **Authentication System**
-  - [ ] Implement Supabase auth integration
+  - [x] Implement Supabase auth integration
+    - [x] Set up Supabase client with environment variables
+    - [x] Create auth pages with proper localization support
     - [ ] Create auth context provider for React components
     - [ ] Implement protected routes middleware
-  - [ ] Create sign-up flow (with subscription option)
+  - [x] Create sign-up flow (with subscription option)
+    - [x] Implement signup form with proper validation
+    - [x] Add support for localized content
+    - [ ] Integrate with subscription options
   - [ ] Create sign-in flow
   - [ ] Implement password reset functionality
   - [ ] Set up protected routes for premium content

@@ -7,7 +7,7 @@ export default function Home() {
   const common = useTranslations('common');
   const categories = useTranslations('common.categories');
   const footer = useTranslations('common.footer');
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
@@ -17,13 +17,13 @@ export default function Home() {
         </div>
         <nav className="hidden md:flex space-x-6">
           <Link href="/categories" className="text-gray-300 hover:text-white">{common('categoriesNav')}</Link>
-          <a href="#" className="text-gray-300 hover:text-white">{common('popular')}</a>
-          <a href="#" className="text-gray-300 hover:text-white">{common('featured')}</a>
+          <Link href="/auth/login" className="text-gray-300 hover:text-white">{common('login')}</Link>
+          <Link href="/auth/signup" className="text-gray-300 hover:text-white">{common('signup')}</Link>
         </nav>
         <div className="flex space-x-4 items-center">
           <LanguageSwitcher />
-          <button className="px-4 py-2 rounded-full text-gray-300 hover:text-white">{common('login')}</button>
-          <button className="gradient-button px-4 py-2 rounded-full">{common('signup')}</button>
+          <Link href="/auth/login" className="px-4 py-2 rounded-full text-gray-300 hover:text-white">{common('login')}</Link>
+          <Link href="/auth/signup" className="gradient-button px-4 py-2 rounded-full">{common('signup')}</Link>
         </div>
       </header>
 
@@ -42,9 +42,8 @@ export default function Home() {
             </div>
             <a href="#" className="text-accent-100 hover:underline">{common('viewAll')}</a>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Placeholder for category cards */}
             <div className="category-card glass rounded-xl p-6 cursor-pointer">
               <div className="w-12 h-12 rounded-full bg-accent-100 mb-4 flex items-center justify-center">
                 <span className="text-xl">✨</span>
@@ -52,7 +51,7 @@ export default function Home() {
               <h4 className="text-xl font-semibold mb-2">{categories('creative')}</h4>
               <p className="text-gray-400">24 prompts</p>
             </div>
-            
+
             <div className="category-card glass rounded-xl p-6 cursor-pointer">
               <div className="w-12 h-12 rounded-full bg-accent-150 mb-4 flex items-center justify-center">
                 <span className="text-xl">💼</span>
@@ -60,7 +59,7 @@ export default function Home() {
               <h4 className="text-xl font-semibold mb-2">{categories('business')}</h4>
               <p className="text-gray-400">32 prompts</p>
             </div>
-            
+
             <div className="category-card glass rounded-xl p-6 cursor-pointer">
               <div className="w-12 h-12 rounded-full bg-accent-200 mb-4 flex items-center justify-center">
                 <span className="text-xl">🎨</span>
@@ -68,7 +67,7 @@ export default function Home() {
               <h4 className="text-xl font-semibold mb-2">{categories('visualArts')}</h4>
               <p className="text-gray-400">18 prompts</p>
             </div>
-            
+
             <div className="category-card glass rounded-xl p-6 cursor-pointer">
               <div className="w-12 h-12 rounded-full bg-accent-250 mb-4 flex items-center justify-center">
                 <span className="text-xl">📚</span>

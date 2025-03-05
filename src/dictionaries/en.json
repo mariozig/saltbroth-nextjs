@@ -73,7 +73,25 @@
     "signupTitle": "Create an Account",
     "signupSubtitle": "Join SALTBROTH today",
     "alreadyHaveAccount": "Already have an account?",
-    "dontHaveAccount": "Don't have an account?"
+    "dontHaveAccount": "Don't have an account?",
+    "loginForm": {
+      "title": "Sign in to your account",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "resetPassword": "Forgot your password?"
+    },
+    "signupForm": {
+      "title": "Create a new account",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign up"
+    },
+    "forgotPasswordForm": {
+      "title": "Reset your password",
+      "email": "Email address",
+      "submit": "Reset password"
+    }
   },
   "subscription": {
     "title": "Choose Your Plan",

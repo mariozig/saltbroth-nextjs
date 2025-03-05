@@ -67,13 +67,25 @@
   "auth": {
     "email": "Correo Electrónico",
     "password": "Contraseña",
-    "forgotPassword": "¿Olvidaste tu Contraseña?",
+    "forgotPassword": {
+      "title": "Restablece tu contraseña",
+      "email": "Correo electrónico",
+      "submit": "Restablecer contraseña"
+    },
     "loginTitle": "Bienvenido de Nuevo",
     "loginSubtitle": "Inicia sesión en tu cuenta",
-    "signupTitle": "Crear una Cuenta",
-    "signupSubtitle": "Únete a SALTBROTH hoy",
-    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "dontHaveAccount": "¿No tienes una cuenta?"
+    "signup": {
+      "title": "Crear una Cuenta",
+      "subtitle": "Únete a SALTBROTH hoy",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?"
+    },
+    "login": {
+      "title": "Inicia sesión en tu cuenta",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "resetPassword": "¿Olvidaste tu contraseña?"
+    }
   },
   "subscription": {
     "title": "Elige tu Plan",
