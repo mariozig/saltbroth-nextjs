@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const t = useTranslations('home');
@@ -10,23 +9,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold gradient-text">{common('appName')}</h1>
-          <p className="ml-4 text-gray-400">{common('tagline')}</p>
-        </div>
-        <nav className="hidden md:flex space-x-6">
-          <Link href="/categories" className="text-gray-300 hover:text-white">{common('categoriesNav')}</Link>
-          <Link href="/auth/login" className="text-gray-300 hover:text-white">{common('login')}</Link>
-          <Link href="/auth/signup" className="text-gray-300 hover:text-white">{common('signup')}</Link>
-        </nav>
-        <div className="flex space-x-4 items-center">
-          <LanguageSwitcher />
-          <Link href="/auth/login" className="px-4 py-2 rounded-full text-gray-300 hover:text-white">{common('login')}</Link>
-          <Link href="/auth/signup" className="gradient-button px-4 py-2 rounded-full">{common('signup')}</Link>
-        </div>
-      </header>
-
+      <Navbar />
       <main className="pt-32 pb-20 px-6 md:px-20 max-w-7xl mx-auto">
         <section className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-bold gradient-text glow mb-6">{t('hero.title')}</h2>

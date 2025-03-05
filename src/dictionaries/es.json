@@ -25,6 +25,7 @@
     "next": "Siguiente",
     "previous": "Anterior",
     "home": "Inicio",
+    "logout": "Cerrar sesión",
     "categories": {
       "creative": "Escritura Creativa",
       "business": "Negocios y Marketing",
@@ -84,6 +85,10 @@
       "verificationPending": {
         "title": "¡Cuenta Creada Exitosamente!",
         "message": "Por favor revisa tu correo electrónico para encontrar el enlace de verificación. Podrás iniciar sesión después de verificar tu dirección de correo."
+      },
+      "error": {
+        "invalidCredentials": "Correo electrónico o contraseña inválidos",
+        "generic": "Ocurrió un error al iniciar sesión. Por favor intenta de nuevo."
       }
     },
     "signupForm": {

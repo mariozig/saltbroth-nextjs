@@ -3,41 +3,58 @@
 import { supabase } from '@/lib/supabase';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
   const t = useTranslations('auth.loginForm');
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: Event) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
+    setError(null);
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      console.error('Login error:', error.message);
-    } else {
-      console.log('Logged in:', data);
+      if (error) {
+        if (error.message.includes('Invalid login')) {
+          setError(t('error.invalidCredentials'));
+        } else {
+          setError(t('error.generic'));
+        }
+        console.error('Login error:', error.message);
+      } else {
+        console.log('Logged in:', data);
+        // Redirect to home page after successful login
+        router.push('/');
+        router.refresh(); // Refresh to update auth state across the app
+      }
+    } catch (err) {
+      setError(t('error.generic'));
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const form = document.querySelector('form');
-    form?.addEventListener('submit', handleLogin);
-
-    return () => {
-      form?.removeEventListener('submit', handleLogin);
-    };
-  }, []);
-
   return (
-    <form className="mt-8 space-y-6">
+    <form onSubmit={handleLogin} className="mt-8 space-y-6">
+      {error && (
+        <div className="rounded-md bg-red-50 p-4">
+          <div className="text-sm text-red-700">{error}</div>
+        </div>
+      )}
       <div className="rounded-md shadow-sm -space-y-px">
         <div>
           <label htmlFor="email" className="sr-only">
@@ -71,9 +88,10 @@ export default function LoginForm() {
       <div>
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          disabled={loading}
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
         >
-          {t('submit')}
+          {loading ? t('submitting') : t('submit')}
         </button>
       </div>
       <div className="text-center">

@@ -25,6 +25,7 @@
     "next": "Next",
     "previous": "Previous",
     "home": "Home",
+    "logout": "Sign out",
     "categories": {
       "creative": "Creative Writing",
       "business": "Business & Marketing",
@@ -84,6 +85,10 @@
       "verificationPending": {
         "title": "Account Created Successfully!",
         "message": "Please check your email for a verification link. You'll be able to log in after verifying your email address."
+      },
+      "error": {
+        "invalidCredentials": "Invalid email or password",
+        "generic": "An error occurred while signing in. Please try again."
       }
     },
     "signupForm": {
