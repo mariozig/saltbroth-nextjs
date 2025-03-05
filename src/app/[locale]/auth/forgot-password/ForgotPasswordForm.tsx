@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from '@/lib/supabase';
+import supabase from '@/lib/supabase';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 

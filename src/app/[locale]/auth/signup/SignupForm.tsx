@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from '@/lib/supabase';
+import supabase from '@/lib/supabase';
 import { useTranslations } from 'next-intl';
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,7 @@ export default function SignupForm() {
         email,
         password,
         options: {
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
           data: {
             name: email.split('@')[0], // Default name from email
             role: 'user',
