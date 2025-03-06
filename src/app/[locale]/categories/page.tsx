@@ -7,10 +7,11 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getAllCategories } from '@/app/api/prompts/prompts';
+import { getLocalizedHref } from '@/utils/locale';
 
 /**
  * Generates metadata for the categories page
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
  */
 export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   const t = await getTranslations('prompts');
   const commonT = await getTranslations('common');
@@ -56,8 +57,8 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
   return (
     <div className="container max-w-5xl mx-auto px-4 py-8">
       <Breadcrumbs items={[
-        { label: commonT('home'), href: `/${locale}` },
-        { label: t('categories'), href: `/${locale}/categories`, isCurrent: true }
+        { label: commonT('home'), href: getLocalizedHref('/', locale) },
+        { label: t('categories'), href: getLocalizedHref('/categories', locale), isCurrent: true }
       ]} />
       
       <header className="mb-12">
@@ -70,7 +71,7 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
           {topLevelCategories.map(category => (
             <Link 
               key={category.id}
-              href={`/${locale}/categories/${category.slug}`}
+              href={getLocalizedHref(`/categories/${category.slug}`, locale)}
               className="block group"
             >
               <div className="glass rounded-2xl p-6 h-full transition-transform duration-200 group-hover:translate-y-[-2px]">

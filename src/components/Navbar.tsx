@@ -6,6 +6,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import { useEffect, useState } from 'react';
 import supabase from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
+import { getLocalizedHref } from '@/utils/locale';
 
 export default function Navbar() {
   const common = useTranslations('common');
@@ -44,13 +45,13 @@ export default function Navbar() {
   return (
     <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
       <div className="flex items-center">
-        <Link href={`/${locale}`} className="flex items-center">
+        <Link href={getLocalizedHref('/', locale)} className="flex items-center">
           <h1 className="text-2xl font-bold gradient-text">{common('appName')}</h1>
           <p className="ml-4 text-gray-400 hidden sm:block">{common('tagline')}</p>
         </Link>
       </div>
       <nav className="hidden md:flex space-x-6">
-        <Link href={`/${locale}/categories`} className="text-gray-300 hover:text-white transition-colors">
+        <Link href={getLocalizedHref('/categories', locale)} className="text-gray-300 hover:text-white transition-colors">
           {common('categoriesNav')}
         </Link>
       </nav>
@@ -69,13 +70,13 @@ export default function Navbar() {
         ) : (
           <>
             <Link
-              href={`/${locale}/auth/login`}
+              href={getLocalizedHref('/auth/login', locale)}
               className="gradient-button px-4 py-2 rounded-full"
             >
               {common('login')}
             </Link>
             <Link
-              href={`/${locale}/auth/signup`}
+              href={getLocalizedHref('/auth/signup', locale)}
               className="gradient-button px-4 py-2 rounded-full"
             >
               {common('signup')}

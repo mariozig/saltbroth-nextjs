@@ -8,11 +8,12 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptCard from '@/components/prompts/PromptCard';
 import { getPromptsByCategory, getAllCategories } from '@/app/api/prompts/prompts';
+import { getLocalizedHref } from '@/utils/locale';
 
 /**
  * Props for the CategoryPage component
@@ -91,7 +92,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
  */
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, slug } = await params;
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   const t = await getTranslations('prompts');
   const commonT = await getTranslations('common');
@@ -129,8 +130,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
    * Starting with home and categories as the base path
    */
   const breadcrumbItems: BreadcrumbItem[] = [
-    { label: commonT('home'), href: `/${locale}` },
-    { label: t('categories'), href: `/${locale}/categories` }
+    { label: commonT('home'), href: getLocalizedHref('/', locale) },
+    { label: t('categories'), href: getLocalizedHref('/categories', locale) }
   ];
   
   /**
@@ -150,7 +151,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       if (parentCategory) {
         breadcrumbItems.push({
           label: parentCategory.name,
-          href: `/${locale}/categories/${parentSlug}`
+          href: getLocalizedHref(`/categories/${parentSlug}`, locale)
         });
       }
     }
@@ -162,7 +163,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
    */
   breadcrumbItems.push({
     label: currentCategory.name,
-    href: `/${locale}/categories/${categorySlug}`,
+    href: getLocalizedHref(`/categories/${categorySlug}`, locale),
     isCurrent: true
   });
   
@@ -183,7 +184,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               {childCategories.map(category => (
                 <a 
                   key={category.id}
-                  href={`/${locale}/categories/${category.slug}`}
+                  href={getLocalizedHref(`/categories/${category.slug}`, locale)}
                   className="block group"
                 >
                   <div className="glass rounded-2xl p-6 h-full transition-transform duration-200 group-hover:translate-y-[-2px]">

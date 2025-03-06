@@ -7,10 +7,11 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptCard from '@/components/prompts/PromptCard';
 import { getAllPrompts } from '@/app/api/prompts/prompts';
+import { getLocalizedHref } from '@/utils/locale';
 
 /**
  * Props for the PromptsPage component
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: PromptsPageProps): Promise<Me
  */
 export default async function PromptsPage({ params }: PromptsPageProps) {
   const { locale } = await params;
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   const t = await getTranslations('prompts');
   const commonT = await getTranslations('common');
@@ -62,8 +63,8 @@ export default async function PromptsPage({ params }: PromptsPageProps) {
   return (
     <div className="container max-w-5xl mx-auto px-4 py-8">
       <Breadcrumbs items={[
-        { label: commonT('home'), href: `/${locale}` },
-        { label: t('prompts'), href: `/${locale}/prompts`, isCurrent: true }
+        { label: commonT('home'), href: getLocalizedHref('/', locale) },
+        { label: t('prompts'), href: getLocalizedHref('/prompts', locale), isCurrent: true }
       ]} />
       
       <header className="mb-12">

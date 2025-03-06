@@ -8,12 +8,13 @@
 
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptTemplate from '@/components/prompts/PromptTemplate';
 import PromptOutputSamples from '@/components/prompts/PromptOutputSamples';
 import { getPromptBySlug, getOutputSamplesByPromptId } from '@/app/api/prompts/prompts';
+import { getLocalizedHref } from '@/utils/locale';
 
 /**
  * Props for the PromptPage component
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: PromptPageProps): Promise<Met
  */
 export default async function PromptPage({ params }: PromptPageProps) {
   const { locale, slug } = await params;
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   const t = await getTranslations('prompts');
   const commonT = await getTranslations('common');
@@ -86,13 +87,13 @@ export default async function PromptPage({ params }: PromptPageProps) {
   const categoryName = categoryItem?.name || '';
   
   const breadcrumbItems = [
-    { label: commonT('home'), href: `/${locale}` },
-    { label: t('categories'), href: `/${locale}/categories` },
+    { label: commonT('home'), href: getLocalizedHref('/', locale) },
+    { label: t('categories'), href: getLocalizedHref('/categories', locale) },
     { 
       label: categoryName, 
-      href: `/${locale}/categories/${categorySlug}`,
+      href: getLocalizedHref(`/categories/${categorySlug}`, locale),
     },
-    { label: prompt.title, href: `/${locale}/prompts/${slug}`, isCurrent: true },
+    { label: prompt.title, href: getLocalizedHref(`/prompts/${slug}`, locale), isCurrent: true },
   ];
   
   return (

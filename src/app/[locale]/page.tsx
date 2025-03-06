@@ -1,11 +1,16 @@
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { getLocalizedHref } from '@/utils/locale';
+import Link from 'next/link';
 
 export default function Home() {
   const t = useTranslations('home');
   const common = useTranslations('common');
   const categories = useTranslations('common.categories');
-  const footer = useTranslations('common.footer');
+  const locale = useLocale();
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -23,7 +28,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2">{t('featuredCategories.title')}</h3>
               <p className="text-gray-400">{t('featuredCategories.subtitle')}</p>
             </div>
-            <a href="#" className="text-accent-100 hover:underline">{common('viewAll')}</a>
+            <Link href={getLocalizedHref('/categories', locale)} className="text-accent-100 hover:underline">{common('viewAll')}</Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,22 +67,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-black/30 py-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-20">
-          <div className="divider mb-8"></div>
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h2 className="text-2xl font-bold gradient-text">{common('appName')}</h2>
-            </div>
-            <div className="flex space-x-8">
-              <a href="#" className="text-gray-400 hover:text-white">{footer('about')}</a>
-              <a href="#" className="text-gray-400 hover:text-white">{footer('contact')}</a>
-              <a href="#" className="text-gray-400 hover:text-white">{footer('terms')}</a>
-              <a href="#" className="text-gray-400 hover:text-white">{footer('privacy')}</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
