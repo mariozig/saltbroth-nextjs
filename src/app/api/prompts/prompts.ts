@@ -265,3 +265,43 @@ export const getAllCategories = unstable_cache(
     tags: ['categories']
   }
 );
+
+/**
+ * Fetches all available prompts
+ * 
+ * This function retrieves all prompts from the database with their basic information.
+ * Results are cached to improve performance and are ordered by creation date (newest first).
+ * 
+ * @returns Promise<Prompt[]> - Array of all prompts, ordered by creation date
+ */
+export const getAllPrompts = unstable_cache(
+  async () => {
+    const { data: prompts, error } = await supabase
+      .from('prompts')
+      .select(`
+        id, 
+        title, 
+        slug, 
+        description, 
+        icon, 
+        is_premium, 
+        created_at, 
+        updated_at,
+        category_id,
+        categories (id, name, slug)
+      `)
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.error('Error fetching all prompts:', error);
+      return [];
+    }
+    
+    return prompts;
+  },
+  ['all-prompts'],
+  {
+    revalidate: 60 * 60, // Revalidate every hour
+    tags: ['prompts']
+  }
+);
