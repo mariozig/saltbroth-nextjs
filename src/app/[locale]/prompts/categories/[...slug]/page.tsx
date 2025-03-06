@@ -13,6 +13,12 @@ interface CategoryPageProps {
   }>;
 }
 
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+  isCurrent?: boolean;
+}
+
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
@@ -60,7 +66,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const prompts = await getPromptsByCategory(categorySlug);
   
   // Build breadcrumb path
-  const breadcrumbItems = [
+  const breadcrumbItems: BreadcrumbItem[] = [
     { label: t('prompts'), href: `/${locale}/prompts` },
     { label: t('categories'), href: `/${locale}/prompts/categories` }
   ];
