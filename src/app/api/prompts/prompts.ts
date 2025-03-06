@@ -4,6 +4,12 @@
  * This module contains functions for fetching prompt data, output samples,
  * and category information. All functions use Next.js's unstable_cache
  * for server-side caching and revalidation.
+ *
+ * The module provides the following main functions:
+ * - getPromptBySlug: Fetches a single prompt by its unique slug
+ * - getOutputSamplesByPromptId: Fetches output samples for a specific prompt
+ * - getPromptsByCategory: Fetches all prompts belonging to a specific category
+ * - getAllCategories: Fetches all available categories
  */
 
 import supabase from '@/lib/supabase';
@@ -11,9 +17,16 @@ import { unstable_cache } from 'next/cache';
 
 /**
  * Type Definitions
+ * 
+ * These interfaces define the shape of data returned from the Supabase database
+ * and are used throughout the application for type safety.
  */
 
-interface Prompt {
+/**
+ * Represents a prompt entity with all its properties
+ * @interface Prompt
+ */
+export interface Prompt {
   id: string;
   title: string;
   slug: string;
@@ -31,7 +44,11 @@ interface Prompt {
   };
 }
 
-interface OutputSample {
+/**
+ * Represents an output sample generated from a prompt
+ * @interface OutputSample
+ */
+export interface OutputSample {
   id: string;
   content: string;
   createdAt: string;
@@ -43,7 +60,11 @@ interface OutputSample {
   };
 }
 
-interface Category {
+/**
+ * Represents a category entity for organizing prompts
+ * @interface Category
+ */
+export interface Category {
   id: string;
   name: string;
   slug: string;
@@ -53,6 +74,11 @@ interface Category {
 
 /**
  * Fetches a single prompt by its slug
+ * 
+ * This function retrieves detailed information about a prompt using its unique slug.
+ * The data includes the prompt's metadata and associated category information.
+ * Results are cached to improve performance.
+ * 
  * @param slug - The unique slug identifier for the prompt
  * @returns Promise<Prompt | null> - The prompt object or null if not found
  */
@@ -96,6 +122,11 @@ export const getPromptBySlug = unstable_cache(
 
 /**
  * Fetches output samples for a specific prompt
+ * 
+ * This function retrieves all output samples associated with a specific prompt.
+ * Each sample includes the content and information about the LLM that generated it.
+ * Results are cached to improve performance.
+ * 
  * @param promptId - The ID of the prompt to get samples for
  * @returns Promise<OutputSample[]> - Array of output samples with related LLM info
  */
@@ -147,6 +178,11 @@ export const getOutputSamplesByPromptId = unstable_cache(
 
 /**
  * Fetches all prompts belonging to a specific category
+ * 
+ * This function first resolves the category ID from the provided slug,
+ * then retrieves all prompts associated with that category.
+ * Results are cached to improve performance.
+ * 
  * @param categorySlug - The slug of the category to filter by
  * @returns Promise<Prompt[]> - Array of prompts in the specified category
  */
@@ -196,6 +232,11 @@ export const getPromptsByCategory = unstable_cache(
 
 /**
  * Fetches all available categories
+ * 
+ * This function retrieves all categories from the database,
+ * including their hierarchical relationships (via parent_id).
+ * Results are cached to improve performance and are ordered by name.
+ * 
  * @returns Promise<Category[]> - Array of all categories, ordered by name
  */
 export const getAllCategories = unstable_cache(

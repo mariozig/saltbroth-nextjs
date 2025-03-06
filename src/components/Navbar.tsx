@@ -50,10 +50,7 @@ export default function Navbar() {
         </Link>
       </div>
       <nav className="hidden md:flex space-x-6">
-        <Link href={`/${locale}/prompts`} className="text-gray-300 hover:text-white transition-colors">
-          {common('prompts')}
-        </Link>
-        <Link href={`/${locale}/prompts/categories`} className="text-gray-300 hover:text-white transition-colors">
+        <Link href={`/${locale}/categories`} className="text-gray-300 hover:text-white transition-colors">
           {common('categoriesNav')}
         </Link>
       </nav>

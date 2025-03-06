@@ -1,3 +1,11 @@
+/**
+ * Individual Prompt Display Page
+ * 
+ * This page displays a single prompt with its details, template content, and output samples.
+ * It fetches the prompt data based on the slug parameter and renders the prompt template
+ * along with any available output samples.
+ */
+
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
@@ -7,6 +15,13 @@ import PromptTemplate from '@/components/prompts/PromptTemplate';
 import PromptOutputSamples from '@/components/prompts/PromptOutputSamples';
 import { getPromptBySlug, getOutputSamplesByPromptId } from '@/app/api/prompts/prompts';
 
+/**
+ * Props for the PromptPage component
+ * @interface PromptPageProps
+ * @property {Promise<Object>} params - The route parameters
+ * @property {string} params.locale - The current locale (e.g., 'en', 'es')
+ * @property {string} params.slug - The prompt slug identifier
+ */
 interface PromptPageProps {
   params: Promise<{
     locale: string;
@@ -14,6 +29,11 @@ interface PromptPageProps {
   }>;
 }
 
+/**
+ * Generates metadata for the prompt page for SEO purposes
+ * @param {PromptPageProps} props - The component props
+ * @returns {Promise<Metadata>} - The page metadata
+ */
 export async function generateMetadata({ params }: PromptPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
@@ -32,11 +52,22 @@ export async function generateMetadata({ params }: PromptPageProps): Promise<Met
   };
 }
 
+/**
+ * Prompt Page Component
+ * 
+ * Renders a single prompt's details, including its title, description, 
+ * template content, and any available output samples. Provides breadcrumb 
+ * navigation with links to the category hierarchy.
+ * 
+ * @param {PromptPageProps} props - The component props
+ * @returns {JSX.Element} - The rendered prompt page
+ */
 export default async function PromptPage({ params }: PromptPageProps) {
   const { locale, slug } = await params;
   unstable_setRequestLocale(locale);
   
   const t = await getTranslations('prompts');
+  const commonT = await getTranslations('common');
   
   const prompt = await getPromptBySlug(slug);
   
@@ -46,17 +77,20 @@ export default async function PromptPage({ params }: PromptPageProps) {
   
   const samples = await getOutputSamplesByPromptId(prompt.id);
   
-  // Construct breadcrumb path from category
-  // Categories is an array, so we need to access the first element
-  const categoryItem = Array.isArray(prompt.categories) ? prompt.categories[0] : null;
+  /**
+   * Construct breadcrumb path from the prompt's category
+   * Categories can be either an array or a single object, so we need to handle both cases
+   */
+  const categoryItem = Array.isArray(prompt.categories) ? prompt.categories[0] : prompt.categories;
   const categorySlug = categoryItem?.slug || '';
   const categoryName = categoryItem?.name || '';
   
   const breadcrumbItems = [
-    { label: t('prompts'), href: `/${locale}/prompts` },
+    { label: commonT('home'), href: `/${locale}` },
+    { label: t('categories'), href: `/${locale}/categories` },
     { 
       label: categoryName, 
-      href: `/${locale}/prompts/categories/${categorySlug}`,
+      href: `/${locale}/categories/${categorySlug}`,
     },
     { label: prompt.title, href: `/${locale}/prompts/${slug}`, isCurrent: true },
   ];
