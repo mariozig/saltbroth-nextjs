@@ -2,7 +2,11 @@
   "metadata": {
     "title": "SALTBROTH",
     "description": "Mercado de Prompts de IA",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "prompts": "Prompts",
+    "categories": "Categorías",
+    "categoriesDescription": "Explora nuestra colección de categorías de prompts",
+    "notFound": "No Encontrado"
   },
   "common": {
     "appName": "SALTBROTH",
@@ -26,6 +30,7 @@
     "next": "Siguiente",
     "previous": "Anterior",
     "home": "Inicio",
+    "prompts": "Prompts",
     "logout": "Cerrar sesión",
     "categories": {
       "creative": "Escritura Creativa",
@@ -145,5 +150,23 @@
       "support": "Soporte prioritario",
       "noAds": "Experiencia sin publicidad"
     }
+  },
+  "prompts": {
+    "prompts": "Prompts",
+    "categories": "Categorías",
+    "browseCategories": "Explorar Categorías",
+    "browseCategoriesDescription": "Explora nuestra colección de categorías de prompts para encontrar los prompts de IA perfectos para tus necesidades",
+    "subcategories": "Subcategorías",
+    "promptsInCategory": "Prompts en esta categoría",
+    "noPrompts": "No se encontraron prompts en esta categoría",
+    "promptTemplate": "Plantilla de Prompt",
+    "exampleOutputs": "Ejemplos de Salida",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "templateInstructions": "Completa los marcadores en esta plantilla para generar tu contenido",
+    "relatedPrompts": "Prompts Relacionados",
+    "popularPrompts": "Prompts Populares",
+    "newPrompts": "Prompts Nuevos",
+    "searchPrompts": "Buscar prompts..."
   }
 }

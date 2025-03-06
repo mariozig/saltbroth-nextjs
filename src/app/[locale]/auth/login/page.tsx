@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import LoginForm from './LoginForm';
-import ClientLoginWrapper from './ClientLoginWrapper';
+import { Suspense } from 'react';
+import VerificationMessage from './VerificationMessage';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -23,7 +24,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
             {t('title')}
           </h2>
-          <ClientLoginWrapper />
+          <Suspense fallback={null}>
+            <VerificationMessage />
+          </Suspense>
         </div>
         <LoginForm />
       </div>

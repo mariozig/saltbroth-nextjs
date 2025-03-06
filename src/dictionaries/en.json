@@ -2,7 +2,11 @@
   "metadata": {
     "title": "SALTBROTH",
     "description": "AI Prompt Marketplace",
-    "login": "Log In"
+    "login": "Log In",
+    "prompts": "Prompts",
+    "categories": "Categories",
+    "categoriesDescription": "Browse our collection of prompt categories",
+    "notFound": "Not Found"
   },
   "common": {
     "appName": "SALTBROTH",
@@ -26,6 +30,7 @@
     "next": "Next",
     "previous": "Previous",
     "home": "Home",
+    "prompts": "Prompts",
     "logout": "Sign out",
     "categories": {
       "creative": "Creative Writing",
@@ -145,5 +150,23 @@
       "support": "Priority support",
       "noAds": "Ad-free experience"
     }
+  },
+  "prompts": {
+    "prompts": "Prompts",
+    "categories": "Categories",
+    "browseCategories": "Browse Categories",
+    "browseCategoriesDescription": "Explore our collection of prompt categories to find the perfect AI prompts for your needs",
+    "subcategories": "Subcategories",
+    "promptsInCategory": "Prompts in this category",
+    "noPrompts": "No prompts found in this category",
+    "promptTemplate": "Prompt Template",
+    "exampleOutputs": "Example Outputs",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "templateInstructions": "Fill in the placeholders in this template to generate your content",
+    "relatedPrompts": "Related Prompts",
+    "popularPrompts": "Popular Prompts",
+    "newPrompts": "New Prompts",
+    "searchPrompts": "Search prompts..."
   }
 }

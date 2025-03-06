@@ -29,14 +29,31 @@ export default function Navbar() {
     await supabase.auth.signOut();
   };
 
+  // Get current locale for navigation
+  const [locale, setLocale] = useState('en');
+  
+  useEffect(() => {
+    // Extract locale from pathname
+    const path = window.location.pathname;
+    const localeMatch = path.match(/^\/([a-z]{2})(\/?|\/.*)$/);
+    if (localeMatch && localeMatch[1]) {
+      setLocale(localeMatch[1]);
+    }
+  }, []);
+  
   return (
     <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
       <div className="flex items-center">
-        <h1 className="text-2xl font-bold gradient-text">{common('appName')}</h1>
-        <p className="ml-4 text-gray-400">{common('tagline')}</p>
+        <Link href={`/${locale}`} className="flex items-center">
+          <h1 className="text-2xl font-bold gradient-text">{common('appName')}</h1>
+          <p className="ml-4 text-gray-400 hidden sm:block">{common('tagline')}</p>
+        </Link>
       </div>
       <nav className="hidden md:flex space-x-6">
-        <Link href="/categories" className="text-gray-300 hover:text-white">
+        <Link href={`/${locale}/prompts`} className="text-gray-300 hover:text-white transition-colors">
+          {common('prompts')}
+        </Link>
+        <Link href={`/${locale}/prompts/categories`} className="text-gray-300 hover:text-white transition-colors">
           {common('categoriesNav')}
         </Link>
       </nav>
@@ -44,7 +61,7 @@ export default function Navbar() {
         <LanguageSwitcher />
         {user ? (
           <div className="flex items-center space-x-4">
-            <span className="text-gray-300">{user.email}</span>
+            <span className="text-gray-300 hidden md:inline-block">{user.email}</span>
             <button
               onClick={handleLogout}
               className="gradient-button px-4 py-2 rounded-full"
@@ -55,13 +72,13 @@ export default function Navbar() {
         ) : (
           <>
             <Link
-              href="/auth/login"
+              href={`/${locale}/auth/login`}
               className="gradient-button px-4 py-2 rounded-full"
             >
               {common('login')}
             </Link>
             <Link
-              href="/auth/signup"
+              href={`/${locale}/auth/signup`}
               className="gradient-button px-4 py-2 rounded-full"
             >
               {common('signup')}
