@@ -1,6 +1,61 @@
+/**
+ * Prompts API - Provides cached access to prompt-related data from Supabase
+ *
+ * This module contains functions for fetching prompt data, output samples,
+ * and category information. All functions use Next.js's unstable_cache
+ * for server-side caching and revalidation.
+ */
+
 import supabase from '@/lib/supabase';
 import { unstable_cache } from 'next/cache';
 
+/**
+ * Type Definitions
+ */
+
+interface Prompt {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  icon: string;
+  is_premium: boolean;
+  created_at: string;
+  updated_at: string;
+  category_id: string;
+  categories: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+}
+
+interface OutputSample {
+  id: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  llm: {
+    id?: string;
+    name?: string;
+    color?: string;
+  };
+}
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  parent_id?: string;
+}
+
+/**
+ * Fetches a single prompt by its slug
+ * @param slug - The unique slug identifier for the prompt
+ * @returns Promise<Prompt | null> - The prompt object or null if not found
+ */
 export const getPromptBySlug = unstable_cache(
   async (slug: string) => {
     const { data: prompt, error } = await supabase
@@ -39,6 +94,11 @@ export const getPromptBySlug = unstable_cache(
   }
 );
 
+/**
+ * Fetches output samples for a specific prompt
+ * @param promptId - The ID of the prompt to get samples for
+ * @returns Promise<OutputSample[]> - Array of output samples with related LLM info
+ */
 export const getOutputSamplesByPromptId = unstable_cache(
   async (promptId: string) => {
     const { data: samples, error } = await supabase
@@ -85,6 +145,11 @@ export const getOutputSamplesByPromptId = unstable_cache(
   }
 );
 
+/**
+ * Fetches all prompts belonging to a specific category
+ * @param categorySlug - The slug of the category to filter by
+ * @returns Promise<Prompt[]> - Array of prompts in the specified category
+ */
 export const getPromptsByCategory = unstable_cache(
   async (categorySlug: string) => {
     
@@ -129,6 +194,10 @@ export const getPromptsByCategory = unstable_cache(
   }
 );
 
+/**
+ * Fetches all available categories
+ * @returns Promise<Category[]> - Array of all categories, ordered by name
+ */
 export const getAllCategories = unstable_cache(
   async () => {
     const { data: categories, error } = await supabase
