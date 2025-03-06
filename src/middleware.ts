@@ -13,7 +13,10 @@ export default createMiddleware({
   // Locales are considered similar (for example different regions
   // of the same language). This is used to match a non-preferred locale
   // to a preferred one.
-  localePrefix: 'as-needed'
+  localePrefix: 'as-needed',
+  
+  // Disable automatic locale detection from cookies, making URL the source of truth
+  localeDetection: false
 });
 
 export const config = {
