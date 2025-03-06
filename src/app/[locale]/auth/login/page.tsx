@@ -1,12 +1,20 @@
-"use client";
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import LoginForm from './LoginForm';
-import { Suspense } from 'react';
-import VerificationMessage from './VerificationMessage';
+import ClientLoginWrapper from './ClientLoginWrapper';
 
-export default function Page() {
-  const t = useTranslations('auth.loginForm');
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const t = await getTranslations({ locale: resolvedParams.locale, namespace: 'metadata' });
+  
+  return {
+    title: `${t('title')} | ${t('login')}`,
+    description: t('description')
+  };
+}
+
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const t = await getTranslations({ locale: resolvedParams.locale, namespace: 'auth.loginForm' });
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -15,9 +23,7 @@ export default function Page() {
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
             {t('title')}
           </h2>
-          <Suspense fallback={null}>
-            <VerificationMessage />
-          </Suspense>
+          <ClientLoginWrapper />
         </div>
         <LoginForm />
       </div>

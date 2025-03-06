@@ -1,7 +1,8 @@
 {
   "metadata": {
     "title": "SALTBROTH",
-    "description": "AI Prompt Marketplace"
+    "description": "AI Prompt Marketplace",
+    "login": "Log In"
   },
   "common": {
     "appName": "SALTBROTH",
