@@ -1,7 +1,48 @@
-# SALTBROTH
+# SALTBROTH - AI Prompt Marketplace
 
 ## Overview
  [SALTBROTH](https://saltbroth.com/) is a modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind CSS, Supabase, and RevenueCat. It supports both free and premium content, focusing on a mobile-first responsive design.
+
+## Features
+- Next.js 15 with App Router
+- Internationalization (i18n) with JSON dictionaries
+- Supabase integration for database/auth
+- RevenueCat subscription management
+
+## Configuration
+
+### Environment Variables
+
+#### Development (.env.local)
+```bash
+# NextJS Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000     # Required for authentication callbacks
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your-local-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-local-anon-key
+
+# RevenueCat Configuration
+NEXT_PUBLIC_REVENUECAT_API_KEY=your-sandbox-key
+```
+
+#### Production (.env.production)
+```bash
+# NextJS Configuration
+NEXT_PUBLIC_SITE_URL=https://saltbroth.com     # Required for authentication callbacks
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your-prod-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-prod-anon-key
+
+# RevenueCat Configuration
+NEXT_PUBLIC_REVENUECAT_API_KEY=your-prod-key
+```
+
+The `NEXT_PUBLIC_SITE_URL` is crucial for:
+- Authentication callback URLs
+- OAuth redirects
+- Absolute URL generation
 
 ## Getting Started
 
@@ -41,18 +82,104 @@
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Working with Supabase Locally
-- **Check Confirmation Emails**: Use Inbucket to view emails sent from Supabase. Access it at [http://127.0.0.1:54324](http://127.0.0.1:54324).
-- **Migrate Database**: Use Supabase CLI to run migrations:
+### Database Management with Supabase
+
+#### Environment Management
+Supabase CLI uses project references to determine which environment to target. Here's how to switch between environments:
+
+1. **Local Development** (default after `supabase start`):
    ```bash
-   supabase db push
-   ```
-- **Reset Database**: To reset your local database, run:
-   ```bash
-   supabase db reset
+   # No explicit reference needed for local development
+   supabase start    # Starts local services
+   supabase db ...   # Commands target local by default
    ```
 
+2. **Production Environment**:
+   ```bash
+   # Link to production project (one-time setup)
+   supabase link --project-ref your-project-ref
+   
+   # Run commands against production
+   supabase db push --db-url "postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
+   ```
+
+3. **Switch Between Environments**:
+   ```bash
+   # For local development
+   supabase db reset --local
+   
+   # For production
+   supabase db reset --db-url "postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
+   ```
+
+#### Local Development
+1. **Start Supabase Services**:
+   ```bash
+   supabase start
+   ```
+
+2. **Create New Migration**:
+   ```bash
+   supabase migration new my_migration_name
+   ```
+   This creates a new timestamped SQL file in `supabase/migrations/`
+
+3. **Apply Migrations Locally**:
+   ```bash
+   supabase db reset    # Reset and reapply all migrations
+   # or
+   supabase db push     # Apply pending migrations only
+   ```
+
+4. **Check Migration Status**:
+   ```bash
+   supabase db status   # View pending migrations
+   ```
+
+5. **View Database Changes**:
+   - Studio UI: [http://127.0.0.1:54323](http://127.0.0.1:54323)
+   - Email Testing: [http://127.0.0.1:54324](http://127.0.0.1:54324)
+
+#### Production Deployment
+1. **Link to Production Project**:
+   ```bash
+   supabase link --project-ref your-project-ref
+   ```
+
+2. **Deploy Migrations to Production**:
+   ```bash
+   supabase db push     # Apply pending migrations
+   ```
+
+3. **View Migration History**:
+   ```bash
+   supabase migration list
+   ```
+
+4. **Revert Last Migration** (if needed):
+   ```bash
+   supabase db reset --db-only   # Local development only
+   ```
+
+#### Best Practices
+- Always test migrations locally first
+- Use meaningful migration names
+- Include `down` migrations for reversibility
+- Back up production data before major migrations
+
+## Development Setup
+```bash
+npm install
+npm run dev
+```
+
 ## Deployment
+```bash
+npm run build
+npm start
+```
+
+## Deployment (Vercel)
 SALTBROTH is hosted on Vercel. To deploy your app via command line:
 1. Install the Vercel CLI globally:
    ```bash
@@ -67,6 +194,14 @@ SALTBROTH is hosted on Vercel. To deploy your app via command line:
    vercel
    ```
 4. Follow the prompts to complete the deployment process. Your app will be live at [https://saltbroth.com/](https://saltbroth.com/).
+
+## Vercel Deployment
+1. Connect the GitHub repository
+2. Set environment variables:
+   - NEXT_PUBLIC_SUPABASE_URL
+   - NEXT_PUBLIC_SUPABASE_ANON_KEY
+   - NEXT_PUBLIC_REVENUECAT_API_KEY
+3. Enable Automatic CI/CD
 
 ## Learn More
 To learn more about the technologies used in this project, take a look at the following resources:

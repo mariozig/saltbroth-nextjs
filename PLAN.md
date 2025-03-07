@@ -216,6 +216,22 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
     - [ ] Set up Google Search Console
     - [ ] Create conversion tracking for subscriptions
 
+## Development Roadmap
+
+## Completed (Q1 2025)
+- Core marketplace functionality
+- Subscription system integration
+- Internationalization support
+- Production environment setup
+
+## In Progress
+- Final testing of payment flows
+- Performance optimization
+
+## Next Up
+- User analytics dashboard
+- Mobile app beta
+
 ## Recent Updates
 - Implemented a responsive navigation bar with language switching functionality.
 - Enhanced user authentication flow with proper login/logout buttons and error handling.
