@@ -6,7 +6,15 @@
     "prompts": "Prompts",
     "categories": "Categories",
     "categoriesDescription": "Browse our collection of prompt categories",
-    "notFound": "Not Found"
+    "notFound": "Not Found",
+    "about": "About Us",
+    "aboutDescription": "Learn more about SALTBROTH and our mission",
+    "contact": "Contact Us",
+    "contactDescription": "Get in touch with the SALTBROTH team",
+    "terms": "Terms of Service",
+    "termsDescription": "Read our terms and conditions",
+    "privacy": "Privacy Policy",
+    "privacyDescription": "Learn about how we handle your data"
   },
   "common": {
     "appName": "SALTBROTH",
@@ -168,5 +176,202 @@
     "popularPrompts": "Popular Prompts",
     "newPrompts": "New Prompts",
     "searchPrompts": "Search prompts..."
+  },
+  "about": "About Us",
+  "contact": "Contact Us",
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated",
+    "updateDate": "March 1, 2025",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content1": "These terms and conditions outline the rules and regulations for the use of SALTBROTH's application.",
+        "content2": "By accessing this application, we assume you accept these terms and conditions in full."
+      },
+      "access": {
+        "title": "Access to the Application",
+        "content1": "You must be at least 18 years of age to use this application.",
+        "content2": "We reserve the right to deny access to the application to anyone for any reason at any time.",
+        "list": {
+          "item1": "You must not share your account with anyone.",
+          "item2": "You must not use the application for any illegal or unauthorized purpose.",
+          "item3": "You must not interfere with or disrupt the application or its servers."
+        }
+      },
+      "prohibited": {
+        "title": "Prohibited Activities",
+        "intro": "You are prohibited from engaging in the following activities:",
+        "list": {
+          "item1": "Using the application for any illegal activities.",
+          "item2": "Impersonating any person or entity.",
+          "item3": "Attempting to gain unauthorized access to the application.",
+          "item4": "Using the application to harass or intimidate others.",
+          "item5": "Disrupting the application or its servers in any way."
+        }
+      },
+      "intellectual": {
+        "title": "Intellectual Property Rights",
+        "content1": "All content on this website, including but not limited to text, graphics, logos, and software, is the property of SALTBROTH and is protected by intellectual property laws.",
+        "content2": "Users may not reproduce, distribute, or create derivative works without our express permission."
+      },
+      "userContent": {
+        "title": "User Generated Content",
+        "content1": "By submitting content to our platform, you grant us a non-exclusive license to use, modify, and distribute that content.",
+        "content2": "You retain ownership of your content but are responsible for ensuring it doesn't infringe on others' rights."
+      },
+      "termination": {
+        "title": "Termination",
+        "content1": "We may terminate or suspend access to our application immediately, without prior notice or liability, for any reason whatsoever.",
+        "content2": "Upon termination, your right to use the application will cease immediately."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "content": "We may update our Terms of Service from time to time. We will notify you of any changes by posting the new Terms of Service on this page."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about these Terms, please contact us."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in Touch",
+    "form": {
+      "title": "Send us a Message",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "message": "Message",
+      "messagePlaceholder": "Enter your message",
+      "submit": "Send Message"
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": {
+        "title": "Address",
+        "line1": "123 AI Street",
+        "line2": "Silicon Valley",
+        "line3": "CA 94025, USA"
+      },
+      "email": {
+        "title": "Email",
+        "value": "contact@saltbroth.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "value": "Mon-Fri: 9:00 AM - 5:00 PM PST"
+      }
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Empowering AI Innovation",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To democratize access to high-quality AI prompts and foster a community of innovation.",
+      "vision": "We envision a future where AI technology is accessible and beneficial to everyone."
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the passionate individuals behind SALTBROTH",
+      "member1": {
+        "name": "John Smith",
+        "role": "Founder & CEO",
+        "bio": "AI enthusiast with 15 years of experience in tech leadership."
+      },
+      "member2": {
+        "name": "Sarah Johnson",
+        "role": "Head of AI Research",
+        "bio": "PhD in Machine Learning with expertise in prompt engineering."
+      },
+      "member3": {
+        "name": "Michael Chen",
+        "role": "Community Manager",
+        "bio": "Dedicated to building and nurturing our vibrant community."
+      }
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "updateDate": "March 1, 2025",
+    "sections": {
+      "intro": {
+        "title": "Introduction",
+        "content1": "Welcome to SALTBROTH. We respect your privacy and are committed to protecting your personal data.",
+        "content2": "This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you."
+      },
+      "collection": {
+        "title": "Information We Collect",
+        "intro": "We collect several different types of information for various purposes to provide and improve our service to you.",
+        "personal": {
+          "title": "Personal Data",
+          "content": "While using our service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. This may include:",
+          "list": {
+            "item1": "Email address",
+            "item2": "First name and last name",
+            "item3": "Payment information",
+            "item4": "Usage data and preferences"
+          }
+        },
+        "usage": {
+          "title": "Usage Data",
+          "content": "We may also collect information on how the service is accessed and used. This usage data may include:",
+          "list": {
+            "item1": "Your computer's Internet Protocol address (e.g. IP address)",
+            "item2": "Browser type and version",
+            "item3": "Pages of our service that you visit"
+          }
+        }
+      },
+      "use": {
+        "title": "How We Use Your Information",
+        "intro": "We use the collected data for various purposes:",
+        "list": {
+          "item1": "To provide and maintain our service",
+          "item2": "To notify you about changes to our service",
+          "item3": "To provide customer support",
+          "item4": "To provide analysis or valuable information so that we can improve the service",
+          "item5": "To monitor the usage of the service"
+        }
+      },
+      "sharing": {
+        "title": "Information Sharing and Disclosure",
+        "content1": "We do not sell, trade, or rent users' personal identification information to others.",
+        "content2": "We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content1": "We use cookies to collect information and improve our services. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.",
+        "content2": "However, if you do not accept cookies, you may not be able to use some portions of our service."
+      },
+      "security": {
+        "title": "Data Security",
+        "content": "The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure."
+      },
+      "thirdParty": {
+        "title": "Third-Party Services",
+        "content": "Our service may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit."
+      },
+      "children": {
+        "title": "Children's Privacy",
+        "content": "Our service does not address anyone under the age of 18. We do not knowingly collect personally identifiable information from anyone under the age of 18."
+      },
+      "changes": {
+        "title": "Changes to This Privacy Policy",
+        "content": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about this Privacy Policy, please contact us."
+      }
+    }
   }
 }
