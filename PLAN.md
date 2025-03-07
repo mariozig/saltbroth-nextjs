@@ -88,21 +88,28 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
     - [x] Create hardcoded mock localized content for testing
     - [x] Added translations for homepage, categories, and common elements
 
-- [ ] **Database Schema Design**
-  - [ ] Design and implement users table
-    - [ ] Define user fields (id, email, name, created_at, etc.)
-    - [ ] Set up proper indexes and constraints
-  - [ ] Design and implement prompts table (with free/premium flag)
-    - [ ] Define prompt fields (id, title, content, user_id, category_id, premium_flag, etc.)
-    - [ ] Add support for versioning of prompts
-  - [ ] Design and implement categories table (with hierarchical structure)
-    - [ ] Define category fields (id, name, parent_id, slug, description, etc.)
-    - [ ] Add support for multi-level categorization
-  - [ ] Design and implement LLM outputs table
-    - [ ] Define output fields (id, prompt_id, model_name, output_text, created_at, etc.)
-  - [ ] Design and implement subscriptions table
-    - [ ] Define subscription fields (id, user_id, plan_id, status, start_date, end_date, etc.)
-  - [ ] Create database migration scripts
+- [x] **Database Schema Design**
+  - [x] Design and implement users table
+    - [x] Define user fields (id, email, name, created_at, etc.)
+    - [x] Set up proper indexes and constraints
+    - [x] Implement RLS policies for user access control
+  - [x] Design and implement prompts table (with free/premium flag)
+    - [x] Define prompt fields (id, title, content, user_id, category_id, premium_flag, etc.)
+    - [x] Add support for versioning of prompts
+    - [x] Implement RLS policies for premium content access
+  - [x] Design and implement categories table (with hierarchical structure)
+    - [x] Define category fields (id, name, parent_id, slug, description, etc.)
+    - [x] Add support for multi-level categorization via parent_id
+    - [x] Implement RLS policies for category management
+  - [x] Design and implement LLM outputs table
+    - [x] Define output fields (id, prompt_id, model_name, output_text, created_at)
+    - [x] Set up proper foreign key constraints
+  - [x] Design and implement subscriptions table
+    - [x] Define subscription fields (id, user_id, plan_id, status, start_date, end_date)
+    - [x] Implement subscription status checks
+  - [x] Create database migration scripts
+    - [x] Initial schema migration with tables and RLS policies
+    - [x] Automatic updated_at triggers for all tables
   - [ ] Set up seed data for development and testing
 
 - [x] **Authentication System**
@@ -223,21 +230,3 @@ Use the design templates in `./docs/design-template`. This should have pretty mu
 - Subscription system integration
 - Internationalization support
 - Production environment setup
-
-## In Progress
-- Final testing of payment flows
-- Performance optimization
-
-## Next Up
-- User analytics dashboard
-- Mobile app beta
-
-## Recent Updates
-- Implemented a responsive navigation bar with language switching functionality.
-- Enhanced user authentication flow with proper login/logout buttons and error handling.
-- Fixed hydration issues by consolidating layout files and ensuring proper HTML structure.
-
-## Next Steps
-1. **Database Schema Design**: Start designing user and prompt tables in Supabase.
-2. **Authentication System**: Implement sign-in flow and password reset functionality.
-3. **Categories System**: Begin work on category listing and detail pages.
