@@ -58,3 +58,34 @@ export function getLocaleAlternates(pathname: string = '') {
     return acc;
   }, {} as Record<string, string>);
 }
+
+/**
+ * Build a localized URL for a given path and locale
+ * @param path - The path (without locale prefix)
+ * @param locale - The target locale
+ * @param baseUrl - Optional base URL (for absolute URLs)
+ * @returns Properly formatted URL with locale prefix as needed
+ */
+export function getLocalizedUrl(path: string, locale: Locale, baseUrl?: string) {
+  // Normalize path to always start with a slash
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  
+  // Add locale prefix if not the default locale
+  const localePath = locale === defaultLocale ? normalizedPath : `/${locale}${normalizedPath}`;
+  
+  // Add base URL if provided, otherwise return relative path
+  return baseUrl ? `${baseUrl}${localePath}` : localePath;
+}
+
+/**
+ * Generate localized URLs for all supported locales
+ * @param path - The path (without locale prefix)
+ * @param baseUrl - Optional base URL (for absolute URLs)
+ * @returns Record mapping locale codes to their respective URLs
+ */
+export function getAllLocalizedUrls(path: string, baseUrl?: string) {
+  return locales.reduce((acc, locale) => {
+    acc[locale] = getLocalizedUrl(path, locale, baseUrl);
+    return acc;
+  }, {} as Record<string, string>);
+}
