@@ -8,6 +8,7 @@
  * @module RootLayout
  */
 
+import { Analytics } from '@vercel/analytics/next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -139,6 +140,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
