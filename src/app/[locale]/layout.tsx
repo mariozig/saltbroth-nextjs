@@ -13,6 +13,7 @@ import { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { getLocaleParams, getLocaleAlternates } from '@/config/i18n';
 import "../globals.css";
 
 /**
@@ -77,10 +78,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     // Add other metadata properties as needed
     alternates: {
       canonical: '/',
-      languages: {
-        'en': '/',
-        'es': '/es',
-      },
+      languages: getLocaleAlternates(),
     },
   };
 }
@@ -95,7 +93,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
  * @returns {Array<{locale: string}>} - Array of locale objects for static generation
  */
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'es' }];
+  // Use centralized locale config from our config file
+  return getLocaleParams();
 }
 
 /**
