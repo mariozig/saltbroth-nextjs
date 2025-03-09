@@ -6,8 +6,8 @@
  */
 
 import * as React from 'react';
-import { MDXRemote } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
+import { evaluate } from '@mdx-js/mdx';
+import * as runtime from 'react/jsx-runtime';
 import { Locale } from '@/config/i18n';
 
 // Import custom MDX components
@@ -15,18 +15,10 @@ import PromptTemplate from './PromptTemplate';
 import { LlmSample, LlmSampleTabs } from './LlmSample';
 import LlmFeatures from './LlmFeatures';
 
-// Define the components object for MDX
-const components = {
-  PromptTemplate,
-  LlmSample,
-  LlmSampleTabs,
-  LlmFeatures,
-};
-
 interface MDXContentProps {
   source: string;
   locale: Locale;
-  frontmatter?: Record<string, any>;
+  frontmatter?: Record<string, unknown>;
 }
 
 /**
@@ -37,27 +29,41 @@ export async function MDXContent({
   locale,
   frontmatter 
 }: MDXContentProps) {
-  // Add locale to all components that need it
-  const componentsWithContext = {
-    ...components,
-    LlmSampleTabs: (props: any) => (
-      <LlmSampleTabs {...props} locale={locale} />
-    ),
-    LlmFeatures: (props: any) => (
-      <LlmFeatures {...props} locale={locale} />
-    ),
-  };
+  try {
+    // Create the components object with proper context
+    const components = {
+      // Standard components
+      PromptTemplate,
+      LlmSample,
+      
+      // Components that need locale
+      LlmSampleTabs: (props: { children: React.ReactNode }) => (
+        <LlmSampleTabs children={props.children} locale={locale} />
+      ),
+      LlmFeatures: (props: { features: string[] }) => (
+        <LlmFeatures features={props.features} locale={locale} />
+      ),
+    };
 
-  // Serialize the MDX content
-  const mdxSource = await serialize(source, {
-    parseFrontmatter: false, // We already parsed frontmatter
-  });
+    // Evaluate the MDX content to a React component
+    const { default: Content } = await evaluate(source, {
+      ...runtime,
+      development: process.env.NODE_ENV === 'development',
+    });
+    
+    // Create component with components passed to it
+    const MdxContent = () => <Content components={components} />;
 
-  return (
-    <div className="mdx-content">
-      <MDXRemote {...mdxSource} components={componentsWithContext} />
-    </div>
-  );
+    // Return the rendered content
+    return (
+      <div className="mdx-content">
+        <MdxContent />
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering MDX content:', error);
+    return <div className="text-red-500">Error rendering content: {String(error)}</div>;
+  }
 }
 
 /**
@@ -66,12 +72,12 @@ export async function MDXContent({
 export async function processMDX(
   source: string,
   locale: Locale,
-  frontmatter?: Record<string, any>
+  frontmatter?: Record<string, unknown>
 ) {
-  // Return the processed data for the MDXContent component
-  return {
+  // Process and render the MDX content directly
+  return MDXContent({
     source,
     locale,
-    frontmatter,
-  };
+    frontmatter
+  });
 }

@@ -8,7 +8,6 @@
 'use client';
 
 import * as React from 'react';
-import { getLLMBySlug } from '@/lib/content';
 import { Locale, defaultLocale } from '@/config/i18n';
 
 interface LlmSampleProps {
@@ -57,31 +56,26 @@ export function LlmSampleTabs({
     }
   }, [samples, activeTab]);
   
-  // Load LLM names
+  // In a client component, we can't directly fetch server data with Node.js modules
+  // Instead, we'll use the slugs directly as names or fetch from an API endpoint if needed
   React.useEffect(() => {
-    async function loadLlmNames() {
-      const slugs = samples.map(sample => sample.props?.slug || '');
-      const llmData: Record<string, string> = {};
-      
-      for (const slug of slugs) {
-        try {
-          const llm = await getLLMBySlug(locale, slug);
-          if (llm) {
-            llmData[slug] = llm.name;
-          } else {
-            llmData[slug] = slug; // Fallback to slug if LLM not found
-          }
-        } catch (error) {
-          console.error(`Error loading LLM ${slug}:`, error);
-          llmData[slug] = slug; // Fallback to slug on error
-        }
-      }
-      
-      setLlmNames(llmData);
-    }
+    // Create a mapping of slugs to display names
+    // This is a simplified version that uses the slug as the display name
+    const llmData: Record<string, string> = {};
     
-    loadLlmNames();
-  }, [samples, locale]);
+    samples.forEach(sample => {
+      const slug = sample.props?.slug || '';
+      // Convert slug to a readable name (e.g., "llama-2" -> "Llama 2")
+      const displayName = slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      
+      llmData[slug] = displayName;
+    });
+    
+    setLlmNames(llmData);
+  }, [samples]);
   
   // Render nothing if no samples
   if (samples.length === 0) {

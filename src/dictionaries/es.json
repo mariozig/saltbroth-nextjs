@@ -14,7 +14,9 @@
     "terms": "Términos de Servicio",
     "termsDescription": "Lee nuestros términos y condiciones",
     "privacy": "Política de Privacidad",
-    "privacyDescription": "Conoce cómo manejamos tus datos"
+    "privacyDescription": "Conoce cómo manejamos tus datos",
+    "llms": "Modelos de Lenguaje",
+    "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles"
   },
   "llm": {
     "features": {
@@ -56,6 +58,11 @@
     "previous": "Anterior",
     "home": "Inicio",
     "prompts": "Prompts",
+    "llms": "Modelos de Lenguaje",
+    "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles",
+    "features": "Características",
+    "about": "Acerca de",
+    "compatible_prompts": "Prompts Compatibles",
     "logout": "Cerrar sesión",
     "categories": {
       "creative": "Escritura Creativa",
@@ -194,7 +201,10 @@
     "newPrompts": "Prompts Nuevos",
     "searchPrompts": "Buscar prompts..."
   },
-  "about": "Sobre Nosotros",
+  "navigation": {
+    "about": "Sobre Nosotros",
+    "contact": "Contáctanos"
+  },
   "contactPage": {
     "title": "Contáctanos",
     "subtitle": "Ponte en Contacto",
@@ -286,7 +296,7 @@
       }
     }
   },
-  "aboutPage": {
+  "about": {
     "title": "Sobre Nosotros",
     "subtitle": "Impulsando la Innovación en IA",
     "mission": {
@@ -311,6 +321,44 @@
         "name": "Michael Chen",
         "role": "Gerente de Comunidad",
         "bio": "Dedicado a construir y nutrir nuestra vibrante comunidad."
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Ponte en Contacto",
+    "form": {
+      "title": "Envíanos un Mensaje",
+      "name": "Tu Nombre",
+      "email": "Tu Correo Electrónico",
+      "message": "Tu Mensaje",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "emailPlaceholder": "Ingresa tu correo electrónico",
+      "messagePlaceholder": "¿Qué te gustaría contarnos?",
+      "submit": "Enviar Mensaje",
+      "success": "¡Mensaje enviado exitosamente!",
+      "error": "Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo."
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "address": {
+        "title": "Dirección",
+        "line1": "123 Plaza de IA",
+        "line2": "San Francisco, CA 94103",
+        "line3": "Estados Unidos"
+      },
+      "email": {
+        "title": "Correo Electrónico",
+        "value": "contacto@saltbroth.com"
+      },
+      "phone": {
+        "title": "Teléfono",
+        "value": "+1 (555) 123-4567"
+      },
+      "hours": {
+        "title": "Horario de Atención",
+        "value": "Lunes a Viernes: 9am a 5pm PST"
       }
     }
   },

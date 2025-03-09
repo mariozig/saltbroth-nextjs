@@ -8,7 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Locale } from '@/config/i18n';
+import { Locale, locales } from '@/config/i18n';
 
 // Import glob with proper typing
 const globImport = require('glob');
@@ -53,6 +53,49 @@ export interface LLM extends BaseContent {
   icon: string;
   features: string[];
   content: string;
+}
+
+/**
+ * Get the path to an LLM icon
+ * @param iconName - The name of the icon (from the LLM.icon property)
+ * @returns The path to the icon
+ */
+export function getLlmIconPath(iconName: string): string {
+  // Icons are stored in the public directory
+  return `/images/llms/${iconName}`;
+}
+
+/**
+ * Validate if an LLM has all required fields
+ * @param llm - The LLM to validate
+ * @returns Object with validation results
+ */
+export function validateLlm(llm: LLM): { 
+  isValid: boolean; 
+  missingFields: string[];
+  warnings: string[];
+} {
+  const requiredFields = ['name', 'description', 'icon', 'features'];
+  const missingFields = requiredFields.filter(field => !llm[field as keyof LLM]);
+  
+  // Check for specific issues
+  const warnings: string[] = [];
+  
+  // Check if features array is empty
+  if (llm.features && llm.features.length === 0) {
+    warnings.push('Features array is empty');
+  }
+  
+  // Check if icon file exists (this would need to be enhanced to actually check the filesystem)
+  if (llm.icon && !llm.icon.includes('.')) {
+    warnings.push('Icon filename may be invalid (missing extension)');
+  }
+  
+  return {
+    isValid: missingFields.length === 0,
+    missingFields,
+    warnings
+  };
 }
 
 /**
@@ -151,6 +194,28 @@ export async function getCategoryBySlug(
 }
 
 /**
+ * Get all LLMs
+ * @param locale - The locale to get LLMs for
+ * @returns Array of LLMs
+ */
+export async function getAllLlms(locale: Locale): Promise<LLM[]> {
+  return getAllContent<LLM>(locale, 'llms');
+}
+
+/**
+ * Get an LLM by slug
+ * @param locale - The locale to get the LLM for
+ * @param slug - The slug of the LLM to get
+ * @returns The LLM or null if not found
+ */
+export async function getLlmBySlug(
+  locale: Locale,
+  slug: string
+): Promise<LLM | null> {
+  return getContentBySlug<LLM>(locale, 'llms', slug);
+}
+
+/**
  * Get all prompts
  * @param locale - The locale to get prompts for
  * @returns Array of prompts
@@ -184,6 +249,143 @@ export async function getPromptsByCategory(
 ): Promise<Prompt[]> {
   const prompts = await getAllPrompts(locale);
   return prompts.filter((prompt) => prompt.category === categorySlug);
+}
+
+/**
+ * Get all prompts compatible with a specific LLM
+ * @param locale - The locale to get prompts for
+ * @param llmSlug - The slug of the LLM to get compatible prompts for
+ * @returns Array of prompts compatible with the LLM
+ */
+export async function getPromptsByCompatibleLlm(
+  locale: Locale,
+  llmSlug: string
+): Promise<Prompt[]> {
+  const prompts = await getAllPrompts(locale);
+  return prompts.filter((prompt) => {
+    return prompt.compatible_llms && prompt.compatible_llms.includes(llmSlug);
+  });
+}
+
+/**
+ * Get all prompts featuring a specific LLM
+ * @param locale - The locale to get prompts for
+ * @param llmSlug - The slug of the LLM to get featuring prompts for
+ * @returns Array of prompts featuring the LLM
+ */
+export async function getPromptsByFeaturedLlm(
+  locale: Locale,
+  llmSlug: string
+): Promise<Prompt[]> {
+  const prompts = await getAllPrompts(locale);
+  return prompts.filter((prompt) => {
+    return prompt.featured_llms && prompt.featured_llms.includes(llmSlug);
+  });
+}
+
+/**
+ * Get all compatible LLMs for a prompt
+ * @param locale - The locale to get LLMs for
+ * @param prompt - The prompt to get compatible LLMs for
+ * @returns Array of compatible LLMs
+ */
+export async function getCompatibleLlms(
+  locale: Locale,
+  prompt: Prompt
+): Promise<LLM[]> {
+  if (!prompt.compatible_llms || prompt.compatible_llms.length === 0) {
+    return [];
+  }
+  
+  const allLlms = await getAllLlms(locale);
+  return allLlms.filter(llm => prompt.compatible_llms.includes(llm.slug));
+}
+
+/**
+ * Get all featured LLMs for a prompt
+ * @param locale - The locale to get LLMs for
+ * @param prompt - The prompt to get featured LLMs for
+ * @returns Array of featured LLMs
+ */
+export async function getFeaturedLlms(
+  locale: Locale,
+  prompt: Prompt
+): Promise<LLM[]> {
+  if (!prompt.featured_llms || prompt.featured_llms.length === 0) {
+    return [];
+  }
+  
+  const allLlms = await getAllLlms(locale);
+  return allLlms.filter(llm => prompt.featured_llms?.includes(llm.slug));
+}
+
+/**
+ * Check if content exists in all locales
+ * This is useful for determining if a piece of content has been fully localized
+ * @param contentType - The type of content to check
+ * @param slug - The slug of the content to check
+ * @returns Object mapping locales to boolean indicating existence
+ */
+export async function checkContentLocalization(
+  contentType: ContentType,
+  slug: string
+): Promise<Record<Locale, boolean>> {
+  const localizationStatus: Record<Locale, boolean> = {} as Record<Locale, boolean>;
+  
+  // Check each locale for the content
+  await Promise.all(
+    locales.map(async (locale: Locale) => {
+      const content = await getContentBySlug(locale, contentType, slug);
+      localizationStatus[locale] = content !== null;
+    })
+  );
+  
+  return localizationStatus;
+}
+
+/**
+ * Get all unique LLMs across all locales with their localization status
+ * This is useful for displaying a localization status dashboard
+ * @returns Array of LLM slugs with their localization status
+ */
+export async function getAllLlmsWithLocalizationStatus(): Promise<{
+  slug: string;
+  localization: Record<Locale, boolean>;
+  name: Record<Locale, string | null>;
+}[]> {
+  // Get all LLMs from all locales
+  const llmsByLocale = await Promise.all(
+    locales.map(async (locale: Locale) => {
+      const llms = await getAllLlms(locale);
+      return { locale, llms };
+    })
+  );
+  
+  // Get all unique LLM slugs
+  const allLlmSlugs = new Set<string>();
+  llmsByLocale.forEach(({ llms }) => {
+    llms.forEach(llm => allLlmSlugs.add(llm.slug));
+  });
+  
+  // Check localization status for each LLM
+  const result = await Promise.all(
+    Array.from(allLlmSlugs).map(async (slug) => {
+      const localization = await checkContentLocalization('llms', slug);
+      
+      // Get name in each locale if available
+      const name: Record<Locale, string | null> = {} as Record<Locale, string | null>;
+      await Promise.all(
+        locales.map(async (locale: Locale) => {
+          const llm = await getLlmBySlug(locale, slug);
+          name[locale] = llm ? llm.name : null;
+        })
+      );
+      
+      return { slug, localization, name };
+    })
+  );
+  
+  return result;
 }
 
 /**

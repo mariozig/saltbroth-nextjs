@@ -10,19 +10,30 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import matter from 'gray-matter';
+import { createRequire } from 'module';
+
+// Create require for CommonJS modules
+const require = createRequire(import.meta.url);
 
 // Import glob with proper typing
 const globImport = require('glob');
 const glob = (pattern: string, options: any): Promise<string[]> => {
   return globImport.glob(pattern, options);
 };
-import { Locale, locales } from '../src/config/i18n';
+
+// Get the current file path and directory path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Import from relative paths with file extensions
+import { Locale, locales } from '../src/config/i18n.js';
 import { 
   validateTranslationKeys, 
   extractTranslationKeys,
   ValidationResult
-} from '../src/lib/translation';
+} from '../src/lib/translation.js';
 
 // Define colors for console output
 const colors = {
