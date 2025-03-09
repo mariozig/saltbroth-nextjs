@@ -16,6 +16,23 @@
     "privacy": "Privacy Policy",
     "privacyDescription": "Learn about how we handle your data"
   },
+  "llm": {
+    "features": {
+      "reasoning": "Advanced Reasoning",
+      "creativity": "Creative Generation",
+      "knowledge": "Extensive Knowledge",
+      "instruction_following": "Follows Complex Instructions",
+      "coding": "Code Generation",
+      "multilingual": "Multilingual Support",
+      "math": "Mathematical Problem Solving",
+      "vision": "Image Understanding",
+      "writing": "General Writing",
+      "code": "Code Generation",
+      "translation": "Language Translation",
+      "summarization": "Text Summarization",
+      "conversation": "Conversational Abilities"
+    }
+  },
   "common": {
     "appName": "SALTBROTH",
     "tagline": "AI Prompt Marketplace",
@@ -177,8 +194,10 @@
     "newPrompts": "New Prompts",
     "searchPrompts": "Search prompts..."
   },
-  "about": "About Us",
-  "contact": "Contact Us",
+  "navigation": {
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
   "terms": {
     "title": "Terms of Service",
     "lastUpdated": "Last Updated",
@@ -235,7 +254,7 @@
       }
     }
   },
-  "contact": {
+  "contactPage": {
     "title": "Contact Us",
     "subtitle": "Get in Touch",
     "form": {
@@ -298,6 +317,7 @@
       }
     }
   },
+
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last Updated",

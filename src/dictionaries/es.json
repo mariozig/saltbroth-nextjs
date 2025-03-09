@@ -16,6 +16,23 @@
     "privacy": "Política de Privacidad",
     "privacyDescription": "Conoce cómo manejamos tus datos"
   },
+  "llm": {
+    "features": {
+      "reasoning": "Razonamiento Avanzado",
+      "creativity": "Generación Creativa",
+      "knowledge": "Conocimiento Extenso",
+      "instruction_following": "Sigue Instrucciones Complejas",
+      "coding": "Generación de Código",
+      "multilingual": "Soporte Multilingüe",
+      "math": "Resolución de Problemas Matemáticos",
+      "vision": "Comprensión de Imágenes",
+      "writing": "Escritura General",
+      "code": "Generación de Código",
+      "translation": "Traducción de Idiomas",
+      "summarization": "Resumen de Textos",
+      "conversation": "Habilidades Conversacionales"
+    }
+  },
   "common": {
     "appName": "SALTBROTH",
     "tagline": "Mercado de Prompts de IA",
@@ -178,7 +195,7 @@
     "searchPrompts": "Buscar prompts..."
   },
   "about": "Sobre Nosotros",
-  "contact": {
+  "contactPage": {
     "title": "Contáctanos",
     "subtitle": "Ponte en Contacto",
     "form": {
@@ -269,7 +286,7 @@
       }
     }
   },
-  "about": {
+  "aboutPage": {
     "title": "Sobre Nosotros",
     "subtitle": "Impulsando la Innovación en IA",
     "mission": {
@@ -297,6 +314,7 @@
       }
     }
   },
+
   "privacy": {
     "title": "Política de Privacidad",
     "lastUpdated": "Última Actualización",

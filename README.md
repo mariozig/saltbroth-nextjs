@@ -1,13 +1,77 @@
 # SALTBROTH - AI Prompt Marketplace
 
 ## Overview
- [SALTBROTH](https://saltbroth.com/) is a modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind CSS, Supabase, and RevenueCat. It supports both free and premium content, focusing on a mobile-first responsive design.
+[SALTBROTH](https://saltbroth.com/) is a modern, user-friendly marketplace for AI prompts built using Next.js, Tailwind CSS, and RevenueCat. It supports both free and premium content, focusing on a mobile-first responsive design and multilingual support through a filesystem-based MDX content approach.
 
 ## Features
 - Next.js 15 with App Router
 - Internationalization (i18n) with JSON dictionaries
-- Supabase integration for database/auth
+- MDX-based content management with localization support
+- Interactive MDX components for rich content presentation
+- File-based content organization by locale and type
+- Automatic translation key validation
 - RevenueCat subscription management
+
+## MDX Content Management
+
+SALTBROTH uses a file-based MDX content system to store and display all content with localization support. This approach offers several advantages:
+
+- **Simplified content management**: Content is stored in MDX files within a structured directory hierarchy
+- **Built-in localization**: Content is organized by locale for easy translation
+- **Interactive components**: MDX supports React components for rich interactive content
+- **Version control**: Content changes can be tracked in git
+- **Validation**: Automatic validation of translation keys ensures content integrity
+
+### Directory Structure
+
+```
+content/
+  ├── en/                   # English content
+  │   ├── categories/       # Categories content
+  │   ├── prompts/          # Prompts content
+  │   └── llms/             # LLMs content
+  │       └── gpt-4.mdx     # Example LLM file
+  └── es/                   # Spanish content
+      ├── categories/       # Categories content
+      ├── prompts/          # Prompts content
+      └── llms/             # LLMs content
+          └── gpt-4.mdx     # Example LLM file
+```
+
+### MDX Components
+
+The following custom components are available for MDX content:
+
+- `<LlmFeatures>`: Displays LLM features using translation keys
+- `<PromptTemplate>`: Formats and displays prompt templates
+- `<LlmSample>`: Displays sample outputs from an LLM
+- `<LlmSampleTabs>`: Provides a tabbed interface for viewing multiple LLM samples
+
+### Translation Keys
+
+Translation keys are used throughout the MDX content to ensure proper localization. These keys are defined in the dictionary files (`src/dictionaries/en.json` and `src/dictionaries/es.json`).
+
+Example frontmatter with translation keys:
+
+```yaml
+---
+name: GPT-4
+slug: gpt-4
+description: "OpenAI's most advanced large language model, optimized for complex tasks."
+features:
+  - llm.features.reasoning
+  - llm.features.creativity
+  - llm.features.knowledge
+---
+```
+
+### Validation
+
+Translation keys are validated during the build process using the `validate-translations` script. This ensures that all translation keys used in MDX files are defined in the dictionary files.
+
+```bash
+npm run validate-translations
+```
 
 ## Configuration
 
