@@ -64,7 +64,7 @@ export default async function PromptsPage({ params }: PromptsPageProps) {
     <div className="container max-w-5xl mx-auto px-4 py-8">
       <Breadcrumbs items={[
         { label: commonT('home'), href: getLocalizedHref('/', locale) },
-        { label: t('prompts'), href: getLocalizedHref('/prompts', locale), isCurrent: true }
+        { label: t('prompts'), href: getLocalizedHref('/prompts_legacy', locale), isCurrent: true }
       ]} />
       
       <header className="mb-12">

@@ -93,7 +93,7 @@ export default async function PromptPage({ params }: PromptPageProps) {
       label: categoryName, 
       href: getLocalizedHref(`/categories/${categorySlug}`, locale),
     },
-    { label: prompt.title, href: getLocalizedHref(`/prompts/${slug}`, locale), isCurrent: true },
+    { label: prompt.title, href: getLocalizedHref(`/prompts_legacy/${slug}`, locale), isCurrent: true },
   ];
   
   return (
