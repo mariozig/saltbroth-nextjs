@@ -13,7 +13,7 @@ import { Locale } from '@/config/i18n';
  * @param locale - The locale to get the dictionary for
  */
 export async function getDictionary(locale: Locale) {
-  return (await import(`../dictionaries/${locale}.json`)).default;
+  return (await import(`../dictionaries/${locale}.json`, { assert: { type: 'json' } })).default;
 }
 
 /**
@@ -22,13 +22,13 @@ export async function getDictionary(locale: Locale) {
  * @param dictionary - Dictionary to find the translation in
  * @returns The translated string or the key itself if not found
  */
-export function lookupTranslation(key: string, dictionary: Record<string, any>): string {
+export function lookupTranslation(key: string, dictionary: Record<string, unknown>): string {
   const parts = key.split('.');
-  let result = dictionary;
+  let result: unknown = dictionary;
   
   for (const part of parts) {
-    if (result && typeof result === 'object' && part in result) {
-      result = result[part];
+    if (result && typeof result === 'object' && part in (result as Record<string, unknown>)) {
+      result = (result as Record<string, unknown>)[part];
     } else {
       // Translation not found, return the key itself
       return key;
@@ -117,12 +117,14 @@ export async function validateTranslationKeys(
  * @param frontmatter - MDX frontmatter object
  * @returns List of translation keys found in the frontmatter
  */
-export function extractTranslationKeys(frontmatter: Record<string, any>): string[] {
+export function extractTranslationKeys(frontmatter: Record<string, unknown>): string[] {
   const keys: string[] = [];
   
   // Look for translation keys in the features array
-  if (Array.isArray(frontmatter.features)) {
-    keys.push(...frontmatter.features);
+  if (frontmatter.features && Array.isArray(frontmatter.features)) {
+    // Ensure all array elements are strings
+    const features = frontmatter.features.filter((item): item is string => typeof item === 'string');
+    keys.push(...features);
   }
   
   // Add more frontmatter fields that might contain translation keys as needed

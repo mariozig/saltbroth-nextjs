@@ -8,14 +8,14 @@
 'use client';
 
 import * as React from 'react';
-import { Locale, defaultLocale } from '@/config/i18n';
+import { Locale } from '@/config/i18n';
 
 interface LlmSampleProps {
   slug: string;
   children: React.ReactNode;
 }
 
-export function LlmSample({ slug, children }: LlmSampleProps) {
+export function LlmSample({ children }: Omit<LlmSampleProps, 'slug'>) {
   // This component is mainly a container for the sample content
   // The actual rendering is handled by the parent LlmSampleTabs component
   return <div>{children}</div>;
@@ -36,7 +36,7 @@ interface LlmSampleTabsProps {
 
 export function LlmSampleTabs({ 
   children, 
-  locale = defaultLocale 
+  // Keeping locale as parameter for future use in translations
 }: LlmSampleTabsProps) {
   const [activeTab, setActiveTab] = React.useState<string | null>(null);
   const [llmNames, setLlmNames] = React.useState<Record<string, string>>({});

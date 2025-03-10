@@ -8,20 +8,38 @@
  *   npx ts-node scripts/validate-translations.ts
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import * as fs from 'node:fs/promises';
+import * as fsSync from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 // Create require for CommonJS modules
 const require = createRequire(import.meta.url);
 
-// Import glob with proper typing
-const globImport = require('glob');
-const glob = (pattern: string, options: any): Promise<string[]> => {
-  return globImport.glob(pattern, options);
-};
+// Use a more modern approach instead of the glob library
+async function glob(pattern: string, options: { cwd: string }): Promise<string[]> {
+  const cwd = options.cwd;
+  const allFiles: string[] = [];
+  
+  async function scanDir(dir: string) {
+    const entries = await fs.readdir(path.join(cwd, dir), { withFileTypes: true });
+    
+    for (const entry of entries) {
+      const relativePath = path.join(dir, entry.name);
+      
+      if (entry.isDirectory()) {
+        await scanDir(relativePath);
+      } else if (entry.isFile() && relativePath.endsWith('.mdx')) {
+        allFiles.push(relativePath);
+      }
+    }
+  }
+  
+  await scanDir('');
+  return allFiles;
+}
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
@@ -29,11 +47,70 @@ const __dirname = path.dirname(__filename);
 
 // Import from relative paths with file extensions
 import { Locale, locales } from '../src/config/i18n.js';
-import { 
-  validateTranslationKeys, 
-  extractTranslationKeys,
-  ValidationResult
-} from '../src/lib/translation.js';
+
+// Import types but implement locally to avoid ESM JSON import issues
+type ValidationResult = {
+  key: string;
+  valid: boolean;
+  file?: string;
+};
+
+// Function to read dictionary files directly using fs instead of ESM imports
+async function getDictionary(locale: Locale) {
+  const filePath = path.join(process.cwd(), 'src', 'dictionaries', `${locale}.json`);
+  const content = await fs.readFile(filePath, 'utf8');
+  return JSON.parse(content);
+}
+
+// Look up a translation key in the specified locale
+function lookupTranslation(key: string, dictionary: Record<string, any>): string {
+  const parts = key.split('.');
+  let result = dictionary;
+  
+  for (const part of parts) {
+    if (result && typeof result === 'object' && part in result) {
+      result = result[part];
+    } else {
+      // Translation not found, return the key itself
+      return key;
+    }
+  }
+  
+  return typeof result === 'string' ? result : key;
+}
+
+// Validate a list of translation keys
+async function validateTranslationKeys(
+  keys: string[],
+  locale: Locale
+): Promise<ValidationResult[]> {
+  const results: ValidationResult[] = [];
+  const dictionary = await getDictionary(locale);
+  
+  for (const key of keys) {
+    const translation = lookupTranslation(key, dictionary);
+    results.push({
+      key,
+      valid: translation !== key
+    });
+  }
+  
+  return results;
+}
+
+// Extract translation keys from MDX frontmatter
+function extractTranslationKeys(frontmatter: Record<string, any>): string[] {
+  const keys: string[] = [];
+  
+  // Look for translation keys in the features array
+  if (Array.isArray(frontmatter.features)) {
+    keys.push(...frontmatter.features);
+  }
+  
+  // Add more frontmatter fields that might contain translation keys as needed
+  
+  return keys;
+}
 
 // Define colors for console output
 const colors = {
@@ -63,23 +140,33 @@ async function validateMdxTranslationKeys() {
   
   // Process each locale
   for (const locale of locales) {
-    console.log(`${colors.blue}Checking locale: ${locale}${colors.reset}`);
+    console.log(`\n${colors.blue}╒═════════════════════════════════════════════╕${colors.reset}`);
+    console.log(`${colors.blue}│ Locale: ${locale.toUpperCase().padEnd(34)} │${colors.reset}`);
+    console.log(`${colors.blue}╘═════════════════════════════════════════════╛${colors.reset}`);
     
     // Get all MDX files for this locale
     const localeDir = path.join(contentDir, locale);
     
-    if (!fs.existsSync(localeDir)) {
-      console.log(`${colors.yellow}No content directory for locale: ${locale}${colors.reset}`);
+    if (!fsSync.existsSync(localeDir)) {
+      console.log(`${colors.yellow}  No content directory for locale: ${locale}${colors.reset}`);
       continue;
     }
     
     const mdxFiles = await glob('**/*.mdx', { cwd: localeDir });
-    console.log(`Found ${mdxFiles.length} MDX files`);
+    console.log(`${colors.cyan}  Found ${mdxFiles.length} MDX file(s) for ${locale}${colors.reset}`);
+    
+    // Print paths to MDX files
+    if (mdxFiles.length > 0) {
+      console.log(`${colors.magenta}  MDX files in ${locale}:${colors.reset}`);
+      mdxFiles.forEach(file => {
+        console.log(`    → ${file}`);
+      });
+    }
     
     // Process each MDX file
     for (const file of mdxFiles) {
       const filePath = path.join(localeDir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
+      const fileContent = await fs.readFile(filePath, 'utf8');
       const { data: frontmatter } = matter(fileContent);
       
       // Extract translation keys from frontmatter

@@ -10,11 +10,8 @@ import path from 'path';
 import matter from 'gray-matter';
 import { Locale, locales } from '@/config/i18n';
 
-// Import glob with proper typing
-const globImport = require('glob');
-const glob = (pattern: string, options: any): Promise<string[]> => {
-  return globImport.glob(pattern, options);
-};
+// Import fs/promises for file operations instead of glob to avoid typing issues
+import { readdir } from 'fs/promises';
 
 // Define content types
 export const CONTENT_TYPES = ['categories', 'prompts', 'llms'] as const;
@@ -133,22 +130,32 @@ export async function getAllContent<T extends BaseContent>(
     return [];
   }
   
-  // Get all MDX files
-  const files = await glob('**/*.mdx', { cwd: contentDir });
+  // Get all MDX files in the directory (non-recursive for now - simpler approach)
+  const files = await readdir(contentDir);
+  
+  // Filter for MDX files
+  const mdxFiles = files.filter(file => file.endsWith('.mdx'));
   
   // Read and parse each file
   const items = await Promise.all(
-    files.map(async (file: string) => {
+    mdxFiles.map(async (file: string) => {
       const filePath = path.join(contentDir, file);
       const fileContent = fs.readFileSync(filePath, 'utf8');
       const { data, content } = matter(fileContent);
       
-      return {
+      // Ensure we have a proper slug, either from frontmatter or filename
+      const slug = data.slug as string || path.basename(file, '.mdx');
+      
+      // Create a properly typed object that extends BaseContent
+      const item: BaseContent & Record<string, unknown> = {
         ...data,
-        slug: data.slug || path.basename(file, '.mdx'),
+        slug,
         locale,
         content,
-      } as T;
+      };
+      
+      // The as T cast is safer now since we've ensured BaseContent properties
+      return item as T;
     })
   );
   

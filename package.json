@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "prebuild-disabled": "npm run validate-translations",
-    "build": "next build --no-lint",
+    "prebuild": "npm run validate-translations",
+    "build": "NODE_OPTIONS='--no-warnings=DEP0040' next build",
     "start": "next start",
     "lint": "next lint",
-    "validate-translations": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm scripts/validate-translations.ts",
+    "validate-translations": "node --no-warnings=DEP0180 --import='data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"ts-node/esm\", pathToFileURL(\"./\"));' scripts/validate-translations.ts",
     "validate-mdx": "node scripts/validate-mdx-translations.js",
     "install-deps": "npm install --legacy-peer-deps"
   },
@@ -39,5 +39,9 @@
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "@formatjs/intl": "^2.9.0",
+    "@formatjs/intl-localematcher": "^0.5.2"
   }
 }

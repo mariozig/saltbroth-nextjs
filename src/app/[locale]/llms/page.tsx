@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { getAllLlms, getLlmIconPath } from '@/lib/content';
+import { getAllLlms, getLlmIconPath, LLM } from '@/lib/content';
 import { Locale } from '@/config/i18n';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: LlmsPageProps): Promise<Metad
  * 
  * Renders a card for a single LLM with its name, icon, and description.
  */
-function LlmCard({ llm, locale }: { llm: any, locale: string }) {
+function LlmCard({ llm, locale }: { llm: LLM, locale: string }) {
   return (
     <Link 
       href={`/${locale}/llms/${llm.slug}`}

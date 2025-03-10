@@ -287,15 +287,17 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
 - [ ] Add proper error handling and caching
 
 ### 4. Localization System
-- [ ] Set up translation files structure
-  - [ ] Create base translation files for each locale (en.json, es.json, etc.)
-  - [ ] Add translation keys for features and other localized content
-- [ ] Implement translation utility functions
-  - [ ] Create `translate` function to resolve translation keys
-  - [ ] Create helper components for displaying translated content
-- [ ] Add translation key validation script
-  - [ ] Build validation to check translation keys in frontmatter
-  - [ ] Add validation to the build process
+- [x] Set up translation files structure
+  - [x] Create base translation files for each locale (en.json, es.json, etc.)
+  - [x] Add translation keys for features and other localized content
+- [x] Implement translation utility functions
+  - [x] Create `translate` function to resolve translation keys
+  - [x] Create helper components for displaying translated content
+- [x] Add translation key validation script
+  - [x] Build validation to check translation keys in frontmatter
+  - [x] Add validation to the build process
+  - [x] Fix ESM JSON imports in validation script
+  - [x] Update getDictionary function to be ESM compatible
 
 ### 5. Migration Script
 - [ ] Create export script to pull data from Supabase

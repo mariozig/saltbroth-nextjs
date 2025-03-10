@@ -27,7 +27,7 @@ interface MDXContentProps {
 export async function MDXContent({ 
   source, 
   locale,
-  frontmatter 
+  // Removed unused frontmatter parameter
 }: MDXContentProps) {
   try {
     // Create the components object with proper context
@@ -38,7 +38,9 @@ export async function MDXContent({
       
       // Components that need locale
       LlmSampleTabs: (props: { children: React.ReactNode }) => (
-        <LlmSampleTabs children={props.children} locale={locale} />
+        <LlmSampleTabs locale={locale}>
+          {props.children}
+        </LlmSampleTabs>
       ),
       LlmFeatures: (props: { features: string[] }) => (
         <LlmFeatures features={props.features} locale={locale} />

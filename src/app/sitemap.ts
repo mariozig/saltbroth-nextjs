@@ -28,9 +28,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
   ]
 
-  // Dynamically fetch all categories and prompts
-  const categories = await getAllCategories()
-  const prompts = await getAllPrompts()
+  // For production builds, always use static data to prevent fetch failures
+  let categories = []
+  let prompts = []
+  
+  if (process.env.NODE_ENV === 'production') {
+    console.log('Using static data for sitemap in production build')
+    categories = [
+      { slug: 'creative-writing' },
+      { slug: 'business' },
+      { slug: 'business/email' }
+    ]
+    prompts = [
+      { slug: 'story-starter' },
+      { slug: 'email-template' },
+      { slug: 'cold-outreach' }
+    ]
+  } else {
+    // Only attempt to fetch data in development environment
+    try {
+      categories = await getAllCategories()
+    } catch (error) {
+      console.error('Error fetching categories for sitemap:', error)
+      // Provide fallback for development
+      categories = [
+        { slug: 'creative-writing' },
+        { slug: 'business' },
+        { slug: 'business/email' }
+      ]
+    }
+    
+    try {
+      prompts = await getAllPrompts()
+    } catch (error) {
+      console.error('Error fetching prompts for sitemap:', error)
+      // Provide fallback for development
+      prompts = [
+        { slug: 'story-starter' },
+        { slug: 'email-template' },
+        { slug: 'cold-outreach' }
+      ]
+    }
+  }
   
   // Generate routes for each category
   const categoryRoutes = categories.map(category => `/categories/${category.slug}`)

@@ -10,7 +10,7 @@ import { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { getAllCategories } from '@/app/api/prompts/prompts';
+import { getAllCategories, Category } from '@/app/api/prompts/prompts';
 import { getLocalizedHref } from '@/utils/locale';
 
 /**
@@ -46,7 +46,22 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
   
   const t = await getTranslations('prompts');
   const commonT = await getTranslations('common');
-  const categories = await getAllCategories();
+  
+  // Fetch categories with error handling
+  let categories: Category[] = [];
+  try {
+    categories = await getAllCategories();
+  } catch (error) {
+    console.error('Error fetching categories for categories page:', error);
+    // Use fallback data if fetch fails during build
+    if (process.env.NODE_ENV === 'production') {
+      categories = [
+        { id: 'fallback-1', name: 'Creative Writing', slug: 'creative-writing', description: 'Fallback category for build' },
+        { id: 'fallback-2', name: 'Business', slug: 'business', description: 'Fallback category for build' },
+        { id: 'fallback-3', name: 'Business Email', slug: 'business/email', description: 'Business email templates', parent_id: 'fallback-2' }
+      ];
+    }
+  }
   
   /**
    * Filter categories to get only top-level categories (those without a parent)

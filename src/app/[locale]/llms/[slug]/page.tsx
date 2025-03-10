@@ -18,8 +18,7 @@ import {
   getPromptsByCompatibleLlm,
   checkContentLocalization 
 } from '@/lib/content';
-import { LLM } from '@/lib/content';
-import { Locale, defaultLocale } from '@/config/i18n';
+import { Locale } from '@/config/i18n';
 import LlmFeatures from '@/components/mdx/LlmFeatures';
 import { processMDX } from '@/components/mdx/MDXProvider';
 
@@ -154,12 +153,12 @@ export default async function LlmDetailPage({ params }: LlmDetailPageProps) {
         
         {/* Localization status (only visible for admin/debugging) */}
         {process.env.NODE_ENV === 'development' && (
-          <div className="mt-8 p-4 border border-gray-300 rounded-lg">
-            <h3 className="text-lg font-bold mb-2">Localization Status</h3>
+          <div className="mt-8 p-4 border border-gray-300 rounded-lg bg-gray-50">
+            <h3 className="text-lg font-bold mb-2 text-gray-900">Localization Status</h3>
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(localizationStatus).map(([loc, exists]) => (
-                <div key={loc} className={`p-2 rounded ${exists ? 'bg-green-100' : 'bg-red-100'}`}>
-                  <span>{loc}: {exists ? '✅' : '❌'}</span>
+                <div key={loc} className={`p-2 rounded ${exists ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`}>
+                  <span className="font-medium">{loc}: {exists ? '✅' : '❌'}</span>
                 </div>
               ))}
             </div>
