@@ -59,17 +59,18 @@
     "home": "Inicio",
     "prompts": "Prompts",
     "llms": "Modelos de Lenguaje",
+    "categories": {
+      "creative": "Escritura Creativa",
+      "business": "Negocios y Marketing",
+      "professional": "Profesional",
+      "visualArts": "Artes Visuales",
+      "educational": "Educativo"
+    },
     "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles",
     "features": "Características",
     "about": "Acerca de",
     "compatible_prompts": "Prompts Compatibles",
     "logout": "Cerrar sesión",
-    "categories": {
-      "creative": "Escritura Creativa",
-      "business": "Negocios y Marketing",
-      "visualArts": "Artes Visuales",
-      "educational": "Educativo"
-    },
     "footer": {
       "about": "Sobre Nosotros",
       "contact": "Contacto",
@@ -103,6 +104,7 @@
     "subscribe": "Suscríbete para Acceder",
     "subscribeDescription": "Obtén acceso ilimitado a todos los prompts premium"
   },
+
   "auth": {
     "email": "Correo Electrónico",
     "password": "Contraseña",
@@ -192,6 +194,8 @@
     "promptsInCategory": "Prompts en esta categoría",
     "noPrompts": "No se encontraron prompts en esta categoría",
     "promptTemplate": "Plantilla de Prompt",
+    "noContentYet": "Aún no hay contenido",
+    "contentComingSoon": "¡Más contenido próximamente! Estamos trabajando en agregar nuevos prompts a esta categoría.",
     "exampleOutputs": "Ejemplos de Salida",
     "copy": "Copiar",
     "copied": "¡Copiado!",
@@ -361,6 +365,21 @@
         "value": "Lunes a Viernes: 9am a 5pm PST"
       }
     }
+  },
+
+  "Categories": {
+    "browseCategories": "Explorar Categorías de Prompts de IA",
+    "findPerfectPrompts": "Encuentra los prompts perfectos para tu próximo proyecto",
+    "searchCategories": "Buscar categorías...",
+    "promptCollections": "Colecciones de Prompts",
+    "exploreSubcategories": "Explorar Categorías de {category}",
+    "promptsInCategory": "Prompts en {category}",
+    "browsePrompts": "Explorar prompts",
+    "viewPrompt": "Ver prompt",
+    "noContentYet": "Aún no hay contenido disponible",
+    "contentComingSoon": "El contenido para esta categoría estará disponible pronto. Vuelve más tarde para ver actualizaciones.",
+    "premium": "Premium",
+    "professional": "Profesional"
   },
 
   "privacy": {

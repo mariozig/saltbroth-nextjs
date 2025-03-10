@@ -3,30 +3,43 @@ import { useLocale } from 'next-intl';
 import Footer from '@/components/Footer';
 import { getLocalizedHref } from '@/utils/locale';
 import Link from 'next/link';
-import { getAllCategories, Category } from '@/app/api/prompts/prompts';
+import { getAllCategories, Category } from '@/lib/content';
 import { use } from 'react';
+import { Locale } from '@/config/i18n';
 
 // Separate async function for data fetching with error handling
-async function getCategories(): Promise<Category[]> {
+async function getCategories(locale: Locale): Promise<Category[]> {
   try {
-    // For production builds, use static data to prevent fetch failures
-    if (process.env.NODE_ENV === 'production') {
-      console.log('Using static category data for homepage in production build');
-      return [
-        { id: 'fallback-1', name: 'Creative Writing', slug: 'creative-writing', description: 'Fallback category for build' },
-        { id: 'fallback-2', name: 'Business', slug: 'business', description: 'Fallback category for build' },
-        { id: 'fallback-3', name: 'Business Email', slug: 'business/email', description: 'Business email templates', parent_id: 'fallback-2' }
-      ];
-    }
-    
-    return await getAllCategories();
+    // Use the new MDX-based content loading system
+    return await getAllCategories(locale);
   } catch (error) {
     console.error('Error fetching categories for homepage:', error);
     // Provide fallback data in case of error
     return [
-      { id: 'fallback-1', name: 'Creative Writing', slug: 'creative-writing', description: 'Fallback category for build' },
-      { id: 'fallback-2', name: 'Business', slug: 'business', description: 'Fallback category for build' },
-      { id: 'fallback-3', name: 'Business Email', slug: 'business/email', description: 'Business email templates', parent_id: 'fallback-2' }
+      { 
+        name: 'Creative Writing', 
+        slug: 'creative-writing', 
+        description: 'Prompts for creative writing and storytelling',
+        icon: 'pen-nib',
+        locale: locale,
+        content: ''
+      },
+      { 
+        name: 'Business Marketing', 
+        slug: 'business-marketing', 
+        description: 'Tools to improve your business marketing content',
+        icon: 'bullhorn',
+        locale: locale,
+        content: ''
+      },
+      { 
+        name: 'Professional', 
+        slug: 'professional', 
+        description: 'Professional communication templates',
+        icon: 'briefcase',
+        locale: locale,
+        content: ''
+      }
     ];
   }
 }
@@ -39,7 +52,7 @@ export default function Home() {
   const locale = useLocale();
   
   // Fetch categories data using React's use() hook for data fetching with error handling
-  const categories = use(getCategories());
+  const categories = use(getCategories(locale as Locale));
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -88,7 +101,7 @@ export default function Home() {
                 className="category-card glass rounded-3xl p-8 hover:bg-accent-100/5 cursor-pointer group">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-accent-100/10 flex items-center justify-center">
-                    <i className="fas fa-pen-nib text-2xl text-accent-100"></i>
+                    <i className={`fas fa-${categories.find((c: Category) => c.slug === 'creative-writing')?.icon || 'pen-nib'} text-2xl text-accent-100`}></i>
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-100 transition-colors">{categoriesT('creative')}</h3>
                 </div>
@@ -110,15 +123,15 @@ export default function Home() {
               </Link>
 
               {/* Business Writing */}
-              <Link href={getLocalizedHref(`/categories/${categories.find((c: Category) => c.slug === 'business-writing')?.slug || 'business-writing'}`, locale)} 
+              <Link href={getLocalizedHref(`/categories/${categories.find((c: Category) => c.slug === 'business-marketing')?.slug || 'business-marketing'}`, locale)} 
                 className="category-card glass rounded-3xl p-8 hover:bg-accent-200/5 cursor-pointer group">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-accent-200/10 flex items-center justify-center">
-                    <i className="fas fa-briefcase text-2xl text-accent-200"></i>
+                    <i className={`fas fa-${categories.find((c: Category) => c.slug === 'business-marketing')?.icon || 'bullhorn'} text-2xl text-accent-200`}></i>
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-200 transition-colors">{categoriesT('business')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">Create polished business content that drives engagement and results.</p>
+                <p className="text-gray-400 mb-6">{categories.find((c: Category) => c.slug === 'business-marketing')?.description || 'Create polished business content that drives engagement and results.'}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-200/30 mr-3"></span>
@@ -136,15 +149,15 @@ export default function Home() {
               </Link>
 
               {/* Visual Arts */}
-              <Link href={getLocalizedHref(`/categories/${categories.find((c: Category) => c.slug === 'visual-arts')?.slug || 'visual-arts'}`, locale)} 
+              <Link href={getLocalizedHref(`/categories/${categories.find((c: Category) => c.slug === 'professional')?.slug || 'professional'}`, locale)} 
                 className="category-card glass rounded-3xl p-8 hover:bg-accent-300/5 cursor-pointer group">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-accent-300/10 flex items-center justify-center">
-                    <i className="fas fa-paint-brush text-2xl text-accent-300"></i>
+                    <i className={`fas fa-${categories.find((c: Category) => c.slug === 'professional')?.icon || 'briefcase'} text-2xl text-accent-300`}></i>
                   </div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-accent-300 transition-colors">{categoriesT('visualArts')}</h3>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-accent-300 transition-colors">{categoriesT('professional')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">Generate stunning visuals and artwork with detailed style control.</p>
+                <p className="text-gray-400 mb-6">{categories.find((c: Category) => c.slug === 'professional')?.description || 'Professional communication templates for various business contexts.'}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>

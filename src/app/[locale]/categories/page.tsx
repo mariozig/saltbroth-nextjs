@@ -1,102 +1,142 @@
-/**
- * Categories Landing Page
- * 
- * This page displays all top-level categories in a grid layout.
- * It serves as the main entry point for browsing prompt categories.
- */
-
-import { Suspense } from 'react';
-import { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { Locale } from '@/config/i18n';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import { getAllCategories, Category } from '@/app/api/prompts/prompts';
 import { getLocalizedHref } from '@/utils/locale';
+import { getAllCategories, Category } from '@/lib/content';
+import Footer from '@/components/Footer';
+import { use } from 'react';
 
-/**
- * Generates metadata for the categories page
- * 
- * @param {Object} props - The component props
- * @param {Promise<{locale: string}>} props.params - The route parameters containing the locale
- * @returns {Promise<Metadata>} - The page metadata for SEO
- */
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'metadata' });
-  
-  return {
-    title: `${t('categories')}`,
-    description: t('categoriesDescription'),
-  };
-}
-
-/**
- * Categories Page Component
- * 
- * Renders a grid of top-level categories, each linking to its respective nested
- * category page. Filters out child categories to only show main/parent categories.
- * 
- * @param {Object} props - The component props
- * @param {Promise<{locale: string}>} props.params - The route parameters containing the locale
- * @returns {JSX.Element} - The rendered categories page
- */
-export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  
-  const t = await getTranslations('prompts');
-  const commonT = await getTranslations('common');
-  
-  // Fetch categories with error handling
-  let categories: Category[] = [];
+// Separate async function for data fetching with error handling
+async function getCategories(locale: Locale): Promise<Category[]> {
   try {
-    categories = await getAllCategories();
+    // Use the MDX-based content loading system
+    return await getAllCategories(locale);
   } catch (error) {
     console.error('Error fetching categories for categories page:', error);
-    // Use fallback data if fetch fails during build
-    if (process.env.NODE_ENV === 'production') {
-      categories = [
-        { id: 'fallback-1', name: 'Creative Writing', slug: 'creative-writing', description: 'Fallback category for build' },
-        { id: 'fallback-2', name: 'Business', slug: 'business', description: 'Fallback category for build' },
-        { id: 'fallback-3', name: 'Business Email', slug: 'business/email', description: 'Business email templates', parent_id: 'fallback-2' }
-      ];
-    }
+    // Provide fallback data in case of error
+    return [
+      { 
+        name: 'Creative Writing', 
+        slug: 'creative-writing', 
+        description: 'Prompts for creative writing and storytelling',
+        icon: 'pen-nib',
+        locale: locale,
+        content: ''
+      },
+      { 
+        name: 'Business Marketing', 
+        slug: 'business-marketing', 
+        description: 'Tools to improve your business marketing content',
+        icon: 'bullhorn',
+        locale: locale,
+        content: ''
+      },
+      { 
+        name: 'Professional', 
+        slug: 'professional', 
+        description: 'Professional communication templates',
+        icon: 'briefcase',
+        locale: locale,
+        content: ''
+      }
+    ];
   }
+}
+
+export default function CategoriesPage() {
+  const t = useTranslations('prompts');
+  const commonT = useTranslations('common');
+  const locale = useLocale();
   
-  /**
-   * Filter categories to get only top-level categories (those without a parent)
-   * Child categories will be displayed on their respective parent category pages
-   */
-  const topLevelCategories = categories.filter(category => !category.parent_id);
-  
+  // Fetch categories data using React's use() hook for data fetching with error handling
+  const categories = use(getCategories(locale as Locale));
+
+  // Filter to only show top-level categories (those without a / in the slug)
+  const rootCategories = categories.filter(category => !category.slug.includes('/'));
+
   return (
-    <div className="container max-w-5xl mx-auto px-4 py-8">
-      <Breadcrumbs items={[
-        { label: commonT('home'), href: getLocalizedHref('/', locale) },
-        { label: t('categories'), href: getLocalizedHref('/categories', locale), isCurrent: true }
-      ]} />
+    <div className="min-h-screen bg-black text-white">
+      <main className="pt-24 min-h-screen">
+        {/* Hero Section */}
+        <section className="px-6 py-12">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold gradient-text glow leading-tight pb-2">
+              {t('browseCategories')}
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              {t('browseCategoriesDescription')}
+            </p>
+          </div>
+        </section>
+
+        {/* Search Section */}
+        <section className="px-6 mb-12">
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder={t('searchPrompts')}
+                className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/5 transition-all"
+              />
+              <i className="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+          </div>
+        </section>
+
+        {/* Root Categories */}
+        <section className="px-6 py-12">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {rootCategories.map((category, index) => {
+                // Determine accent color based on index
+                const accentIndex = (index % 5) + 1;
+                const accentClass = `accent-${accentIndex}00`;
+                
+                return (
+                  <Link 
+                    key={category.slug}
+                    href={getLocalizedHref(`/categories/${category.slug}`, locale)}
+                    className={`category-card glass rounded-3xl p-8 hover:bg-${accentClass}/5 cursor-pointer group`}
+                  >
+                    <div className="flex items-center space-x-4 mb-6">
+                      <div className={`w-12 h-12 rounded-xl bg-${accentClass}/10 flex items-center justify-center`}>
+                        <i className={`fas fa-${category.icon} text-2xl text-${accentClass}`}></i>
+                      </div>
+                      <h3 className={`text-2xl font-bold text-white group-hover:text-${accentClass} transition-colors`}>
+                        {category.name}
+                      </h3>
+                    </div>
+                    <p className="text-gray-400 mb-6">{category.description}</p>
+                    
+                    {/* Find subcategories for this category */}
+                    <div className="space-y-3">
+                      {categories
+                        .filter(subcat => subcat.slug.startsWith(`${category.slug}/`) && subcat.slug.split('/').length === 2)
+                        .slice(0, 3)
+                        .map(subcat => (
+                          <div key={subcat.slug} className="flex items-center text-sm text-gray-400">
+                            <span className={`w-1.5 h-1.5 rounded-full bg-${accentClass}/30 mr-3`}></span>
+                            {subcat.name}
+                          </div>
+                        ))
+                      }
+                    </div>
+                    
+                    <div className="flex items-center justify-end mt-6">
+                      <span className={`text-${accentClass} border-b border-transparent group-hover:border-${accentClass} pb-0.5`}>
+                        {commonT('seeMore')} <i className="fas fa-arrow-right ml-2"></i>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </main>
       
-      <header className="mb-12">
-        <h1 className="text-3xl font-bold tracking-tight text-white">{t('browseCategories')}</h1>
-        <p className="text-gray-300 mt-2">{t('browseCategoriesDescription')}</p>
-      </header>
-      
-      <Suspense fallback={<div className="grid gap-6 animate-pulse">{Array(6).fill(0).map((_, i) => <div key={i} className="h-36 glass rounded-2xl" />)}</div>}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {topLevelCategories.map(category => (
-            <Link 
-              key={category.id}
-              href={getLocalizedHref(`/categories/${category.slug}`, locale)}
-              className="block group"
-            >
-              <div className="glass rounded-2xl p-6 h-full transition-transform duration-200 group-hover:translate-y-[-2px]">
-                <h2 className="text-lg font-semibold text-white mb-2">{category.name}</h2>
-                <p className="text-gray-400 text-sm">{category.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Suspense>
+      <Footer />
     </div>
   );
-} 
+}

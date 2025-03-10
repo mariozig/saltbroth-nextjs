@@ -15,6 +15,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { getLocaleParams, getLocaleAlternates } from '@/config/i18n';
+import Navbar from '@/components/Navbar';
 import "../globals.css";
 
 /**
@@ -139,6 +140,7 @@ export default async function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${plusJakartaSans.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Navbar />
           {children}
         </NextIntlClientProvider>
         <Analytics />

@@ -43,7 +43,7 @@ export default function Navbar() {
   }, []);
   
   return (
-    <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center">
+    <header className="glass fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center border-b border-gray-800 shadow-lg">
       <div className="flex items-center">
         <Link href={getLocalizedHref('/', locale)} className="flex items-center">
           <h1 className="text-2xl font-bold gradient-text">{common('appName')}</h1>
@@ -51,9 +51,7 @@ export default function Navbar() {
         </Link>
       </div>
       <nav className="hidden md:flex space-x-6">
-        <Link href={getLocalizedHref('/categories', locale)} className="text-gray-300 hover:text-white transition-colors">
-          {common('categoriesNav')}
-        </Link>
+        {/* Navigation links can be added here */}
       </nav>
       <div className="flex space-x-4 items-center">
         <LanguageSwitcher />
