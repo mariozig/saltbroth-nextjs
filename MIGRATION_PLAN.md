@@ -1,17 +1,12 @@
-# Content Migration Plan: Supabase to MDX-based File System
+# Content Architecture Plan: MDX-based File System
 
 ## Summary
 
-This document outlines the plan to migrate content management from Supabase to a file system-based approach using MDX files. The migration will cover all non-authentication content types including prompts, categories, output samples, and LLMs, while maintaining multi-language support.
+This document outlines the plan to implement a file system-based approach for content management using MDX files. This architecture will cover all non-authentication content types including prompts, categories, output samples, and LLMs, while maintaining multi-language support.
 
 ## Overview
 
-### Current System
-- Content stored in Supabase database tables
-- Separate tables for categories, prompts, LLMs, and output samples
-- Relational structure with foreign key relationships
-
-### Target System
+### New System
 - Content stored as MDX files in the file system
 - Directory structure based on content type and locale
 - Rich, interactive content using MDX components
@@ -299,13 +294,7 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
   - [x] Fix ESM JSON imports in validation script
   - [x] Update getDictionary function to be ESM compatible
 
-### 5. Migration Script
-- [ ] Create export script to pull data from Supabase
-- [x] Add frontmatter generation for each content type
-  - [x] Implemented for LLMs with all required fields
-  - [ ] Need to implement for other content types
-- [ ] Implement category hierarchy preservation
-- [ ] Add output sample formatting to prompt files
+### 5. Content Creation
 - [x] Establish LLM relationships in prompt frontmatter (`compatible_llms` and `featured_llms`)
   - [x] Added necessary fields to interfaces
   - [x] Added utility functions to get compatible/featured LLMs
@@ -314,6 +303,10 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
 - [x] Implement localization handling
   - [x] Created utility functions to check localization status
   - [x] Added support for translation keys in LLM features
+- [ ] Create sample content files for development and testing
+  - [ ] Create sample categories in MDX format
+  - [ ] Create sample prompts in MDX format
+  - [ ] Create sample LLMs in MDX format
 - [x] Test content loading on development data
   - [x] Verified MDX content loading for LLMs in both English and Spanish
 
@@ -358,48 +351,43 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
 - [ ] Performance testing
 
 ### 8. Automated Testing & Validation
-- [ ] Create automated tests to verify content migration accuracy:
-  - [ ] Count validation (ensure all content items are migrated)
-  - [ ] Content integrity validation (checksums or content sampling)
-  - [ ] Relationship validation (ensure parent/child relationships are preserved)
+- [ ] Create automated tests for the MDX content system:
+  - [ ] Schema validation for MDX frontmatter
+  - [ ] Content structure validation
+  - [ ] Relationship validation (ensure parent/child relationships are correctly defined)
 - [ ] Create snapshot tests for new MDX components
 - [x] Set up content validation script to identify malformed MDX files
 - [x] Implement translation key validation for MDX files
 - [ ] Create visual regression tests for key pages
 - [x] Document validation procedure for content authors
-- [ ] Benchmark performance comparison between database and filesystem approaches
+- [ ] Benchmark performance of the filesystem-based approach
 
 ### 9. Deployment
-- [ ] Run migration in staging environment
+- [ ] Test in development environment
 - [ ] Verify production build
 - [ ] Deploy to production
 - [ ] Monitor for issues
 
 ### 10. Cleanup & Code Removal
 - [ ] Identify and catalog all Supabase content-related code for removal
-- [ ] Remove Supabase database calls in API routes:
-  - [ ] Remove `/api/categories` endpoints
-  - [ ] Remove `/api/prompts` endpoints
-  - [ ] Remove `/api/llms` endpoints
-  - [ ] Remove `/api/output-samples` endpoints
-- [ ] Remove Supabase client instances for content operations
-- [ ] Remove Supabase database schema for content tables:
-  - [ ] `categories` table
-  - [ ] `prompts` table
-  - [ ] `llms` table
-  - [ ] `output_samples` table
-- [ ] Remove Supabase data fetching hooks:
-  - [ ] `useCategories` hook
-  - [ ] `usePrompts` hook
-  - [ ] `useLLMs` hook
-  - [ ] `useOutputSamples` hook
-- [ ] Remove Supabase RLS policies for content tables
+- [ ] Update pages to use the new MDX-based content system:
+  - [ ] Update `/app/[locale]/categories` pages
+  - [ ] Update `/app/[locale]/prompts_legacy` pages to use MDX content
+  - [ ] Update `/app/[locale]/llms` pages
+- [ ] Remove or repurpose Supabase API routes:
+  - [ ] Remove or repurpose `/api/categories` endpoints
+  - [ ] Remove or repurpose `/api/prompts` endpoints
+  - [ ] Remove or repurpose `/api/llms` endpoints
+  - [ ] Remove or repurpose `/api/output-samples` endpoints
+- [ ] Remove Supabase client instances used solely for content operations
+- [ ] Adapt or replace data fetching hooks with MDX content loading:
+  - [ ] Replace `useCategories` hook
+  - [ ] Replace `usePrompts` hook
+  - [ ] Replace `useLLMs` hook
+  - [ ] Replace `useOutputSamples` hook
 - [ ] Remove unnecessary environment variables related to content DB
-- [ ] Remove migration and seed scripts for content tables
-- [ ] Update database triggers that reference content tables
 - [ ] Update TypeScript types to reflect new content structure
 - [ ] Update CI/CD pipelines to exclude content DB operations
-- [ ] Audit any scheduled jobs or cron tasks related to content DB
 
 ### 11. Documentation & Training
 - [ ] Update README with new content management approach
@@ -408,7 +396,7 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
 - [ ] Create templates for new content types
 - [ ] Document component props and interfaces
 - [ ] Update contributor documentation
-- [ ] Create content migration status report
+- [ ] Create implementation status report
 
 ## Content Loading Implementation
 
@@ -558,19 +546,13 @@ export const mdxComponents = {
 };
 ```
 
-## Migration Script Example
+## Sample Content Creation Script
 
 ```typescript
-// scripts/migrate-content.ts
-import { createClient } from '@supabase/supabase-js';
+// scripts/create-sample-content.ts
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Base directory for content
 const contentDir = path.join(process.cwd(), 'content');
@@ -578,43 +560,56 @@ const contentDir = path.join(process.cwd(), 'content');
 // Supported locales
 const locales = ['en', 'es'];
 
-async function migrateCategories() {
-  // Fetch all categories
-  const { data: categories, error } = await supabase
-    .from('categories')
-    .select('*');
-    
-  if (error) {
-    console.error('Error fetching categories:', error);
-    return;
-  }
+/**
+ * Create sample categories for development and testing
+ */
+async function createSampleCategories() {
+  // Sample categories data
+  const sampleCategories = [
+    {
+      name: "Creative Writing",
+      slug: "creative-writing",
+      description: "Prompts for creative writing and storytelling"
+    },
+    {
+      name: "Business Marketing",
+      slug: "business-marketing",
+      description: "Tools to improve your business marketing content"
+    },
+    {
+      name: "Academic Writing",
+      slug: "academic-writing",
+      description: "Research and academic content creation"
+    },
+    // Nested category example
+    {
+      name: "Professional",
+      slug: "professional",
+      description: "Professional communication templates",
+      children: [
+        {
+          name: "Email Templates",
+          slug: "email-templates",
+          description: "Professional email templates for various situations"
+        },
+        {
+          name: "Reports",
+          slug: "reports",
+          description: "Business and technical report templates"
+        }
+      ]
+    }
+  ];
   
-  // Create directory structure
+  // Create directory structure and files
   for (const locale of locales) {
     const categoryDir = path.join(contentDir, locale, 'categories');
     fs.mkdirSync(categoryDir, { recursive: true });
     
-    // Create all category files
-    for (const category of categories) {
-      // Handle nested categories with directories
-      const slugParts = category.slug.split('/');
-      const fileName = slugParts.pop() || category.slug;
-      
-      let categoryPath = categoryDir;
-      if (slugParts.length > 0) {
-        const nestedDir = path.join(categoryDir, ...slugParts);
-        fs.mkdirSync(nestedDir, { recursive: true });
-        categoryPath = nestedDir;
-      }
-      
-      // Create frontmatter
-      const frontmatter = {
-        name: category.name,
-        slug: category.slug.split('/').pop(),
-        description: category.description
-      };
-      
-      // Basic MDX content
+    // Create regular category files
+    for (const category of sampleCategories) {
+      // Create category file
+      const filePath = path.join(categoryDir, `${category.slug}.mdx`);
       const mdxContent = `
 <CategoryDescription>
   ${category.description}
@@ -623,142 +618,270 @@ async function migrateCategories() {
 <FeaturedPrompts category="${category.slug}" />
       `;
       
+      // Create frontmatter
+      const frontmatter = {
+        name: category.name,
+        slug: category.slug,
+        description: category.description
+      };
+      
       // Write to file
-      const fileContent = matter.stringify(mdxContent, frontmatter);
-      fs.writeFileSync(path.join(categoryPath, `${fileName}.mdx`), fileContent);
+      const fileContent = matter.stringify(mdxContent.trim(), frontmatter);
+      fs.writeFileSync(filePath, fileContent);
+      console.log(`Created category: ${filePath}`);
+      
+      // Process nested categories if any
+      if (category.children && category.children.length > 0) {
+        const nestedDir = path.join(categoryDir, category.slug);
+        fs.mkdirSync(nestedDir, { recursive: true });
+        
+        // Create index.mdx for the parent category
+        const indexPath = path.join(nestedDir, 'index.mdx');
+        const indexContent = matter.stringify(mdxContent.trim(), frontmatter);
+        fs.writeFileSync(indexPath, indexContent);
+        console.log(`Created category index: ${indexPath}`);
+        
+        // Create child category files
+        for (const child of category.children) {
+          const childPath = path.join(nestedDir, `${child.slug}.mdx`);
+          const childContent = `
+<CategoryDescription>
+  ${child.description}
+</CategoryDescription>
+
+<FeaturedPrompts category="${category.slug}/${child.slug}" />
+          `;
+          
+          const childFrontmatter = {
+            name: child.name,
+            slug: child.slug,
+            description: child.description,
+            parent: category.slug
+          };
+          
+          const childFileContent = matter.stringify(childContent.trim(), childFrontmatter);
+          fs.writeFileSync(childPath, childFileContent);
+          console.log(`Created nested category: ${childPath}`);
+        }
+      }
     }
   }
   
-  console.log('Categories migrated successfully');
+  console.log('Sample categories created successfully');
 }
 
-async function migratePrompts() {
-  // Fetch all prompts with related output samples
-  const { data: prompts, error } = await supabase
-    .from('prompts')
-    .select(`
-      *,
-      output_samples(
-        content,
-        llm_id
-      )
-    `);
-    
-  if (error) {
-    console.error('Error fetching prompts:', error);
-    return;
-  }
-  
-  // Get LLMs for reference
-  const { data: llms } = await supabase.from('llms').select('*');
-  const llmMap = llms?.reduce((acc, llm) => {
-    acc[llm.id] = { name: llm.name, color: llm.color };
-    return acc;
-  }, {}) || {};
+/**
+ * Create sample prompts for development and testing
+ */
+async function createSamplePrompts() {
+  // Sample prompts data
+  const samplePrompts = [
+    {
+      title: "Professional Email Template",
+      slug: "professional-email-template",
+      description: "Create polished and effective professional emails",
+      category: "professional/email-templates",
+      isPremium: false,
+      icon: "fa-envelope",
+      compatible_llms: ["chatgpt", "claude", "llama"],
+      featured_llms: ["chatgpt", "claude"],
+      content: "Write a professional email about: {topic}. Tone should be {tone} and length should be {length}.",
+      samples: [
+        {
+          llm: "chatgpt",
+          color: "#10a37f",
+          content: "Dear [Name],\n\nI hope this email finds you well...\n\nBest regards,\nYour Name"
+        },
+        {
+          llm: "claude",
+          color: "#8e44ef",
+          content: "Subject: Project Update\n\nDear [Name],\n\nI wanted to provide you with...\n\nSincerely,\nYour Name"
+        }
+      ]
+    },
+    {
+      title: "Creative Story Starter",
+      slug: "creative-story-starter",
+      description: "Jump-start your creative writing with an engaging opening paragraph",
+      category: "creative-writing",
+      isPremium: false,
+      icon: "fa-book",
+      compatible_llms: ["chatgpt", "claude", "llama"],
+      featured_llms: ["claude"],
+      content: "Write an engaging opening paragraph for a {genre} story set in {setting} with a {character_type} protagonist.",
+      samples: [
+        {
+          llm: "claude",
+          color: "#8e44ef",
+          content: "The wind howled through the abandoned streets of Neo-Tokyo as Kai adjusted his cybernetic implants. The year was 2157, and humanity had long since merged with the machines they once feared..."
+        }
+      ]
+    }
+  ];
   
   // Create prompt files
   for (const locale of locales) {
     const promptDir = path.join(contentDir, locale, 'prompts');
     fs.mkdirSync(promptDir, { recursive: true });
     
-    for (const prompt of prompts) {
+    for (const prompt of samplePrompts) {
+      const filePath = path.join(promptDir, `${prompt.slug}.mdx`);
+      
       // Create frontmatter
       const frontmatter = {
         title: prompt.title,
         slug: prompt.slug,
         description: prompt.description,
-        category: prompt.category_id, // You'll need to map this to category slug
-        isPremium: prompt.is_premium,
-        icon: prompt.icon
+        category: prompt.category,
+        isPremium: prompt.isPremium,
+        icon: prompt.icon,
+        compatible_llms: prompt.compatible_llms,
+        featured_llms: prompt.featured_llms
       };
       
-      // Generate template
+      // Generate MDX content
       let mdxContent = `
 <PromptTemplate>
   ${prompt.content}
 </PromptTemplate>
 `;
       
-      // Generate samples MDX
-      if (prompt.output_samples && prompt.output_samples.length > 0) {
+      // Add samples if available
+      if (prompt.samples && prompt.samples.length > 0) {
         mdxContent += `
 ## Samples
 
 <LlmSampleTabs>
 `;
         
-        for (const sample of prompt.output_samples) {
-          const llm = llmMap[sample.llm_id] || { name: 'Unknown LLM', color: '#cccccc' };
+        for (const sample of prompt.samples) {
           mdxContent += `
-  <LlmSample name="${llm.name}" color="${llm.color}">
+  <LlmSample slug="${sample.llm}" color="${sample.color}">
     ${sample.content}
   </LlmSample>
 `;
         }
         
-        mdxContent += `</LlmSampleTabs>`;
+        mdxContent += `
+</LlmSampleTabs>
+`;
       }
       
       // Write to file
-      const fileContent = matter.stringify(mdxContent, frontmatter);
-      fs.writeFileSync(path.join(promptDir, `${prompt.slug}.mdx`), fileContent);
+      const fileContent = matter.stringify(mdxContent.trim(), frontmatter);
+      fs.writeFileSync(filePath, fileContent);
+      console.log(`Created prompt: ${filePath}`);
     }
   }
   
-  console.log('Prompts migrated successfully');
+  console.log('Sample prompts created successfully');
 }
 
-async function migrateLLMs() {
-  // Fetch all LLMs
-  const { data: llms, error } = await supabase.from('llms').select('*');
-    
-  if (error) {
-    console.error('Error fetching LLMs:', error);
-    return;
-  }
+/**
+ * Create sample LLMs for development and testing
+ */
+async function createSampleLLMs() {
+  // Sample LLMs data
+  const sampleLLMs = [
+    {
+      name: "ChatGPT",
+      slug: "chatgpt",
+      description: "OpenAI's conversational AI model",
+      provider: "OpenAI",
+      model_name: "gpt-4-turbo",
+      features: ["llm.feature.writing", "llm.feature.code", "llm.feature.math"],
+      max_tokens: 16000,
+      color: "#10a37f"
+    },
+    {
+      name: "Claude",
+      slug: "claude",
+      description: "Anthropic's helpful and safe AI assistant",
+      provider: "Anthropic",
+      model_name: "claude-3-opus",
+      features: ["llm.feature.writing", "llm.feature.reasoning", "llm.feature.math"],
+      max_tokens: 32000,
+      color: "#8e44ef"
+    },
+    {
+      name: "Llama",
+      slug: "llama",
+      description: "Meta's open source large language model",
+      provider: "Meta",
+      model_name: "llama-3",
+      features: ["llm.feature.writing", "llm.feature.code"],
+      max_tokens: 8000,
+      color: "#0066cc"
+    }
+  ];
   
   // Create LLM files
   for (const locale of locales) {
     const llmDir = path.join(contentDir, locale, 'llms');
     fs.mkdirSync(llmDir, { recursive: true });
     
-    for (const llm of llms) {
+    for (const llm of sampleLLMs) {
+      const filePath = path.join(llmDir, `${llm.slug}.mdx`);
+      
       // Create frontmatter
       const frontmatter = {
         name: llm.name,
+        slug: llm.slug,
+        description: llm.description,
+        provider: llm.provider,
+        model_name: llm.model_name,
+        features: llm.features,
+        max_tokens: llm.max_tokens,
         color: llm.color
       };
       
+      // Generate MDX content
+      const mdxContent = `
+<LlmDescription>
+  ${llm.description} from ${llm.provider} that can assist with various tasks.
+</LlmDescription>
+
+<RecommendedPrompts llm="${llm.slug}" />
+      `;
+      
       // Write to file
-      const fileContent = matter.stringify('', frontmatter);
-      fs.writeFileSync(path.join(llmDir, `${llm.name.toLowerCase()}.mdx`), fileContent);
+      const fileContent = matter.stringify(mdxContent.trim(), frontmatter);
+      fs.writeFileSync(filePath, fileContent);
+      console.log(`Created LLM: ${filePath}`);
     }
   }
   
-  console.log('LLMs migrated successfully');
+  console.log('Sample LLMs created successfully');
 }
-
-// Run migration
-async function migrate() {
-  await migrateCategories();
-  await migratePrompts();
-  await migrateLLMs();
-  console.log('Migration completed successfully');
-}
-
-migrate().catch(console.error);
 
 /**
- * File Cleanup List Generator
- * 
- * This function generates a list of files that should be removed or modified
- * after the content migration is complete.
+ * Create all sample content
  */
-async function generateCleanupList() {
-  // Create a file to track what needs to be removed
-  const cleanupFile = path.join(process.cwd(), 'migration-cleanup.md');
+async function createAllSampleContent() {
+  // Ensure content directory exists
+  fs.mkdirSync(contentDir, { recursive: true });
   
-  let cleanupContent = `# Migration Cleanup List\n\n`;
+  // Create sample content
+  await createSampleCategories();
+  await createSamplePrompts();
+  await createSampleLLMs();
+  
+  console.log('All sample content created successfully');
+}
+
+// Run the script
+createAllSampleContent().catch(console.error);
+
+/**
+ * Implementation Guide Generator
+ * 
+ * This function generates a guide to help with the implementation of the new MDX content system.
+ */
+async function generateImplementationGuide() {
+  // Create a file with implementation guidelines
+  const guideFile = path.join(process.cwd(), 'mdx-implementation-guide.md');
+  
+  let guideContent = `# MDX Implementation Guide\n\n`;
   cleanupContent += `Generated: ${new Date().toISOString()}\n\n`;
   cleanupContent += `## Files to Remove\n\n`;
   
