@@ -1,3 +1,16 @@
+/**
+ * Home Page Component
+ * 
+ * This is the main landing page for SALTBROTH, located in the (home) route group.
+ * 
+ * Features:
+ * - Dynamic category loading from MDX content
+ * - Fallback data for error cases
+ * - Internationalization support via next-intl
+ * - Responsive design with Tailwind CSS
+ * - Beautiful gradient effects and glass morphism UI
+ */
+
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
@@ -8,7 +21,11 @@ import { getAllCategories, Category } from '@/lib/content';
 import { use } from 'react';
 import { Locale } from '@/config/i18n';
 
-// Separate async function for data fetching with error handling
+/**
+ * Fetches categories with error handling and fallback data
+ * @param locale - The current locale (e.g., 'en' or 'es')
+ * @returns Promise<Category[]> - Array of category objects
+ */
 async function getCategories(locale: Locale): Promise<Category[]> {
   try {
     // Use the new MDX-based content loading system
@@ -45,7 +62,15 @@ async function getCategories(locale: Locale): Promise<Category[]> {
   }
 }
 
-// Main component - not async
+/**
+ * Home Page Component
+ * Renders the main landing page with:
+ * -Intentionally does not include a navbar
+ * - Hero section with gradient text and CTA
+ * - Featured categories grid
+ * - Elegant dividers and glass-morphism cards
+ * - Footer component
+ */
 export default function Home() {
   const t = useTranslations('home');
   const common = useTranslations('common');
@@ -106,7 +131,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-100 transition-colors">{categoriesT('creative')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">Craft compelling stories, develop characters, and build immersive worlds.</p>
+                <p className="text-gray-400 mb-6">{categoriesT('descriptions.creative')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-100/30 mr-3"></span>
@@ -132,7 +157,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-200 transition-colors">{categoriesT('business')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">{categories.find((c: Category) => c.slug === 'business-marketing')?.description || 'Create polished business content that drives engagement and results.'}</p>
+                <p className="text-gray-400 mb-6">{categoriesT('descriptions.business')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-200/30 mr-3"></span>
@@ -149,7 +174,7 @@ export default function Home() {
                 </div>
               </Link>
 
-              {/* Visual Arts */}
+              {/* Professional */}
               <Link href={getLocalizedHref(`/categories/${categories.find((c: Category) => c.slug === 'professional')?.slug || 'professional'}`, locale)} 
                 className="category-card glass rounded-3xl p-8 hover:bg-accent-300/5 cursor-pointer group">
                 <div className="flex items-center space-x-4 mb-6">
@@ -158,19 +183,19 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-300 transition-colors">{categoriesT('professional')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">{categories.find((c: Category) => c.slug === 'professional')?.description || 'Professional communication templates for various business contexts.'}</p>
+                <p className="text-gray-400 mb-6">{categoriesT('descriptions.professional')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
-                    Illustrations
+                    Business Communication
                   </div>
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
-                    Digital Paintings
+                    Professional Documents
                   </div>
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-300/30 mr-3"></span>
-                    Character Design
+                    Templates
                   </div>
                 </div>
               </Link>
@@ -184,7 +209,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-accent-400 transition-colors">{categoriesT('educational')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">Create educational content that makes complex topics accessible.</p>
+                <p className="text-gray-400 mb-6">{categoriesT('descriptions.educational')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-400/30 mr-3"></span>
@@ -208,9 +233,9 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-xl bg-accent-600/10 flex items-center justify-center">
                     <i className="fas fa-chart-line text-2xl text-accent-600"></i>
                   </div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-accent-600 transition-colors">Marketing</h3>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-accent-600 transition-colors">{categoriesT('marketing')}</h3>
                 </div>
-                <p className="text-gray-400 mb-6">Create compelling marketing content that converts and engages.</p>
+                <p className="text-gray-400 mb-6">{categoriesT('descriptions.marketing')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-600/30 mr-3"></span>
