@@ -5,6 +5,7 @@
  * the team behind it, and other relevant information.
  */
 
+import React from 'react';
 import { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Breadcrumbs from '@/components/Breadcrumbs';

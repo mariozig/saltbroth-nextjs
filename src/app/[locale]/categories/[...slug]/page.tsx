@@ -14,7 +14,6 @@ import { notFound } from 'next/navigation';
 async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
   category: Category | null;
   subcategories: Category[];
-  parentCategory: Category | null;
   prompts: Prompt[];
   breadcrumbs: { name: string; slug: string }[];
   processedContent: string;
@@ -34,7 +33,6 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
       return {
         category: null,
         subcategories: [],
-        parentCategory: null,
         prompts: [],
         breadcrumbs: [],
         processedContent: ''
@@ -49,13 +47,6 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
       cat.slug.startsWith(`${fullSlug}/`) && 
       cat.slug.split('/').length === fullSlug.split('/').length + 1
     );
-    
-    // Find parent category if this is a nested category
-    let parentCategory: Category | null = null;
-    if (fullSlug.includes('/')) {
-      const parentSlug = fullSlug.split('/').slice(0, -1).join('/');
-      parentCategory = allCategories.find(cat => cat.slug === parentSlug) || null;
-    }
     
     // Find prompts that belong to this category
     const prompts = allPrompts.filter(prompt => prompt.category === fullSlug);
@@ -80,7 +71,6 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
     return {
       category,
       subcategories,
-      parentCategory,
       prompts,
       breadcrumbs,
       processedContent
@@ -90,7 +80,6 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
     return {
       category: null,
       subcategories: [],
-      parentCategory: null,
       prompts: [],
       breadcrumbs: [],
       processedContent: ''
@@ -108,7 +97,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   const { slug } = use(params);
   
   // Fetch category data using React's use() hook for data fetching with error handling
-  const { category, subcategories, parentCategory, prompts, breadcrumbs, processedContent } = 
+  const { category, subcategories, prompts, breadcrumbs, processedContent } = 
     use(getCategoryData(locale as Locale, slug));
   
   // If category not found, return 404

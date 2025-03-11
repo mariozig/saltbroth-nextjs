@@ -15,7 +15,6 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { getLocaleParams, getLocaleAlternates } from '@/config/i18n';
-import Navbar from '@/components/Navbar';
 import "../globals.css";
 
 /**

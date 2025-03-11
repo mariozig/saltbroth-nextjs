@@ -5,8 +5,6 @@
  */
 
 import { compile } from '@mdx-js/mdx'
-import { createElement } from 'react'
-import * as runtime from 'react/jsx-runtime'
 
 /**
  * Process MDX content to HTML
@@ -21,16 +19,11 @@ export async function processMdxToHtml(content: string): Promise<string> {
 
   try {
     // Compile MDX to JavaScript
-    const compiled = await compile(content, {
+    await compile(content, {
       outputFormat: 'function-body',
       development: false,
       jsx: true,
     })
-
-    // Convert to string (this is a simplified approach)
-    // For a more complete solution, you would evaluate the compiled code
-    // and render it with React components
-    const result = String(compiled);
     
     // For now, we'll just return the original content with some basic Markdown processing
     // This is a fallback until we implement full MDX rendering
@@ -108,7 +101,7 @@ function processBasicMarkdown(markdown: string): string {
   
   // Process paragraphs (lines that aren't headings, lists, or empty)
   const paragraphLines = html.split('\n');
-  let processedLines = [];
+  const processedLines = [];
   
   for (const line of paragraphLines) {
     if (

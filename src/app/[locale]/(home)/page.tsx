@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Footer from '@/components/Footer';
