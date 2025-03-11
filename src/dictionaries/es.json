@@ -63,8 +63,15 @@
       "creative": "Escritura Creativa",
       "business": "Negocios y Marketing",
       "professional": "Profesional",
-      "visualArts": "Artes Visuales",
-      "educational": "Educativo"
+      "educational": "Educativo",
+      "marketing": "Marketing",
+      "descriptions": {
+        "creative": "Crea historias cautivadoras, desarrolla personajes y construye mundos inmersivos",
+        "business": "Crea contenido empresarial pulido que impulsa el engagement y los resultados",
+        "professional": "Plantillas de comunicación profesional para diversos contextos empresariales",
+        "educational": "Crea contenido educativo que hace accesibles los temas complejos",
+        "marketing": "Crea contenido de marketing convincente que convierte y genera engagement"
+      }
     },
     "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles",
     "features": "Características",

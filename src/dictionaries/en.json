@@ -64,7 +64,15 @@
       "business": "Business & Marketing",
       "professional": "Professional",
       "visualArts": "Visual Arts",
-      "educational": "Educational"
+      "educational": "Educational",
+      "marketing": "Marketing",
+      "descriptions": {
+        "creative": "Craft compelling stories, develop characters, and build immersive worlds",
+        "business": "Create polished business content that drives engagement and results",
+        "professional": "Professional communication templates for various business contexts",
+        "educational": "Create educational content that makes complex topics accessible",
+        "marketing": "Create compelling marketing content that converts and engages"
+      }
     },
     "back": "Back",
     "next": "Next",
