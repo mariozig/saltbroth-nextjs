@@ -140,7 +140,6 @@ export default async function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${plusJakartaSans.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
           {children}
         </NextIntlClientProvider>
         <Analytics />

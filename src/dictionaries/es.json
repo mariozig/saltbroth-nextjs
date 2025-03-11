@@ -379,7 +379,9 @@
     "noContentYet": "Aún no hay contenido disponible",
     "contentComingSoon": "El contenido para esta categoría estará disponible pronto. Vuelve más tarde para ver actualizaciones.",
     "premium": "Premium",
-    "professional": "Profesional"
+    "professional": "Profesional",
+    "categories": "Categorías",
+    "subcategories": "Subcategorías"
   },
 
   "privacy": {

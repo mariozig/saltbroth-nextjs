@@ -11,6 +11,34 @@
 - File-based content organization by locale and type
 - Automatic translation key validation
 - RevenueCat subscription management
+- Route groups for layout control
+
+## Route Groups
+
+SALTBROTH uses Next.js route groups to control the layout and navigation across different pages:
+
+- **`(home)` Route Group**: Contains only the home page with a layout that doesn't include the navbar, providing a clean landing experience.
+- **`(pages)` Route Group**: Contains all other pages (about, contact, privacy, terms, etc.) with a layout that includes the navbar for easy navigation.
+
+This structure allows for clean separation of layout concerns without complex conditional logic. The middleware handles internationalization for all routes.
+
+```
+src/app/
+  └── [locale]/             # Dynamic locale segment
+      ├── (home)/           # Home route group (no navbar)
+      │   ├── layout.tsx    # Layout without navbar
+      │   └── page.tsx      # Home page
+      ├── (pages)/          # Pages route group (with navbar)
+      │   ├── layout.tsx    # Layout with navbar
+      │   ├── about/        # About page
+      │   ├── contact/      # Contact page
+      │   ├── privacy/      # Privacy page
+      │   └── terms/        # Terms page
+      ├── categories/       # Categories section
+      ├── llms/             # LLMs section
+      ├── prompts_legacy/   # Legacy prompts section
+      └── layout.tsx        # Root layout (shared across all routes)
+```
 
 ## MDX Content Management
 

@@ -101,6 +101,7 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
 export default function CategoryPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const t = useTranslations('prompts');
   const commonT = useTranslations('common');
+  const categoriesT = useTranslations('Categories');
   const locale = useLocale();
   
   // Await the params promise to get the slug array
@@ -127,7 +128,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex space-x-2 text-base font-medium text-gray-400">
             <Link href={getLocalizedHref('/categories', locale)} className="hover:text-white transition-colors">
-              {t('categories')}
+              {categoriesT('categories')}
             </Link>
             
             {breadcrumbs.map((crumb, index) => (
@@ -178,7 +179,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         {subcategories.length > 0 && (
           <section className="px-4 sm:px-6 lg:px-8 py-12">
             <div className="max-w-7xl mx-auto">
-              <h2 className="text-2xl font-bold mb-8">{t('subcategories')}</h2>
+              <h2 className="text-2xl font-bold mb-8">{categoriesT('subcategories')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {subcategories.map((subcat, index) => {
                   // Determine accent color based on index
@@ -267,9 +268,9 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
           <section className="px-4 sm:px-6 lg:px-8 py-12">
             <div className="max-w-7xl mx-auto text-center">
               <div className="glass rounded-3xl p-8 sm:p-12">
-                <h2 className="text-2xl font-bold mb-4">{t('noContentYet')}</h2>
+                <h2 className="text-2xl font-bold mb-4">{categoriesT('noContentYet')}</h2>
                 <p className="text-gray-400">
-                  {t('contentComingSoon')}
+                  {categoriesT('contentComingSoon')}
                 </p>
               </div>
             </div>
