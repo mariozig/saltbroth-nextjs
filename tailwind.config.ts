@@ -1,14 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './content/**/*.mdx',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-plus-jakarta-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-plus-jakarta-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+        space: ['Space Grotesk', 'sans-serif'],
       },
       colors: {
         // Color System Documentation
@@ -52,9 +56,39 @@ module.exports = {
           1600: '#EAB543',  // Mustard
           1650: '#2D3436',  // Charcoal
           1700: '#D6A2E8'   // Lilac
-        }
-      }
+        },
+        llm: {
+          chatgpt: '#10a37f',
+          claude: '#8e44ef',
+          llama: '#4f46e5',
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'noise-pattern': "url('/images/noise.png')",
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease forwards',
+        'slide-up': 'slideUp 0.5s ease forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+};
+
+export default config;
