@@ -85,15 +85,36 @@
       "privacy": "Privacy Policy"
     }
   },
+  "footer": {
+    "tagline": "Empowering everyone to use AI confidently and effectively.",
+    "resources": {
+      "title": "Resources",
+      "documentation": "Documentation",
+      "examples": "Examples",
+      "tutorials": "Tutorials"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "copyright": "All rights reserved."
+  },
   "home": {
     "hero": {
-      "title": "Discover Premium AI Prompts",
-      "subtitle": "Unlock the full potential of AI with our curated collection of high-quality prompts",
-      "cta": "Explore Prompts"
+      "title": "Start using AI today, no experience needed",
+      "subtitle": "Ready-to-use AI prompts that work like magic. Just copy, paste, and watch AI help you create amazing things.",
+      "cta": "Let's Go!"
     },
     "featuredCategories": {
-      "title": "Featured Categories",
-      "subtitle": "Browse our most popular prompt categories"
+      "title": "Explore Prompt Categories",
+      "subtitle": "Discover the perfect prompts for your creative journey, carefully curated into intuitive categories."
     },
     "popularPrompts": {
       "title": "Popular Prompts",

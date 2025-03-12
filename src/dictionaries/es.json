@@ -85,15 +85,36 @@
       "privacy": "Política de Privacidad"
     }
   },
+  "footer": {
+    "tagline": "Capacitando a todos para usar la IA con confianza y eficacia.",
+    "resources": {
+      "title": "Recursos",
+      "documentation": "Documentación",
+      "examples": "Ejemplos",
+      "tutorials": "Tutoriales"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Nosotros",
+      "blog": "Blog",
+      "contact": "Contacto"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    },
+    "copyright": "Todos los derechos reservados."
+  },
   "home": {
     "hero": {
-      "title": "Descubre Prompts Premium para IA",
-      "subtitle": "Desbloquea todo el potencial de la IA con nuestra colección curada de prompts de alta calidad",
-      "cta": "Explorar Prompts"
+      "title": "Comienza a usar IA hoy, sin experiencia necesaria",
+      "subtitle": "Prompts de IA listos para usar que funcionan como magia. Solo copia, pega y observa cómo la IA te ayuda a crear cosas increíbles.",
+      "cta": "¡Vamos!"
     },
     "featuredCategories": {
-      "title": "Categorías Destacadas",
-      "subtitle": "Explora nuestras categorías de prompts más populares"
+      "title": "Explora Categorías de Prompts",
+      "subtitle": "Descubre los prompts perfectos para tu viaje creativo, cuidadosamente organizados en categorías intuitivas."
     },
     "popularPrompts": {
       "title": "Prompts Populares",

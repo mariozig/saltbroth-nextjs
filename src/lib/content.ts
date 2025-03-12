@@ -29,6 +29,7 @@ export interface Category extends BaseContent {
   name: string;
   description: string;
   icon: string;
+  accentColor?: string;
   parentSlug?: string;
   path: string[];
 }

@@ -187,3 +187,53 @@ body {
 .text-accent-100 {
   color: rgb(var(--accent-100));
 }
+
+/* Hover background styles for category cards */
+.hover\:bg-accent-100\/5:hover {
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+.hover\:bg-accent-200\/5:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.hover\:bg-accent-300\/5:hover {
+  background-color: rgba(236, 72, 153, 0.05);
+}
+
+.hover\:bg-accent-400\/5:hover {
+  background-color: rgba(234, 179, 8, 0.05);
+}
+
+.hover\:bg-accent-500\/5:hover {
+  background-color: rgba(34, 197, 94, 0.05);
+}
+
+.hover\:bg-accent-600\/5:hover {
+  background-color: rgba(249, 115, 22, 0.05);
+}
+
+/* Group hover text color styles */
+.group:hover .group-hover\:text-accent-100 {
+  color: rgb(var(--accent-100));
+}
+
+.group:hover .group-hover\:text-accent-200 {
+  color: rgb(var(--accent-200));
+}
+
+.group:hover .group-hover\:text-accent-300 {
+  color: rgb(var(--accent-300));
+}
+
+.group:hover .group-hover\:text-accent-400 {
+  color: rgb(var(--accent-400));
+}
+
+.group:hover .group-hover\:text-accent-500 {
+  color: rgb(var(--accent-500));
+}
+
+.group:hover .group-hover\:text-accent-600 {
+  color: rgb(var(--accent-600));
+}
