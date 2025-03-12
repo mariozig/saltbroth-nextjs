@@ -372,8 +372,8 @@ To ensure content integrity and prevent errors in frontmatter, we need to implem
 - [ ] Identify and catalog all Supabase content-related code for removal
 - [ ] Update pages to use the new MDX-based content system:
   - [ ] Update `/app/[locale]/categories` pages
-  - [ ] Update `/app/[locale]/prompts_legacy` pages to use MDX content
-  - [ ] Update `/app/[locale]/llms` pages
+  - [x] Update `/app/[locale]/(pages)/prompts` pages to use MDX content
+  - [x] Update `/app/[locale]/(pages)/llms` pages to use MDX content
 - [ ] Remove or repurpose Supabase API routes:
   - [ ] Remove or repurpose `/api/categories` endpoints
   - [ ] Remove or repurpose `/api/prompts` endpoints

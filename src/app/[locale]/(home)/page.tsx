@@ -103,7 +103,7 @@ export default function Home() {
               {t('hero.subtitle')}
             </p>
             <div className="flex justify-center">
-              <Link href={getLocalizedHref('/prompts_legacy', locale)} className="gradient-button inline-flex items-center px-10 py-4 rounded-lg text-lg font-semibold transition-all duration-300 group relative shadow-lg shadow-accent-100/30 hover:shadow-accent-100/50">
+              <Link href={getLocalizedHref('/prompts', locale)} className="gradient-button inline-flex items-center px-10 py-4 rounded-lg text-lg font-semibold transition-all duration-300 group relative shadow-lg shadow-accent-100/30 hover:shadow-accent-100/50">
                 {t('hero.cta')}
                 <i className="fas fa-arrow-right text-lg ml-2 transform group-hover:translate-x-1 transition-transform"></i>
               </Link>

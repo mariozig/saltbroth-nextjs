@@ -34,9 +34,10 @@ src/app/
       │   ├── contact/      # Contact page
       │   ├── privacy/      # Privacy page
       │   └── terms/        # Terms page
+      │   ├── prompts/     # Prompts section
+      │   └── llms/        # LLMs detail pages
       ├── categories/       # Categories section
       ├── llms/             # LLMs section
-      ├── prompts_legacy/   # Legacy prompts section
       └── layout.tsx        # Root layout (shared across all routes)
 ```
 
