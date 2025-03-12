@@ -1,4 +1,4 @@
-import { getContentBySlug, getPromptBreadcrumbs, type Prompt, type LLM, type Category } from '@/lib/content';
+import { getContentBySlug, getPromptBreadcrumbs, type Prompt, type LLM } from '@/lib/content';
 import { type Locale } from '@/config/i18n';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';

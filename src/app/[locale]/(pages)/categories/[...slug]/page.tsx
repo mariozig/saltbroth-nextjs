@@ -49,7 +49,7 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
     );
     
     // Find prompts that belong to this category
-    const prompts = allPrompts.filter(prompt => prompt.category === fullSlug);
+    const prompts = allPrompts.filter(prompt => prompt.category_slug === fullSlug);
     
     // Build breadcrumbs
     const breadcrumbs: { name: string; slug: string }[] = [];

@@ -74,7 +74,7 @@ description: "Prompts for creative writing and storytelling"
 title: "Professional Email Template"
 slug: "professional-email-template"
 description: "Create polished and effective professional emails"
-category: "business-marketing"
+category_slug: "business-marketing"
 isPremium: false
 icon: "fa-envelope"
 compatible_llms:     # LLMs this prompt works well with
@@ -679,7 +679,7 @@ async function createSamplePrompts() {
       title: "Professional Email Template",
       slug: "professional-email-template",
       description: "Create polished and effective professional emails",
-      category: "professional/email-templates",
+      category_slug: "email-templates",
       isPremium: false,
       icon: "fa-envelope",
       compatible_llms: ["chatgpt", "claude", "llama"],
@@ -702,7 +702,7 @@ async function createSamplePrompts() {
       title: "Creative Story Starter",
       slug: "creative-story-starter",
       description: "Jump-start your creative writing with an engaging opening paragraph",
-      category: "creative-writing",
+      category_slug: "creative-writing",
       isPremium: false,
       icon: "fa-book",
       compatible_llms: ["chatgpt", "claude", "llama"],
@@ -731,7 +731,7 @@ async function createSamplePrompts() {
         title: prompt.title,
         slug: prompt.slug,
         description: prompt.description,
-        category: prompt.category,
+        category_slug: prompt.category,
         isPremium: prompt.isPremium,
         icon: prompt.icon,
         compatible_llms: prompt.compatible_llms,
