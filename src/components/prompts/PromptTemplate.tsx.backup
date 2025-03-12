@@ -4,23 +4,16 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface PromptTemplateProps {
-  content?: string;
-  children?: React.ReactNode;
+  content: string;
 }
 
-export default function PromptTemplate({ content, children }: PromptTemplateProps) {
+export default function PromptTemplate({ content }: PromptTemplateProps) {
   const t = useTranslations('prompts');
   const [copySuccess, setCopySuccess] = useState(false);
 
-  // Safely determine the content to display - could be from prop or children
-  const displayContent = content || (
-    typeof children === 'string' ? children : 
-    children ? String(children).replace(/\[object Object\]/g, '') : ''
-  );
-
   const copyContent = async () => {
     try {
-      await navigator.clipboard.writeText(displayContent);
+      await navigator.clipboard.writeText(content);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
     } catch (err) {
@@ -58,7 +51,7 @@ export default function PromptTemplate({ content, children }: PromptTemplateProp
             <span className="text-xs text-gray-500">prompt-template.txt</span>
           </div>
           <pre className="font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed tracking-tight p-6 rounded-b-xl bg-black/20 border border-white/10 border-t-0">
-            {displayContent}
+            {content}
           </pre>
         </div>
       </div>

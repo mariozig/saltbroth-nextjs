@@ -40,7 +40,8 @@ async function getCategories(locale: Locale): Promise<Category[]> {
         description: 'Prompts for creative writing and storytelling',
         icon: 'pen-nib',
         locale: locale,
-        content: ''
+        content: '',
+        path: ['creative-writing']
       },
       { 
         name: 'Business Marketing', 
@@ -48,7 +49,8 @@ async function getCategories(locale: Locale): Promise<Category[]> {
         description: 'Tools to improve your business marketing content',
         icon: 'bullhorn',
         locale: locale,
-        content: ''
+        content: '',
+        path: ['business-marketing']
       },
       { 
         name: 'Professional', 
@@ -56,7 +58,8 @@ async function getCategories(locale: Locale): Promise<Category[]> {
         description: 'Professional communication templates',
         icon: 'briefcase',
         locale: locale,
-        content: ''
+        content: '',
+        path: ['professional']
       }
     ];
   }

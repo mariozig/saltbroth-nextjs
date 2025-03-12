@@ -40,6 +40,34 @@ src/app/
       └── layout.tsx        # Root layout (shared across all routes)
 ```
 
+## Recent Updates
+
+### TypeScript and Styling Improvements (March 2025)
+
+#### Unified Tailwind Configuration
+- Consolidated duplicate Tailwind configurations into a single TypeScript-based configuration file
+- Combined extensive color palette with modern features (animations, typography plugin)
+- Improved organization of design tokens and utility classes
+- Added comprehensive documentation for the color system
+
+#### Translation System Enhancements
+- Fixed missing translation keys in dictionary files
+- Ensured consistent naming between components and translation keys
+- Improved error handling for missing translations
+- Enhanced the prompts page to use the correct translation keys
+
+#### Category-based Breadcrumbs
+- Implemented dynamic breadcrumb trails that reflect category hierarchy
+- Added `path` property to content interfaces for ancestry tracking
+- Enhanced navigation with parent-child relationship tracking
+- Improved user experience with clear navigation paths
+
+#### Content System Refinements
+- Enhanced the unified content loading system with better TypeScript types
+- Improved error handling for missing content
+- Added fallback content handling for better user experience
+- Maintained consistent type safety across the content management system
+
 ## MDX Content Management
 
 SALTBROTH uses a file-based MDX content system to store and display all content with localization support. This approach offers several advantages:

@@ -1,0 +1,122 @@
+/* Glass Morphism Base */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-morphism:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Animated Background Elements */
+.noise-pattern {
+  background-image: url('/images/noise.png');
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.75));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Code Block Styling */
+.prompt-code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.prompt-code-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px 12px 0 0;
+}
+
+/* Copy Button Animation */
+.copy-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.copy-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: inherit;
+  transition: transform 0.3s ease;
+}
+
+.copy-button:active::after {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+/* LLM Sample Tabs */
+.llm-tab {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.llm-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.8);
+  transition: all 0.2s ease;
+}
+
+.llm-tab:hover::after,
+.llm-tab.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Decorative Elements */
+.accent-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-color, theme('colors.accent.100'));
+  opacity: 0.1;
+  filter: blur(80px);
+  z-index: -1;
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  .prompt-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .prompt-description {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.prompt-animate-in {
+  animation: fadeIn 0.5s ease forwards;
+}
