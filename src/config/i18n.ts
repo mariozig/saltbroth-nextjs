@@ -21,12 +21,28 @@ export type Locale = typeof locales[number];
 export const defaultLocale: Locale = 'en';
 
 /**
- * Display names for each supported locale
+ * Get locale display names from dictionaries
+ * 
+ * This function dynamically imports the dictionary for the specified locale
+ * and returns the localized display names for all supported locales.
+ * 
+ * @param locale - The locale to use for display names
+ * @returns A promise resolving to a record mapping locale codes to their display names
  */
-export const localeDisplayNames: Record<Locale, string> = {
-  en: 'English',
-  es: 'Español',
-};
+export async function getLocaleDisplayNames(locale: Locale = defaultLocale): Promise<Record<Locale, string>> {
+  try {
+    // Import the dictionary for the specified locale
+    const dictionary = await import(`../dictionaries/${locale}.json`);
+    return dictionary.default.locales;
+  } catch (error) {
+    // Fallback to default display names if dictionary import fails
+    console.error(`Failed to load locale display names for ${locale}:`, error);
+    return {
+      en: 'English',
+      es: 'Español',
+    };
+  }
+}
 
 /**
  * Check if a locale string is valid

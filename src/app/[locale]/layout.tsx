@@ -74,12 +74,48 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const messages = (await import(`../../dictionaries/${locale}.json`)).default;
   
   return {
-    title: messages.metadata.title,
+    title: {
+      default: messages.metadata.title,
+      template: messages.metadata.titleTemplate,
+    },
     description: messages.metadata.description,
-    // Add other metadata properties as needed
+    metadataBase: new URL(messages.metadata.siteUrl),
     alternates: {
       canonical: '/',
       languages: getLocaleAlternates(),
+    },
+    openGraph: {
+      title: messages.metadata.title,
+      description: messages.metadata.description,
+      url: messages.metadata.siteUrl,
+      siteName: messages.metadata.title,
+      images: [
+        {
+          url: messages.metadata.siteImage,
+          width: 1200,
+          height: 630,
+          alt: messages.metadata.title,
+        },
+      ],
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: messages.metadata.title,
+      description: messages.metadata.description,
+      images: [messages.metadata.siteImage],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }

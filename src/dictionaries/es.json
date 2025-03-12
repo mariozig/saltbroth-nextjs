@@ -1,9 +1,14 @@
 {
   "metadata": {
-    "title": "SALTBROTH",
-    "description": "Mercado de Prompts de IA",
+    "title": "SALTBROTH Prompts",
+    "description": "Mercado de Prompts de IA - Prompts de IA listos para usar que funcionan como magia",
+    "titleTemplate": "{title} | SALTBROTH Prompts",
+    "promptTitleTemplate": "{title} - {category} | SALTBROTH Prompts",
+    "siteUrl": "https://saltbroth.com",
+    "siteImage": "/images/saltbroth-og.jpg",
     "login": "Iniciar Sesión",
     "prompts": "Prompts",
+    "promptsDescription": "Descubre prompts premium de IA para tus necesidades creativas y profesionales",
     "categories": "Categorías",
     "categoriesDescription": "Explora nuestra colección de categorías de prompts",
     "notFound": "No Encontrado",
@@ -17,6 +22,18 @@
     "privacyDescription": "Conoce cómo manejamos tus datos",
     "llms": "Modelos de Lenguaje",
     "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles"
+  },
+  "locales": {
+    "en": "Inglés",
+    "es": "Español",
+    "flags": {
+      "en": "🇺🇸",
+      "es": "🇪🇸"
+    },
+    "shortCodes": {
+      "en": "EN",
+      "es": "ES"
+    }
   },
   "llm": {
     "features": {
@@ -214,6 +231,7 @@
     }
   },
   "prompts": {
+    "premium": "Contenido Premium",
     "prompts": "Prompts",
     "title": "Prompts de IA",
     "description": "Descubre nuestra colección seleccionada de prompts de IA diseñados para ayudarte a sacar el máximo provecho de tus modelos de lenguaje favoritos.",
@@ -251,7 +269,7 @@
       "email": "Correo Electrónico",
       "emailPlaceholder": "Ingresa tu correo electrónico",
       "message": "Mensaje",
-      "messagePlaceholder": "Ingresa tu mensaje",
+      "messagePlaceholder": "¿Qué te gustaría contarnos?",
       "submit": "Enviar Mensaje"
     },
     "info": {

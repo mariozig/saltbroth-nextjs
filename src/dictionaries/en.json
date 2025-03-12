@@ -1,9 +1,14 @@
 {
   "metadata": {
-    "title": "SALTBROTH",
-    "description": "AI Prompt Marketplace",
+    "title": "SALTBROTH Prompts",
+    "description": "AI Prompt Marketplace - Ready-to-use AI prompts that work like magic",
+    "titleTemplate": "{title} | SALTBROTH Prompts",
+    "promptTitleTemplate": "{title} - {category} | SALTBROTH Prompts",
+    "siteUrl": "https://saltbroth.com",
+    "siteImage": "/images/saltbroth-og.jpg",
     "login": "Log In",
     "prompts": "Prompts",
+    "promptsDescription": "Discover premium AI prompts for your creative and professional needs",
     "categories": "Categories",
     "categoriesDescription": "Browse our collection of prompt categories",
     "notFound": "Not Found",
@@ -17,6 +22,18 @@
     "privacyDescription": "Learn about how we handle your data",
     "llms": "Language Models",
     "llms_description": "Explore our collection of supported AI language models"
+  },
+  "locales": {
+    "en": "English",
+    "es": "Spanish",
+    "flags": {
+      "en": "🇺🇸",
+      "es": "🇪🇸"
+    },
+    "shortCodes": {
+      "en": "EN",
+      "es": "ES"
+    }
   },
   "llm": {
     "features": {
@@ -213,6 +230,7 @@
     }
   },
   "prompts": {
+    "premium": "Premium Content",
     "prompts": "Prompts",
     "title": "AI Prompts",
     "description": "Discover our curated collection of AI prompts designed to help you get the most out of your favorite language models.",

@@ -39,11 +39,13 @@ export interface Prompt extends BaseContent {
   title: string;
   description: string;
   category_slug: string;
-  categoryPath?: string[];
   isPremium: boolean;
   icon: string;
   compatible_llms: string[];
   featured_llms?: string[];
+  author?: string;
+  date?: string;
+  tags?: string[];
 }
 
 // Define LLM interface
@@ -151,15 +153,6 @@ export async function getAllContent<T extends BaseContent>(
         }
       }
       
-      // Add category path to prompts
-      if (contentType === 'prompts' && data.category_slug) {
-        const categorySlug = data.category_slug as string;
-        const category = await getCategoryBySlug(locale, categorySlug);
-        if (category) {
-          baseItem.categoryPath = category.path;
-        }
-      }
-
       return baseItem as T;
     })
   );

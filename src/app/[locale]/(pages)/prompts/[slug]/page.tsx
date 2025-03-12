@@ -6,6 +6,7 @@ import { LlmSampleTabs } from '@/components/prompts/LlmSampleTabs';
 import { LlmSample } from '@/components/prompts/LlmSample';
 import { extractComponentContent } from '@/lib/mdx-utils';
 import PromptTemplate from '@/components/prompts/PromptTemplate';
+import { Metadata } from 'next';
 
 function getLlmColor(slug: string): string {
   // Sample colors for different LLMs
@@ -27,6 +28,70 @@ function getLlmSampleContent(slug: string): string {
     'default': 'Sample LLM output text'
   };
   return samples[slug] || samples.default;
+}
+
+/**
+ * Generate metadata for the prompt page
+ * 
+ * This function creates SEO-friendly metadata for the prompt page, including:
+ * - A title in the format "{prompt title} - {category} | SALTBROTH Prompts"
+ * - Description based on the prompt's description
+ * - Open Graph and Twitter card metadata
+ * 
+ * @param {Object} props - The component props
+ * @param {Promise<{ locale: Locale; slug: string }>} props.params - The route parameters
+ * @returns {Promise<Metadata>} - The metadata object
+ */
+export async function generateMetadata({ params }: { 
+  params: Promise<{ locale: Locale; slug: string }> 
+}): Promise<Metadata> {
+  // Await params before using them
+  const { locale, slug } = await params;
+  
+  // Get prompt data
+  const prompt = await getContentBySlug<Prompt>(locale, 'prompts', slug);
+  
+  // If prompt not found, return basic metadata
+  if (!prompt) {
+    const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+    return {
+      title: messages.metadata.notFound,
+      description: `The requested prompt could not be found.`,
+    };
+  }
+  
+  // Get breadcrumbs to extract category
+  const breadcrumbs = await getPromptBreadcrumbs(locale, slug);
+  const categoryName = breadcrumbs.length > 0 ? breadcrumbs[0].category.name : '';
+  
+  // Import messages for the current locale
+  const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+  
+  // Format title using the template from messages
+  const title = messages.metadata.promptTitleTemplate
+    .replace('{title}', prompt.title)
+    .replace('{category}', categoryName);
+  
+  // Extract description from prompt content or use the first 160 characters
+  const description = prompt.description || prompt.content.substring(0, 160).replace(/[#*]/g, '');
+  
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: 'article',
+      publishedTime: prompt.date,
+      authors: prompt.author ? [prompt.author] : undefined,
+      tags: prompt.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+    },
+  };
 }
 
 // Next.js 15 uses Promise-based params
@@ -64,12 +129,16 @@ export default async function PromptPage({ params }: {
     const breadcrumbs = await getPromptBreadcrumbs(locale, slug);
     console.log('==== DEBUG: Breadcrumbs loaded', { count: breadcrumbs.length });
     
+    // Start with Home
     breadcrumbItems = [
       { label: 'Home', href: '/' },
-      ...breadcrumbs.map(({ category, prompt }) => ({
-        label: prompt?.title || category.name,
-        href: prompt ? `/prompts/${prompt.slug}` : `/categories/${category.slug}`,
+      // Add category hierarchy
+      ...breadcrumbs.map(({ category }) => ({
+        label: category.name,
+        href: `/categories/${category.slug}`,
       })),
+      // Add the current prompt as the final item (marked as current)
+      { label: prompt.title, href: `/prompts/${prompt.slug}`, isCurrent: true }
     ];
   } catch (error) {
     console.error(`==== DEBUG: Error getting breadcrumbs for prompt ${slug}:`, error);

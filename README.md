@@ -43,6 +43,28 @@ src/app/
 
 ## Recent Updates
 
+### SEO Optimizations (March 2025)
+
+#### Page Title and Metadata Structure
+- Implemented consistent page title format across the site:
+  - Home: "SALTBROTH Prompts"
+  - Categories: "{Category Name} | SALTBROTH Prompts"
+  - Prompts: "{Prompt Title} - {Category} | SALTBROTH Prompts"
+- Added comprehensive metadata for improved search engine visibility
+- Configured Open Graph and Twitter card metadata for better social sharing
+
+#### Enhanced Metadata Generation
+- Created dynamic metadata generation for all page types
+- Utilized Next.js 15's metadata API with locale-specific content
+- Implemented proper canonical URLs and language alternates
+- Added structured JSON-LD data for rich search results
+
+#### Accessibility Improvements
+- Ensured proper heading hierarchy throughout the site
+- Added descriptive alt text for images
+- Improved color contrast for better readability
+- Enhanced keyboard navigation for interactive elements
+
 ### TypeScript and Styling Improvements (March 2025)
 
 #### Unified Tailwind Configuration

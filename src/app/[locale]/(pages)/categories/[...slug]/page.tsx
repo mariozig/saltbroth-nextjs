@@ -1,14 +1,12 @@
 import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
 import { Locale } from '@/config/i18n';
 import Link from 'next/link';
 import { getLocalizedHref } from '@/utils/locale';
 import { getAllCategories, getAllPrompts, Category, Prompt } from '@/lib/content';
 import { processMdxToHtml } from '@/lib/mdx';
 import Footer from '@/components/Footer';
-import { use } from 'react';
 import { notFound } from 'next/navigation';
-
+import { Metadata } from 'next';
 
 // Separate async function for data fetching with error handling
 async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
@@ -87,18 +85,67 @@ async function getCategoryData(locale: Locale, slugArray: string[]): Promise<{
   }
 }
 
-export default function CategoryPage({ params }: { params: Promise<{ slug: string[] }> }) {
-  const t = useTranslations('prompts');
-  const commonT = useTranslations('common');
-  const categoriesT = useTranslations('Categories');
-  const locale = useLocale();
+/**
+ * Generate metadata for the category page
+ * 
+ * This function creates SEO-friendly metadata for the category page, including:
+ * - A title in the format "{category name} | SALTBROTH Prompts"
+ * - Description based on the category's description
+ * - Open Graph and Twitter card metadata
+ * 
+ * @param {Object} props - The component props
+ * @param {Promise<{ slug: string[] }>} props.params - The route parameters
+ * @returns {Promise<Metadata>} - The metadata object
+ */
+export async function generateMetadata({ params }: { 
+  params: Promise<{ locale: Locale; slug: string[] }> 
+}): Promise<Metadata> {
+  // Await params before using them
+  const { locale, slug } = await params;
   
+  // Get category data
+  const { category } = await getCategoryData(locale, slug);
+  
+  // If category not found, return basic metadata
+  if (!category) {
+    const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+    return {
+      title: messages.metadata.notFound,
+      description: `The requested category could not be found.`,
+    };
+  }
+  
+  // Import messages for the current locale
+  const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+  
+  // Format title using the template from messages
+  const title = messages.metadata.titleTemplate.replace('{title}', category.name);
+  
+  return {
+    title: title,
+    description: category.description,
+    openGraph: {
+      title: title,
+      description: category.description,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: category.description,
+    },
+  };
+}
+
+export default async function CategoryPage({ params }: { params: Promise<{ locale: Locale; slug: string[] }> }) {
   // Await the params promise to get the slug array
-  const { slug } = use(params);
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale as Locale;
+  const slug = resolvedParams.slug;
   
-  // Fetch category data using React's use() hook for data fetching with error handling
+  // Fetch category data
   const { category, subcategories, prompts, breadcrumbs, processedContent } = 
-    use(getCategoryData(locale as Locale, slug));
+    await getCategoryData(locale, slug);
   
   // If category not found, return 404
   if (!category) {
@@ -107,6 +154,41 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   
   // Determine accent color based on the category depth
   const depth = category.slug.split('/').length;
+  
+  return (
+    <CategoryPageContent 
+      locale={locale}
+      category={category}
+      subcategories={subcategories}
+      prompts={prompts}
+      breadcrumbs={breadcrumbs}
+      processedContent={processedContent}
+      depth={depth}
+    />
+  );
+}
+
+// Client component for rendering with hooks
+function CategoryPageContent({ 
+  locale,
+  category, 
+  subcategories, 
+  prompts, 
+  breadcrumbs, 
+  processedContent,
+  depth
+}: { 
+  locale: Locale;
+  category: Category;
+  subcategories: Category[];
+  prompts: Prompt[];
+  breadcrumbs: { name: string; slug: string }[];
+  processedContent: string;
+  depth: number;
+}) {
+  const t = useTranslations('prompts');
+  const commonT = useTranslations('common');
+  const categoriesT = useTranslations('Categories');
   const accentIndex = ((depth - 1) % 5) + 1;
   const accentClass = `accent-${accentIndex}00`;
   

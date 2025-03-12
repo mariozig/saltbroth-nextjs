@@ -19,6 +19,53 @@ import { getLocalizedHref } from '@/utils/locale';
 import Link from 'next/link';
 import { getAllContent, type Category } from '@/lib/content';
 import { type Locale } from '@/config/i18n';
+import { Metadata } from 'next';
+
+/**
+ * Generate metadata for the home page
+ * 
+ * This function creates SEO-friendly metadata for the home page, including:
+ * - A title with the site name
+ * - Description based on the site's purpose
+ * - Open Graph and Twitter card metadata
+ * 
+ * @param {Object} props - The component props
+ * @param {Promise<{ locale: Locale }>} props.params - The route parameters
+ * @returns {Promise<Metadata>} - The metadata object
+ */
+export async function generateMetadata({ params }: { 
+  params: Promise<{ locale: Locale }> 
+}): Promise<Metadata> {
+  // Await params before using them
+  const { locale } = await params;
+  
+  // Import messages for the current locale
+  const messages = (await import(`../../../dictionaries/${locale}.json`)).default;
+  
+  return {
+    title: messages.metadata.title,
+    description: messages.metadata.description,
+    openGraph: {
+      title: messages.metadata.title,
+      description: messages.metadata.description,
+      type: 'website',
+      images: [
+        {
+          url: messages.metadata.siteImage,
+          width: 1200,
+          height: 630,
+          alt: messages.metadata.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: messages.metadata.title,
+      description: messages.metadata.description,
+      images: [messages.metadata.siteImage],
+    },
+  };
+}
 
 /**
  * Fetch categories data with error handling
