@@ -1,33 +1,23 @@
 import { getContentBySlug, getPromptBreadcrumbs, type Prompt, type LLM } from '@/lib/content';
-import { type Locale } from '@/config/i18n';
+import { type Locale, defaultLocale } from '@/config/i18n';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { LlmSampleTabs } from '@/components/prompts/LlmSampleTabs';
 import { LlmSample } from '@/components/prompts/LlmSample';
-import { extractComponentContent } from '@/lib/mdx-utils';
+import { extractComponentContent, extractLlmSamples } from '@/lib/mdx-utils';
 import PromptTemplate from '@/components/prompts/PromptTemplate';
 import { Metadata } from 'next';
+import React from 'react';
 
 function getLlmColor(slug: string): string {
   // Sample colors for different LLMs
   const colors: Record<string, string> = {
     'chatgpt': '#10a37f',
-    'claude': '#965df5',
-    'llama': '#ff6700',
+    'claude': '#8e44ef',
+    'llama': '#4f46e5',
     'default': '#ffffff'
   };
   return colors[slug] || colors.default;
-}
-
-function getLlmSampleContent(slug: string): string {
-  // Sample content for different LLMs
-  const samples: Record<string, string> = {
-    'chatgpt': 'This is a sample output from ChatGPT...',
-    'claude': 'Claude AI responding to your prompt...',
-    'llama': 'Llama 3 generating creative content...',
-    'default': 'Sample LLM output text'
-  };
-  return samples[slug] || samples.default;
 }
 
 /**
@@ -98,19 +88,13 @@ export async function generateMetadata({ params }: {
 export default async function PromptPage({ params }: {
   params: Promise<{ locale: Locale; slug: string }>
 }) {
-  console.log('==== DEBUG: Starting prompt page with manual content extraction');
-  
   // Await params before using them
   const { locale, slug } = await params;
-  console.log('==== DEBUG: Got params', { locale, slug });
   
   // Get prompt and its breadcrumbs
-  console.log('==== DEBUG: Loading prompt', { locale, slug });
   const prompt = await getContentBySlug<Prompt>(locale, 'prompts', slug);
-  console.log('==== DEBUG: Prompt loaded', prompt ? 'YES' : 'NO');
   
   if (!prompt) {
-    console.log('==== DEBUG: Prompt not found, returning 404');
     notFound();
   }
 
@@ -118,133 +102,180 @@ export default async function PromptPage({ params }: {
   const descriptionContent = extractComponentContent(prompt.content, 'PromptDescription');
   const instructionsContent = extractComponentContent(prompt.content, 'PromptInstructions');
   const templateContent = extractComponentContent(prompt.content, 'PromptTemplate');
-  const tipsContent = extractComponentContent(prompt.content, 'PromptTips');
+  
+  // Debug the extracted content
+  console.log('Extracted content:');
+  console.log('- Description:', descriptionContent ? 'Found' : 'Not found');
+  console.log('- Instructions:', instructionsContent ? 'Found' : 'Not found');
+  console.log('- Template:', templateContent ? 'Found' : 'Not found');
+  
+  // Extract LLM samples from the MDX content
+  const llmSamples = extractLlmSamples(prompt.content);
 
-  console.log('==== DEBUG: Extracted content sections');
+  // Import messages for the current locale
+  const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+
+  // Helper function to create locale-aware URLs
+  const getLocalizedPath = (path: string) => {
+    // Only add locale prefix for non-default locales
+    return locale === defaultLocale ? path : `/${locale}${path}`;
+  };
 
   // Safely get breadcrumbs, handling potential errors
-  let breadcrumbItems = [];
+  let breadcrumbItems: Array<{ label: string; href: string; isCurrent?: boolean }> = [];
   try {
-    console.log('==== DEBUG: Getting breadcrumbs');
     const breadcrumbs = await getPromptBreadcrumbs(locale, slug);
-    console.log('==== DEBUG: Breadcrumbs loaded', { count: breadcrumbs.length });
     
     // Start with Home
     breadcrumbItems = [
-      { label: 'Home', href: '/' },
+      { label: 'Home', href: getLocalizedPath('/') },
       // Add category hierarchy
       ...breadcrumbs.map(({ category }) => ({
         label: category.name,
-        href: `/categories/${category.slug}`,
+        href: getLocalizedPath(`/categories/${category.slug}`),
       })),
       // Add the current prompt as the final item (marked as current)
-      { label: prompt.title, href: `/prompts/${prompt.slug}`, isCurrent: true }
+      { label: prompt.title, href: getLocalizedPath(`/prompts/${prompt.slug}`), isCurrent: true }
     ];
   } catch (error) {
-    console.error(`==== DEBUG: Error getting breadcrumbs for prompt ${slug}:`, error);
-    breadcrumbItems = [{ label: 'Home', href: '/' }];
+    console.error(`Error getting breadcrumbs for prompt ${slug}:`, error);
+    breadcrumbItems = [{ label: 'Home', href: getLocalizedPath('/') }];
   }
 
   // Get featured LLMs if specified in frontmatter
   const featuredLlms = prompt.featured_llms || [];
-  const llmSamples = await Promise.all(
+  const llmData = await Promise.all(
     featuredLlms.map(async (llmSlug) => {
       try {
         return await getContentBySlug<LLM>(locale, 'llms', llmSlug);
       } catch (error) {
-        console.error(`==== DEBUG: Error loading LLM ${llmSlug}:`, error);
+        console.error(`Error loading LLM ${llmSlug}:`, error);
         return null;
       }
     })
   );
 
   // Filter out null values and ensure we have valid LLMs
-  const validLlms = llmSamples.filter((llm): llm is LLM => llm !== null);
-
-  console.log('==== DEBUG: Rendering page');
+  const validLlms = llmData.filter((llm): llm is LLM => llm !== null);
   
   try {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* Breadcrumbs */}
-        <Breadcrumbs items={breadcrumbItems} />
-
-        <h1 className="text-4xl font-bold tracking-tight mb-4">
-          {prompt.title}
-        </h1>
-
-        <div className="flex flex-wrap gap-4 mb-12">
-          {prompt.compatible_llms && prompt.compatible_llms.map((llmSlug: string) => (
-            <span
-              key={llmSlug}
-              className="px-3 py-1 rounded-full bg-white/5 text-sm font-medium"
-            >
-              {llmSlug}
-            </span>
-          ))}
+      <>
+        {/* Animated Background */}
+        <div className="fixed inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-accent-100/5 to-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]"></div>
+          <div className="noise-pattern"></div>
         </div>
 
-        <div className="prose prose-invert max-w-none mb-16">
-          {/* Display extracted content sections */}
-          {descriptionContent && (
-            <div className="glass-morphism rounded-3xl p-8 mb-12 relative">
-              <div className="text-xl md:text-2xl text-gray-200 leading-relaxed">
-                {descriptionContent}
-              </div>
-            </div>
-          )}
-          
-          {instructionsContent && (
-            <div className="glass-morphism rounded-3xl p-8 mb-8 relative">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full bg-accent-100/10 flex items-center justify-center">
-                  <i className="fas fa-list-ol text-accent-100"></i>
+        <main className="pt-32 px-4 pb-12">
+          {/* Hero Section */}
+          <div className="max-w-5xl mx-auto mb-24">
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-20 -left-20 w-64 h-64 bg-accent-100/10 rounded-full blur-3xl"></div>
+              <div className="absolute -top-10 -right-10 w-48 h-48 bg-accent-200/10 rounded-full blur-3xl"></div>
+              
+              {/* Main content */}
+              <div className="relative">
+                {/* Breadcrumbs */}
+                <nav aria-label="Category navigation" className="mb-4">
+                  <div className="flex items-center gap-3 opacity-80">
+                    {breadcrumbItems.map((item, index) => (
+                      <React.Fragment key={item.href}>
+                        {index > 0 && (
+                          <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        )}
+                        {item.isCurrent ? (
+                          <span className="relative text-sm text-accent-100 font-medium">
+                            <span className="relative">{item.label}</span>
+                            <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-accent-100/0 via-accent-100 to-accent-100/0"></span>
+                          </span>
+                        ) : (
+                          <a href={item.href} className="relative text-sm text-gray-400 hover:text-white transition-colors group">
+                            <span className="relative">{item.label}</span>
+                            <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white/0 via-white/20 to-white/0 group-hover:via-white/40 transition-all"></span>
+                          </a>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </nav>
+                
+                <h1 className="text-4xl md:text-6xl xl:text-7xl font-space font-bold tracking-tight leading-[1.1] bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/50 mb-8">
+                  {prompt.title}
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-gray-400 max-w-3xl font-normal leading-relaxed mb-4">
+                  {prompt.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-4 mb-12">
+                  {prompt.compatible_llms && prompt.compatible_llms.map((llmSlug: string) => (
+                    <span
+                      key={llmSlug}
+                      className="px-3 py-1 rounded-full bg-white/5 text-sm font-medium"
+                    >
+                      {llmSlug}
+                    </span>
+                  ))}
+                  {prompt.isPremium && (
+                    <span className="px-3 py-1 rounded-full bg-accent-100/20 text-accent-100 text-sm font-medium">
+                      Premium
+                    </span>
+                  )}
                 </div>
-                <h2 className="text-2xl font-bold">Instructions</h2>
-              </div>
-              <div className="prose prose-invert">
-                {instructionsContent}
               </div>
             </div>
-          )}
-          
-          {templateContent && (
-            <PromptTemplate content={templateContent} />
-          )}
-          
-          {tipsContent && (
-            <div className="glass-morphism rounded-3xl p-8 mt-8 relative">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full bg-accent-100/10 flex items-center justify-center">
-                  <i className="fas fa-lightbulb text-accent-100"></i>
-                </div>
-                <h2 className="text-2xl font-bold">Tips & Tricks</h2>
-              </div>
-              <div className="prose prose-invert">
-                {tipsContent}
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
 
-        {/* LLM Sample Outputs */}
-        {validLlms.length > 0 && (
-          <LlmSampleTabs>
-            {validLlms.map((llm) => (
-              <LlmSample
-                key={llm.slug}
-                slug={llm.name || llm.slug}
-                color={getLlmColor(llm.slug)}
-              >
-                {getLlmSampleContent(llm.slug)}
-              </LlmSample>
-            ))}
-          </LlmSampleTabs>
-        )}
-      </div>
+          {/* Main Content Grid - Two-column layout */}
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+            {/* Prompt Section */}
+            {templateContent && (
+              <PromptTemplate 
+                content={templateContent}
+                description={descriptionContent}
+                instructions={instructionsContent}
+              />
+            )}
+
+            {/* LLM Outputs */}
+            {llmSamples.length > 0 ? (
+              <LlmSampleTabs>
+                {llmSamples.map((sample) => (
+                  <LlmSample
+                    key={sample.slug}
+                    slug={sample.slug}
+                    color={sample.color}
+                  >
+                    {sample.content}
+                  </LlmSample>
+                ))}
+              </LlmSampleTabs>
+            ) : (
+              validLlms.length > 0 && (
+                <div className="glass-morphism rounded-3xl p-8 relative">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 rounded-full bg-accent-100/10 flex items-center justify-center">
+                      <i className="fas fa-robot text-accent-100"></i>
+                    </div>
+                    <h2 className="text-2xl font-bold font-space">No LLM Samples</h2>
+                  </div>
+                  <p className="text-gray-400">
+                    This prompt has compatible LLMs but no sample outputs have been provided.
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </main>
+      </>
     );
   } catch (error) {
-    console.error('==== DEBUG: Error in final rendering:', error);
+    console.error('Error in final rendering:', error);
     return <div>Error rendering page: {error instanceof Error ? error.message : String(error)}</div>;
   }
 }
