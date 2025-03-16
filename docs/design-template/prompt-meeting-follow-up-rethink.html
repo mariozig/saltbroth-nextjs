@@ -94,20 +94,28 @@
             <div id="content-tabs" class="mb-12">
                 <!-- Tab Navigation -->
                 <div class="flex border-b border-white/10 mb-6 overflow-x-auto scrollbar-thin">
-                    <button id="tab-prompt" class="tab-btn active whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors" data-tab="prompt-panel">
+                    <button id="tab-prompt" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors group" data-tab="prompt-panel">
                         <i class="fas fa-file-alt mr-2"></i>The Prompt
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-100 origin-left transition-transform"></span>
                     </button>
-                    <button id="tab-description" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="description-panel">
+                    <button id="tab-description" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="description-panel">
                         <i class="fas fa-info-circle mr-2"></i>Description
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-instructions" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="instructions-panel">
+                    <button id="tab-instructions" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="instructions-panel">
                         <i class="fas fa-list-ol mr-2"></i>Instructions
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-examples" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="examples-panel">
+                    <button id="tab-examples" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="examples-panel">
                         <i class="fas fa-code mr-2"></i>Examples
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-tips" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="tips-panel">
-                        <i class="fas fa-lightbulb mr-2"></i>Tips
+                    <button id="tab-tips" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="tips-panel">
+                        <div class="flex items-center">
+                            <i class="fas fa-lightbulb mr-2"></i>Tips
+                            <span class="ml-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs rounded-full bg-accent-100 text-white">New</span>
+                        </div>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
                 </div>
 
@@ -852,17 +860,33 @@ Please write a professional follow-up email summarizing this meeting. The email 
             const tabBtns = document.querySelectorAll('.tab-btn');
             const tabPanels = document.querySelectorAll('.tab-panel');
             
+            // Set initial active state
+            document.getElementById('tab-prompt').classList.add('text-white');
+            document.getElementById('tab-prompt').classList.remove('text-gray-300');
+            
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     // Remove active class from all buttons
                     tabBtns.forEach(b => {
-                        b.classList.remove('active');
-                        b.classList.add('text-gray-400');
+                        b.classList.remove('text-white');
+                        b.classList.add('text-gray-300');
+                        // Update the indicator
+                        const indicator = b.querySelector('span');
+                        if (indicator) {
+                            indicator.classList.remove('scale-x-100');
+                            indicator.classList.add('scale-x-0');
+                        }
                     });
                     
                     // Add active class to clicked button
-                    btn.classList.add('active');
-                    btn.classList.remove('text-gray-400');
+                    btn.classList.add('text-white');
+                    btn.classList.remove('text-gray-300');
+                    // Update the indicator
+                    const indicator = btn.querySelector('span');
+                    if (indicator) {
+                        indicator.classList.remove('scale-x-0');
+                        indicator.classList.add('scale-x-100');
+                    }
                     
                     // Hide all panels
                     tabPanels.forEach(panel => {
