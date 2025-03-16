@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Follow-Up Email Generator | Salt Broth</title>
+    <meta name="description" content="Generate professional meeting follow-up emails with key points and action items">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-black text-white min-h-screen font-sans text-base leading-relaxed tracking-normal selection:bg-accent-100/30 selection:text-white">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-accent-100/5 to-black"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-xl font-bold gradient-text">SALT BROTH</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="categories.html" class="text-gray-300 hover:text-white transition-colors">Categories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 px-4 sm:px-6 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Category Path / Breadcrumbs -->
+            <nav aria-label="Category navigation" class="mb-8">
+                <div class="flex flex-wrap items-center gap-2 text-sm text-gray-400">
+                    <a href="/" class="hover:text-white transition-colors">Home</a>
+                    <svg class="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <a href="category-business.html" class="hover:text-white transition-colors">Business</a>
+                    <svg class="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <a href="category-business-professional-content.html" class="hover:text-white transition-colors">Professional Content</a>
+                    <svg class="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <a href="category-business-professional-content-email-templates.html" class="hover:text-white transition-colors">Email Templates</a>
+                </div>
+            </nav>
+
+            <!-- Prompt Header Section -->
+            <header class="mb-12">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-accent-200/20 flex items-center justify-center">
+                        <i class="fas fa-envelope-open-text text-xl text-accent-200"></i>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <h1 class="text-3xl sm:text-4xl font-space font-bold tracking-tight">Meeting Follow-Up Email Generator</h1>
+                        <!-- Premium Badge (if applicable) -->
+                        <span class="bg-gradient-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent text-sm font-medium px-3 py-1 rounded-full border border-amber-500/30">Premium</span>
+                    </div>
+                </div>
+                <p class="text-xl text-gray-400 max-w-3xl">
+                    Transform your meetings into actionable outcomes. Generate professional follow-up emails that capture key points and next steps.
+                </p>
+                
+                <!-- LLM Compatibility Tags -->
+                <div class="flex flex-wrap gap-2 mt-6">
+                    <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-[#10a37f] mr-2"></span>
+                        ChatGPT
+                    </span>
+                    <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-[#8e44ef] mr-2"></span>
+                        Claude
+                    </span>
+                    <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-[#4f46e5] mr-2"></span>
+                        Llama
+                    </span>
+                </div>
+            </header>
+
+            <!-- Tabbed Content Area -->
+            <div id="content-tabs" class="mb-12">
+                <!-- Tab Navigation -->
+                <div class="flex border-b border-white/10 mb-6 overflow-x-auto scrollbar-thin">
+                    <button id="tab-prompt" class="tab-btn active whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors" data-tab="prompt-panel">
+                        <i class="fas fa-file-alt mr-2"></i>The Prompt
+                    </button>
+                    <button id="tab-description" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="description-panel">
+                        <i class="fas fa-info-circle mr-2"></i>Description
+                    </button>
+                    <button id="tab-instructions" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="instructions-panel">
+                        <i class="fas fa-list-ol mr-2"></i>Instructions
+                    </button>
+                    <button id="tab-examples" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="examples-panel">
+                        <i class="fas fa-code mr-2"></i>Examples
+                    </button>
+                    <button id="tab-tips" class="tab-btn whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-400 hover:text-white focus:outline-none transition-colors" data-tab="tips-panel">
+                        <i class="fas fa-lightbulb mr-2"></i>Tips
+                    </button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div id="tab-panels" class="relative">
+                    <!-- Prompt Template Panel (Default Active) -->
+                    <div id="prompt-panel" class="tab-panel">
+                        <div class="glass rounded-3xl p-8 relative group transition-all duration-300">
+                            <!-- Subtle hover effect for the entire panel -->
+                            <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-100/10 via-accent-200/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            <div class="relative">
+                                <!-- Prompt Introduction -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between gap-4 mb-4">
+                                        <h2 class="font-space text-2xl font-bold tracking-tight">Meeting Follow-Up Email Template</h2>
+                                        
+                                        <!-- Copy All Button -->
+                                        <button id="copy-all-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-100/10 hover:bg-accent-100/20 text-accent-100 text-sm font-medium transition-colors relative group">
+                                            <span class="relative z-10 flex items-center gap-2">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Copy Template</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <p class="text-gray-400">This template will help you create professional, actionable meeting follow-up emails. Simply copy it to your AI assistant of choice and customize the [bracketed] sections.</p>
+                                </div>
+
+                                <!-- Prompt Template Container -->
+                                <div class="relative rounded-xl overflow-hidden">
+                                    <!-- Code Window Header -->
+                                    <div class="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
+                                        <div class="flex items-center gap-1.5">
+                                            <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                                            <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                                        </div>
+                                        <div class="text-xs text-gray-500">meeting-follow-up.txt</div>
+                                        <button id="copy-btn" class="px-2 py-1 text-xs text-gray-400 hover:text-white transition-colors">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Prompt Template Content -->
+                                    <pre id="prompt-template" class="font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed p-6 rounded-b-xl bg-black/40 border border-white/10 border-t-0 overflow-x-auto max-h-[500px] overflow-y-auto">Meeting Date: [Date]
+Duration: [Duration]
+Location: [Location]
+Attendees: [List of attendees with roles]
+
+Key Discussion Points:
+1. [Point 1]
+2. [Point 2]
+3. [Point 3]
+
+Action Items:
+1. [Person 1]: [Task] (Due: [Date])
+2. [Person 2]: [Task] (Due: [Date])
+3. [Person 3]: [Task] (Due: [Date])
+
+Next Steps:
+- [Next step 1]
+- [Next step 2]
+- [Next step 3]
+
+Please write a professional follow-up email summarizing this meeting. The email should:
+- Start with a brief thank you to all participants
+- Clearly summarize the key points discussed
+- List all action items with assigned owners and due dates
+- Outline next steps and any upcoming meetings
+- End with a professional closing
+- Use a clear, concise writing style
+- Format the email for easy scanning</pre>
+                                </div>
+
+                                <!-- Quick Fill Buttons -->
+                                <div class="mt-6">
+                                    <h3 class="text-lg font-medium mb-3">Quick Fill Options</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <button class="quick-fill-btn px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors" data-template="team-meeting">Team Meeting</button>
+                                        <button class="quick-fill-btn px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors" data-template="client-meeting">Client Meeting</button>
+                                        <button class="quick-fill-btn px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors" data-template="project-kickoff">Project Kickoff</button>
+                                        <button class="quick-fill-btn px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors" data-template="1on1">1-on-1 Meeting</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description Panel -->
+                    <div id="description-panel" class="tab-panel hidden">
+                        <div class="glass rounded-3xl p-8">
+                            <h2 class="font-space text-2xl font-bold tracking-tight mb-6 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-accent-100/10 text-accent-100">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                                About This Prompt
+                            </h2>
+                            
+                            <div class="space-y-6 text-gray-300">
+                                <p>
+                                    Meeting follow-up emails are essential for documenting discussions, clarifying responsibilities, and maintaining accountability. However, writing effective follow-ups can be time-consuming and challenging, especially after a long or complex meeting.
+                                </p>
+                                
+                                <p>
+                                    This premium prompt transforms your meeting notes into professional, well-structured follow-up emails that capture all key points and action items. By providing a consistent format, it ensures nothing falls through the cracks and helps maintain clear communication across your team or with clients.
+                                </p>
+                                
+                                <h3 class="text-xl font-medium mt-8 mb-4">Why This Prompt Works</h3>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                        <div class="flex items-start gap-3 mb-3">
+                                            <div class="p-2 rounded-lg bg-accent-100/10 text-accent-100 mt-0.5">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                            <h4 class="font-medium text-lg">Structured Format</h4>
+                                        </div>
+                                        <p class="text-gray-400">
+                                            The prompt provides a clear structure that makes your emails easy to scan and understand, highlighting key information and action items.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                        <div class="flex items-start gap-3 mb-3">
+                                            <div class="p-2 rounded-lg bg-accent-100/10 text-accent-100 mt-0.5">
+                                                <i class="fas fa-user-tie"></i>
+                                            </div>
+                                            <h4 class="font-medium text-lg">Professional Tone</h4>
+                                        </div>
+                                        <p class="text-gray-400">
+                                            The language is consistently professional and concise, maintaining a respectful and efficient communication style.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                        <div class="flex items-start gap-3 mb-3">
+                                            <div class="p-2 rounded-lg bg-accent-100/10 text-accent-100 mt-0.5">
+                                                <i class="fas fa-tasks"></i>
+                                            </div>
+                                            <h4 class="font-medium text-lg">Accountability</h4>
+                                        </div>
+                                        <p class="text-gray-400">
+                                            By clearly assigning action items with due dates, the emails create accountability and help track progress on tasks.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                        <div class="flex items-start gap-3 mb-3">
+                                            <div class="p-2 rounded-lg bg-accent-100/10 text-accent-100 mt-0.5">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <h4 class="font-medium text-lg">Time-Saving</h4>
+                                        </div>
+                                        <p class="text-gray-400">
+                                            No more staring at a blank screen. This prompt turns your rough notes into polished emails in seconds, saving hours of work each week.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Panel -->
+                    <div id="instructions-panel" class="tab-panel hidden">
+                        <div class="glass rounded-3xl p-8">
+                            <h2 class="font-space text-2xl font-bold tracking-tight mb-6 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-accent-100/10 text-accent-100">
+                                    <i class="fas fa-list-ol"></i>
+                                </span>
+                                How To Use This Prompt
+                            </h2>
+                            
+                            <div class="space-y-8">
+                                <div class="relative pl-8 pb-8 border-l-2 border-white/10 last:border-0">
+                                    <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
+                                        <span class="text-accent-100 text-sm font-bold">1</span>
+                                    </div>
+                                    <h3 class="text-xl font-medium mb-3">Copy the template</h3>
+                                    <p class="text-gray-400">
+                                        Click the "Copy Template" button at the top of the prompt panel to copy the entire template to your clipboard.
+                                    </p>
+                                </div>
+                                
+                                <div class="relative pl-8 pb-8 border-l-2 border-white/10 last:border-0">
+                                    <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
+                                        <span class="text-accent-100 text-sm font-bold">2</span>
+                                    </div>
+                                    <h3 class="text-xl font-medium mb-3">Paste into your AI assistant</h3>
+                                    <p class="text-gray-400">
+                                        Open your preferred AI assistant (ChatGPT, Claude, etc.) and paste the template into a new conversation.
+                                    </p>
+                                    <div class="mt-4 bg-black/30 p-4 rounded-xl border border-white/10">
+                                        <p class="text-sm text-gray-500 mb-2">Compatible with:</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center bg-white/5 px-3 py-1 rounded-lg text-sm">
+                                                <span class="w-2 h-2 rounded-full bg-[#10a37f] mr-2"></span>
+                                                ChatGPT 3.5/4
+                                            </span>
+                                            <span class="inline-flex items-center bg-white/5 px-3 py-1 rounded-lg text-sm">
+                                                <span class="w-2 h-2 rounded-full bg-[#8e44ef] mr-2"></span>
+                                                Claude 2/3
+                                            </span>
+                                            <span class="inline-flex items-center bg-white/5 px-3 py-1 rounded-lg text-sm">
+                                                <span class="w-2 h-2 rounded-full bg-[#4f46e5] mr-2"></span>
+                                                Llama 2/3
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-8 pb-8 border-l-2 border-white/10 last:border-0">
+                                    <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
+                                        <span class="text-accent-100 text-sm font-bold">3</span>
+                                    </div>
+                                    <h3 class="text-xl font-medium mb-3">Fill in the placeholders</h3>
+                                    <p class="text-gray-400">
+                                        Replace all the [bracketed] sections with your meeting details. Be as specific as possible with meeting information, discussion points, and action items.
+                                    </p>
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                                            <div class="text-red-400 mb-1 text-sm font-medium">❌ Too Vague</div>
+                                            <p class="text-sm text-gray-400">Meeting to discuss the project</p>
+                                        </div>
+                                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                                            <div class="text-green-400 mb-1 text-sm font-medium">✓ Specific & Clear</div>
+                                            <p class="text-sm text-gray-400">Website redesign planning session with the marketing team</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-8 pb-8 border-l-2 border-white/10 last:border-0">
+                                    <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
+                                        <span class="text-accent-100 text-sm font-bold">4</span>
+                                    </div>
+                                    <h3 class="text-xl font-medium mb-3">Generate and review</h3>
+                                    <p class="text-gray-400">
+                                        Submit the prompt to your AI assistant. Review the generated email, making sure that all key points and action items are accurately captured.
+                                    </p>
+                                </div>
+                                
+                                <div class="relative pl-8 pb-0 border-l-0">
+                                    <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
+                                        <span class="text-accent-100 text-sm font-bold">5</span>
+                                    </div>
+                                    <h3 class="text-xl font-medium mb-3">Send your email</h3>
+                                    <p class="text-gray-400">
+                                        Copy the generated email, make any final edits or personalizations, and send it to all meeting participants.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Pro Tips -->
+                            <div class="mt-10 p-6 bg-white/5 rounded-xl border border-white/10">
+                                <h3 class="font-space text-lg font-medium mb-4 flex items-center gap-2">
+                                    <span class="text-amber-500">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    Pro Tips
+                                </h3>
+                                <ul class="space-y-3 text-gray-400">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-100 mt-1">•</span>
+                                        <span>Send the follow-up email within 24 hours of the meeting for maximum impact.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-100 mt-1">•</span>
+                                        <span>Always double-check that action items have clear owners and realistic deadlines.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-100 mt-1">•</span>
+                                        <span>For recurring meetings, establish a consistent format so participants know what to expect.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Examples Panel -->
+                    <div id="examples-panel" class="tab-panel hidden">
+                        <div class="glass rounded-3xl p-8">
+                            <h2 class="font-space text-2xl font-bold tracking-tight mb-6 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-accent-100/10 text-accent-100">
+                                    <i class="fas fa-code"></i>
+                                </span>
+                                Example Outputs
+                            </h2>
+                            
+                            <p class="text-gray-400 mb-6">
+                                See how this prompt performs across different AI assistants. The examples below show generated emails for the same meeting information.
+                            </p>
+                            
+                            <!-- LLM Selection Tabs -->
+                            <div class="border-b border-white/10 mb-6">
+                                <div class="flex overflow-x-auto scrollbar-thin">
+                                    <button class="llm-tab-btn active whitespace-nowrap px-4 py-2 font-medium text-sm hover:text-white focus:outline-none transition-colors" data-llm="chatgpt">
+                                        <span class="w-2 h-2 rounded-full bg-[#10a37f] inline-block mr-2"></span>
+                                        ChatGPT
+                                    </button>
+                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors" data-llm="claude">
+                                        <span class="w-2 h-2 rounded-full bg-[#8e44ef] inline-block mr-2"></span>
+                                        Claude
+                                    </button>
+                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors" data-llm="llama">
+                                        <span class="w-2 h-2 rounded-full bg-[#4f46e5] inline-block mr-2"></span>
+                                        Llama
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Example Input -->
+                            <div class="mb-6">
+                                <h3 class="font-medium text-lg mb-3">Input Used</h3>
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-sm text-gray-400">
+                                    <p><strong>Meeting Date:</strong> June 15, 2023</p>
+                                    <p><strong>Duration:</strong> 1 hour (10:00 AM - 11:00 AM EST)</p>
+                                    <p><strong>Location:</strong> Conference Room A / Zoom</p>
+                                    <p><strong>Attendees:</strong> Sarah Johnson (Marketing Lead), Michael Chen (Product Manager), Alex Rodriguez (UX Designer), Jamie Smith (Content Strategist)</p>
+                                    <br>
+                                    <p><strong>Key Discussion Points:</strong></p>
+                                    <p>1. Website redesign timeline and milestones</p>
+                                    <p>2. New brand guidelines implementation</p>
+                                    <p>3. Content migration strategy</p>
+                                    <br>
+                                    <p><strong>Action Items:</strong></p>
+                                    <p>1. Michael: Create detailed project timeline (Due: June 20)</p>
+                                    <p>2. Alex: Prepare wireframes for homepage (Due: June 25)</p>
+                                    <p>3. Jamie: Audit existing content (Due: June 22)</p>
+                                    <br>
+                                    <p><strong>Next Steps:</strong></p>
+                                    <p>- Schedule weekly check-in meetings</p>
+                                    <p>- Share access to the design system</p>
+                                    <p>- Set up shared project management board</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Example Outputs -->
+                            <div>
+                                <h3 class="font-medium text-lg mb-4">Generated Email</h3>
+                                
+                                <!-- ChatGPT Example (Default Active) -->
+                                <div class="llm-panel" id="chatgpt-panel">
+                                    <div class="bg-white/5 rounded-xl overflow-hidden">
+                                        <!-- Email Header -->
+                                        <div class="bg-[#10a37f]/10 px-6 py-4 flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
+                                                <p class="text-sm font-medium">Subject: <span class="text-gray-400">Follow-up: Website Redesign Meeting (June 15)</span></p>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xs px-2 py-1 rounded bg-[#10a37f]/20 text-[#10a37f]">ChatGPT</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Email Body -->
+                                        <div class="p-6 text-gray-300 text-sm">
+                                            <p>Hi team,</p>
+                                            <br>
+                                            <p>Thank you all for your participation in today's website redesign meeting. I wanted to provide a summary of what we discussed and outline our next steps.</p>
+                                            <br>
+                                            <p><strong>Meeting Details:</strong></p>
+                                            <p>Date: June 15, 2023</p>
+                                            <p>Time: 10:00 AM - 11:00 AM EST</p>
+                                            <p>Location: Conference Room A / Zoom</p>
+                                            <p>Attendees: Sarah Johnson, Michael Chen, Alex Rodriguez, Jamie Smith</p>
+                                            <br>
+                                            <p><strong>Key Points Discussed:</strong></p>
+                                            <ol class="list-decimal pl-5 space-y-1">
+                                                <li>Website redesign timeline and key milestones</li>
+                                                <li>Implementation strategy for the new brand guidelines</li>
+                                                <li>Content migration approach and considerations</li>
+                                            </ol>
+                                            <br>
+                                            <p><strong>Action Items:</strong></p>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li><strong>Michael Chen:</strong> Create detailed project timeline (Due: June 20)</li>
+                                                <li><strong>Alex Rodriguez:</strong> Prepare wireframes for homepage (Due: June 25)</li>
+                                                <li><strong>Jamie Smith:</strong> Audit existing content (Due: June 22)</li>
+                                            </ul>
+                                            <br>
+                                            <p><strong>Next Steps:</strong></p>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>We will establish weekly check-in meetings; calendar invites to follow</li>
+                                                <li>I will share access to the design system by end of day</li>
+                                                <li>Michael will set up our shared project management board</li>
+                                            </ul>
+                                            <br>
+                                            <p>Please review this summary and let me know if I've missed anything important. I'm looking forward to working on this project with you all.</p>
+                                            <br>
+                                            <p>Best regards,</p>
+                                            <p>[Your Name]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Claude Example (Hidden by Default) -->
+                                <div class="llm-panel hidden" id="claude-panel">
+                                    <div class="bg-white/5 rounded-xl overflow-hidden">
+                                        <!-- Email Header -->
+                                        <div class="bg-[#8e44ef]/10 px-6 py-4 flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
+                                                <p class="text-sm font-medium">Subject: <span class="text-gray-400">Website Redesign Meeting Summary & Action Items - June 15</span></p>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xs px-2 py-1 rounded bg-[#8e44ef]/20 text-[#8e44ef]">Claude</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Email Body -->
+                                        <div class="p-6 text-gray-300 text-sm">
+                                            <p>Dear Sarah, Michael, Alex, and Jamie,</p>
+                                            <br>
+                                            <p>Thank you for your valuable contributions during today's website redesign meeting. I've summarized our discussion points, action items, and next steps below for everyone's reference.</p>
+                                            <br>
+                                            <p class="text-lg font-medium">Meeting Overview</p>
+                                            <hr class="border-white/10 my-2">
+                                            <p><strong>Date & Time:</strong> June 15, 2023 (10:00 AM - 11:00 AM EST)</p>
+                                            <p><strong>Location:</strong> Conference Room A / Zoom</p>
+                                            <p><strong>Attendees:</strong></p>
+                                            <ul class="list-disc pl-5 space-y-0.5 mb-4">
+                                                <li>Sarah Johnson (Marketing Lead)</li>
+                                                <li>Michael Chen (Product Manager)</li>
+                                                <li>Alex Rodriguez (UX Designer)</li>
+                                                <li>Jamie Smith (Content Strategist)</li>
+                                            </ul>
+                                            <br>
+                                            <p class="text-lg font-medium">Key Discussion Points</p>
+                                            <hr class="border-white/10 my-2">
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <p class="font-medium">1. Website Redesign Timeline and Milestones</p>
+                                                    <p class="text-gray-400 pl-4">We reviewed the overall project scope and discussed key delivery dates. Michael will formalize this into a project timeline document.</p>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">2. New Brand Guidelines Implementation</p>
+                                                    <p class="text-gray-400 pl-4">We agreed on how the new visual identity will be incorporated into the website design, ensuring consistency across all pages.</p>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">3. Content Migration Strategy</p>
+                                                    <p class="text-gray-400 pl-4">Jamie presented initial thoughts on content auditing and migration. We identified high-priority sections to focus on first.</p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <p class="text-lg font-medium">Action Items</p>
+                                            <hr class="border-white/10 my-2">
+                                            <table class="w-full text-left">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="pb-2">Owner</th>
+                                                        <th class="pb-2">Task</th>
+                                                        <th class="pb-2">Due Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-400">
+                                                    <tr>
+                                                        <td class="py-2 pr-4 font-medium text-white">Michael</td>
+                                                        <td class="py-2 pr-4">Create detailed project timeline</td>
+                                                        <td class="py-2">June 20, 2023</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-2 pr-4 font-medium text-white">Alex</td>
+                                                        <td class="py-2 pr-4">Prepare wireframes for homepage</td>
+                                                        <td class="py-2">June 25, 2023</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-2 pr-4 font-medium text-white">Jamie</td>
+                                                        <td class="py-2 pr-4">Audit existing content</td>
+                                                        <td class="py-2">June 22, 2023</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <p class="text-lg font-medium">Next Steps</p>
+                                            <hr class="border-white/10 my-2">
+                                            <ul class="list-disc pl-5 space-y-2">
+                                                <li>I will set up recurring weekly check-in meetings starting next Thursday at 10:00 AM EST</li>
+                                                <li>Sarah will provide access to the design system by EOD tomorrow</li>
+                                                <li>We will use Asana for project tracking; Michael will send invites by tomorrow</li>
+                                            </ul>
+                                            <br>
+                                            <p>If you have any questions or if I've missed anything important from our discussion, please respond to this email.</p>
+                                            <br>
+                                            <p>Best regards,</p>
+                                            <p>[Your Name]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Llama Example (Hidden by Default) -->
+                                <div class="llm-panel hidden" id="llama-panel">
+                                    <div class="bg-white/5 rounded-xl overflow-hidden">
+                                        <!-- Email Header -->
+                                        <div class="bg-[#4f46e5]/10 px-6 py-4 flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
+                                                <p class="text-sm font-medium">Subject: <span class="text-gray-400">Website Redesign Meeting Recap & Next Steps (June 15)</span></p>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xs px-2 py-1 rounded bg-[#4f46e5]/20 text-[#4f46e5]">Llama</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Email Body -->
+                                        <div class="p-6 text-gray-300 text-sm">
+                                            <p>Team,</p>
+                                            <br>
+                                            <p>Thanks for participating in our website redesign meeting today. Here's a summary of what we covered and the action items we identified.</p>
+                                            <br>
+                                            <div class="bg-black/30 p-4 rounded-lg mb-4">
+                                                <p><strong>Meeting Information:</strong></p>
+                                                <ul class="list-none pl-0 space-y-1 mt-1">
+                                                    <li>📅 <strong>Date:</strong> June 15, 2023</li>
+                                                    <li>⏱️ <strong>Time:</strong> 10:00-11:00 AM EST</li>
+                                                    <li>📍 <strong>Location:</strong> Conference Room A / Zoom</li>
+                                                    <li>👥 <strong>Attendees:</strong> Sarah (Marketing), Michael (Product), Alex (UX), Jamie (Content)</li>
+                                                </ul>
+                                            </div>
+                                            <br>
+                                            <p><strong>Discussion Summary:</strong></p>
+                                            <ol class="list-decimal pl-5 space-y-2">
+                                                <li>
+                                                    <strong>Website Redesign Timeline</strong>
+                                                    <p class="text-gray-400 mt-1">Reviewed project phases and key delivery dates. Michael will formalize the timeline with specific milestones.</p>
+                                                </li>
+                                                <li>
+                                                    <strong>Brand Guidelines Implementation</strong>
+                                                    <p class="text-gray-400 mt-1">Discussed how to incorporate the new visual identity across the site while maintaining consistency.</p>
+                                                </li>
+                                                <li>
+                                                    <strong>Content Migration</strong>
+                                                    <p class="text-gray-400 mt-1">Established approach for content auditing and prioritization for the migration process.</p>
+                                                </li>
+                                            </ol>
+                                            <br>
+                                            <p><strong>Action Items:</strong></p>
+                                            <div class="space-y-3 pl-2">
+                                                <div class="flex items-start gap-3">
+                                                    <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                                                        <span class="text-xs font-bold">MC</span>
+                                                    </div>
+                                                    <div>
+                                                        <p><strong>Michael Chen:</strong> Create detailed project timeline</p>
+                                                        <p class="text-gray-500 text-xs">Due: Tuesday, June 20</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-start gap-3">
+                                                    <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                                                        <span class="text-xs font-bold">AR</span>
+                                                    </div>
+                                                    <div>
+                                                        <p><strong>Alex Rodriguez:</strong> Prepare wireframes for homepage</p>
+                                                        <p class="text-gray-500 text-xs">Due: Sunday, June 25</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-start gap-3">
+                                                    <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                                                        <span class="text-xs font-bold">JS</span>
+                                                    </div>
+                                                    <div>
+                                                        <p><strong>Jamie Smith:</strong> Audit existing content</p>
+                                                        <p class="text-gray-500 text-xs">Due: Thursday, June 22</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <p><strong>Next Steps:</strong></p>
+                                            <div class="flex flex-col gap-2 mt-2">
+                                                <div class="flex items-center">
+                                                    <span class="text-[#4f46e5] mr-2">▶️</span>
+                                                    <span>Schedule weekly check-in meetings (Thursdays at 10 AM)</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span class="text-[#4f46e5] mr-2">▶️</span>
+                                                    <span>Share access to the design system (Sarah, by tomorrow)</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span class="text-[#4f46e5] mr-2">▶️</span>
+                                                    <span>Set up project management board in Asana (Michael, by Friday)</span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <p>Please let me know if you have any questions or if I missed anything important from our discussion.</p>
+                                            <br>
+                                            <p>Regards,</p>
+                                            <p>[Your Name]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tips Panel -->
+                    <div id="tips-panel" class="tab-panel hidden">
+                        <div class="glass rounded-3xl p-8">
+                            <h2 class="font-space text-2xl font-bold tracking-tight mb-6 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-accent-100/10 text-accent-100">
+                                    <i class="fas fa-lightbulb"></i>
+                                </span>
+                                Tips & Best Practices
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Timing Is Everything</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        Send follow-up emails within 24 hours of the meeting while details are still fresh. For critical meetings, aim to send them within a few hours.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Clear Action Items</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        Always include specific owners, deliverables, and due dates for action items. Use a consistent format that makes responsibilities unmistakable.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-align-left"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Scannable Format</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        Use headings, bullet points, and white space to make your email easy to scan. Bold key information like deadlines or meeting times for visibility.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-comment-dots"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Capture Decisions</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        Document key decisions made during the meeting to provide a reference point and prevent misunderstandings or conflicting recollections later.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-user-friends"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Include All Participants</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        Send your follow-up to everyone who attended the meeting, plus relevant stakeholders who couldn't attend but need to stay informed.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                                    <div class="flex items-start gap-3 mb-4">
+                                        <div class="p-2 bg-accent-100/10 text-accent-100 rounded-lg mt-1">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <h3 class="text-xl font-medium">Next Meeting Details</h3>
+                                    </div>
+                                    <p class="text-gray-400">
+                                        If applicable, include the date, time, and agenda for the next meeting. This helps maintain momentum and gives participants time to prepare.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pro Email Tips -->
+                            <div class="mt-10">
+                                <h3 class="font-space text-xl font-medium mb-4">Writing Tips for Professional Emails</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="p-2 bg-green-500/10 text-green-500 rounded-lg flex-shrink-0 mt-1">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">Keep it concise</p>
+                                            <p class="text-gray-400">Focus on key information and avoid lengthy paragraphs. Aim for a follow-up email that can be read in under 2 minutes.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="p-2 bg-green-500/10 text-green-500 rounded-lg flex-shrink-0 mt-1">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">Use a clear subject line</p>
+                                            <p class="text-gray-400">Include the meeting name/topic and date in the subject line for easy reference and searchability.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="p-2 bg-green-500/10 text-green-500 rounded-lg flex-shrink-0 mt-1">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">End with a call to action</p>
+                                            <p class="text-gray-400">Close with a clear next step, whether it's confirming receipt, completing action items, or preparing for the next meeting.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 text-sm"> 2025 Salt Broth. All rights reserved.</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab switching functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.add('text-gray-400');
+                    });
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    btn.classList.remove('text-gray-400');
+                    
+                    // Hide all panels
+                    tabPanels.forEach(panel => {
+                        panel.classList.add('hidden');
+                    });
+                    
+                    // Show the selected panel
+                    const panelId = btn.getAttribute('data-tab');
+                    document.getElementById(panelId).classList.remove('hidden');
+                });
+            });
+            
+            // LLM examples tab switching
+            const llmTabBtns = document.querySelectorAll('.llm-tab-btn');
+            const llmPanels = document.querySelectorAll('.llm-panel');
+            
+            llmTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    llmTabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.add('text-gray-400');
+                    });
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    btn.classList.remove('text-gray-400');
+                    
+                    // Hide all panels
+                    llmPanels.forEach(panel => {
+                        panel.classList.add('hidden');
+                    });
+                    
+                    // Show the selected panel
+                    const llmId = btn.getAttribute('data-llm');
+                    document.getElementById(`${llmId}-panel`).classList.remove('hidden');
+                });
+            });
+            
+            // Copy functionality
+            const copyBtn = document.getElementById('copy-btn');
+            const copyAllBtn = document.getElementById('copy-all-btn');
+            const promptTemplate = document.getElementById('prompt-template');
+            
+            // Copy button functionality
+            if (copyBtn && promptTemplate) {
+                copyBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(promptTemplate.textContent);
+                        
+                        // Change button state temporarily
+                        const originalHTML = copyBtn.innerHTML;
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                        copyBtn.classList.add('text-green-500');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyBtn.innerHTML = originalHTML;
+                            copyBtn.classList.remove('text-green-500');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy: ', err);
+                    }
+                });
+            }
+            
+            // Copy all button functionality
+            if (copyAllBtn && promptTemplate) {
+                copyAllBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(promptTemplate.textContent);
+                        
+                        // Change button state temporarily
+                        const originalHTML = copyAllBtn.innerHTML;
+                        copyAllBtn.innerHTML = '<span class="relative z-10 flex items-center gap-2"><i class="fas fa-check"></i><span>Copied!</span></span>';
+                        copyAllBtn.classList.remove('bg-accent-100/10');
+                        copyAllBtn.classList.add('bg-green-500/10', 'text-green-500');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyAllBtn.innerHTML = originalHTML;
+                            copyAllBtn.classList.remove('bg-green-500/10', 'text-green-500');
+                            copyAllBtn.classList.add('bg-accent-100/10');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy: ', err);
+                    }
+                });
+            }
+            
+            // Quick Fill Button functionality
+            const quickFillBtns = document.querySelectorAll('.quick-fill-btn');
+            
+            quickFillBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const templateType = btn.getAttribute('data-template');
+                    let templateContent = '';
+                    
+                    // Generate different content based on template type
+                    switch(templateType) {
+                        case 'team-meeting':
+                            templateContent = `Meeting Date: [Today's Date]
+Duration: 1 hour
+Location: Conference Room / Zoom
+Attendees: [Team members with roles]
+
+Key Discussion Points:
+1. [Team updates and progress]
+2. [Current challenges and blockers]
+3. [Upcoming priorities and deadlines]
+
+Action Items:
+1. [Person 1]: [Complete task X] (Due: [Date])
+2. [Person 2]: [Research solution for Y] (Due: [Date])
+3. [Person 3]: [Follow up with stakeholders] (Due: [Date])
+
+Next Steps:
+- [Schedule follow-up meeting]
+- [Share relevant resources]
+- [Update project tracking system]
+
+Please write a professional follow-up email summarizing this meeting. The email should:
+- Start with a brief thank you to all participants
+- Clearly summarize the key points discussed
+- List all action items with assigned owners and due dates
+- Outline next steps and any upcoming meetings
+- End with a professional closing
+- Use a clear, concise writing style
+- Format the email for easy scanning`;
+                            break;
+                        
+                        case 'client-meeting':
+                            templateContent = `Meeting Date: [Today's Date]
+Duration: [Duration]
+Location: [Client office / Virtual]
+Attendees: [Client representatives], [Your team members]
+
+Key Discussion Points:
+1. [Client requirements and expectations]
+2. [Project timeline and deliverables]
+3. [Budget considerations and constraints]
+
+Action Items:
+1. [Your Team Member]: [Prepare proposal] (Due: [Date])
+2. [Client Contact]: [Provide access to resources] (Due: [Date])
+3. [Your Team Member]: [Schedule technical assessment] (Due: [Date])
+
+Next Steps:
+- [Follow-up meeting date]
+- [Contract finalization]
+- [Kickoff planning]
+
+Please write a professional follow-up email summarizing this client meeting. The email should:
+- Express appreciation for the client's time
+- Recap the discussion points and client needs
+- Clearly outline action items with owners and deadlines
+- Confirm next steps in the process
+- Express enthusiasm about the partnership
+- Include your contact information
+- End with a professional closing
+- Maintain a formal yet friendly tone`;
+                            break;
+                        
+                        case 'project-kickoff':
+                            templateContent = `Meeting Date: [Today's Date]
+Duration: [Duration]
+Location: [Location]
+Attendees: [Project team members with roles], [Stakeholders]
+
+Key Discussion Points:
+1. [Project goals and success criteria]
+2. [Scope and deliverables]
+3. [Timeline and key milestones]
+4. [Team roles and responsibilities]
+
+Action Items:
+1. [PM]: [Finalize project plan] (Due: [Date])
+2. [Designer]: [Create initial mockups] (Due: [Date])
+3. [Developer]: [Set up development environment] (Due: [Date])
+4. [All Team Members]: [Review requirements doc] (Due: [Date])
+
+Next Steps:
+- [Set up recurring status meetings]
+- [Distribute project documentation]
+- [Schedule first sprint planning]
+
+Please write a professional follow-up email summarizing this project kickoff meeting. The email should:
+- Thank all participants for their engagement
+- Clearly articulate the project vision and goals
+- Summarize the agreed-upon scope and timeline
+- List all action items with clear ownership
+- Outline the project governance and communication plan
+- Include links to relevant project documents
+- End with a motivating message for the team
+- Use a clear, structured format for easy reference`;
+                            break;
+                        
+                        case '1on1':
+                            templateContent = `Meeting Date: [Today's Date]
+Duration: 30 minutes
+Location: [Office / Virtual]
+Attendees: [Manager], [Team member]
+
+Key Discussion Points:
+1. [Recent accomplishments and challenges]
+2. [Current workload and priorities]
+3. [Professional development goals]
+4. [Feedback and performance discussion]
+
+Action Items:
+1. [Manager]: [Provide resource for skill development] (Due: [Date])
+2. [Team Member]: [Draft career development plan] (Due: [Date])
+3. [Manager]: [Follow up on blocker resolution] (Due: [Date])
+
+Next Steps:
+- [Schedule follow-up on specific issue]
+- [Regular 1:1 meeting next week]
+- [Connect with relevant team members]
+
+Please write a professional follow-up email summarizing this 1:1 meeting. The email should:
+- Acknowledge the productive conversation
+- Recap the key points discussed
+- Document any decisions made
+- Clearly outline action items with deadlines
+- Express support and availability for further assistance
+- Confirm the next scheduled 1:1 meeting
+- Maintain a supportive and constructive tone
+- Keep the email private and confidential`;
+                            break;
+                    }
+                    
+                    if (templateContent && promptTemplate) {
+                        promptTemplate.textContent = templateContent;
+                        
+                        // Highlight the active button
+                        quickFillBtns.forEach(b => {
+                            b.classList.remove('bg-accent-100/20', 'text-accent-100');
+                            b.classList.add('bg-white/5');
+                        });
+                        btn.classList.remove('bg-white/5');
+                        btn.classList.add('bg-accent-100/20', 'text-accent-100');
+                        
+                        // Reset the highlight after 2 seconds
+                        setTimeout(() => {
+                            btn.classList.remove('bg-accent-100/20', 'text-accent-100');
+                            btn.classList.add('bg-white/5');
+                        }, 3000);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
