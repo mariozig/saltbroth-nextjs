@@ -94,28 +94,23 @@
             <div id="content-tabs" class="mb-12">
                 <!-- Tab Navigation -->
                 <div class="flex border-b border-white/10 mb-6 overflow-x-auto scrollbar-thin">
-                    <button id="tab-prompt" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors group" data-tab="prompt-panel">
+                    <button id="tab-prompt" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors border-b-2 border-accent-100" data-tab="prompt-panel">
                         <i class="fas fa-file-alt mr-2"></i>The Prompt
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-100 origin-left transition-transform"></span>
                     </button>
-                    <button id="tab-description" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="description-panel">
+                    <button id="tab-description" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="description-panel">
                         <i class="fas fa-info-circle mr-2"></i>Description
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-instructions" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="instructions-panel">
+                    <button id="tab-instructions" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="instructions-panel">
                         <i class="fas fa-list-ol mr-2"></i>Instructions
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-examples" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="examples-panel">
+                    <button id="tab-examples" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="examples-panel">
                         <i class="fas fa-code mr-2"></i>Examples
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
-                    <button id="tab-tips" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors group" data-tab="tips-panel">
+                    <button id="tab-tips" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="tips-panel">
                         <div class="flex items-center">
                             <i class="fas fa-lightbulb mr-2"></i>Tips
                             <span class="ml-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs rounded-full bg-accent-100 text-white">New</span>
                         </div>
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-accent-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-50"></span>
                     </button>
                 </div>
 
@@ -410,15 +405,15 @@ Please write a professional follow-up email summarizing this meeting. The email 
                             <!-- LLM Selection Tabs -->
                             <div class="border-b border-white/10 mb-6">
                                 <div class="flex overflow-x-auto scrollbar-thin">
-                                    <button class="llm-tab-btn active whitespace-nowrap px-4 py-2 font-medium text-sm hover:text-white focus:outline-none transition-colors" data-llm="chatgpt">
+                                    <button class="llm-tab-btn active whitespace-nowrap px-4 py-2 font-medium text-sm hover:text-white focus:outline-none transition-colors border-b-2 border-[#10a37f]" data-llm="chatgpt">
                                         <span class="w-2 h-2 rounded-full bg-[#10a37f] inline-block mr-2"></span>
                                         ChatGPT
                                     </button>
-                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors" data-llm="claude">
+                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-[#8e44ef]/50" data-llm="claude">
                                         <span class="w-2 h-2 rounded-full bg-[#8e44ef] inline-block mr-2"></span>
                                         Claude
                                     </button>
-                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors" data-llm="llama">
+                                    <button class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-[#4f46e5]/50" data-llm="llama">
                                         <span class="w-2 h-2 rounded-full bg-[#4f46e5] inline-block mr-2"></span>
                                         Llama
                                     </button>
@@ -870,23 +865,17 @@ Please write a professional follow-up email summarizing this meeting. The email 
                     tabBtns.forEach(b => {
                         b.classList.remove('text-white');
                         b.classList.add('text-gray-300');
-                        // Update the indicator
-                        const indicator = b.querySelector('span');
-                        if (indicator) {
-                            indicator.classList.remove('scale-x-100');
-                            indicator.classList.add('scale-x-0');
-                        }
+                        // Update border instead of indicator span
+                        b.classList.remove('border-accent-100');
+                        b.classList.add('border-transparent');
                     });
                     
                     // Add active class to clicked button
                     btn.classList.add('text-white');
                     btn.classList.remove('text-gray-300');
-                    // Update the indicator
-                    const indicator = btn.querySelector('span');
-                    if (indicator) {
-                        indicator.classList.remove('scale-x-0');
-                        indicator.classList.add('scale-x-100');
-                    }
+                    // Update border for active tab
+                    btn.classList.remove('border-transparent');
+                    btn.classList.add('border-accent-100');
                     
                     // Hide all panels
                     tabPanels.forEach(panel => {
@@ -909,11 +898,25 @@ Please write a professional follow-up email summarizing this meeting. The email 
                     llmTabBtns.forEach(b => {
                         b.classList.remove('active');
                         b.classList.add('text-gray-400');
+                        // Update border styles
+                        b.classList.remove('border-[#10a37f]', 'border-[#8e44ef]', 'border-[#4f46e5]');
+                        b.classList.add('border-transparent');
                     });
                     
                     // Add active class to clicked button
                     btn.classList.add('active');
                     btn.classList.remove('text-gray-400');
+                    
+                    // Update border for active tab using correct LLM color
+                    btn.classList.remove('border-transparent');
+                    const llmId = btn.getAttribute('data-llm');
+                    if (llmId === 'chatgpt') {
+                        btn.classList.add('border-[#10a37f]');
+                    } else if (llmId === 'claude') {
+                        btn.classList.add('border-[#8e44ef]');
+                    } else if (llmId === 'llama') {
+                        btn.classList.add('border-[#4f46e5]');
+                    }
                     
                     // Hide all panels
                     llmPanels.forEach(panel => {
@@ -921,7 +924,6 @@ Please write a professional follow-up email summarizing this meeting. The email 
                     });
                     
                     // Show the selected panel
-                    const llmId = btn.getAttribute('data-llm');
                     document.getElementById(`${llmId}-panel`).classList.remove('hidden');
                 });
             });
