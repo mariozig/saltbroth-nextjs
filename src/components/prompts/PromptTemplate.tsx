@@ -8,9 +8,10 @@ interface PromptTemplateProps {
   children?: React.ReactNode;
   description?: React.ReactNode;
   instructions?: React.ReactNode;
+  tips?: React.ReactNode;
 }
 
-export default function PromptTemplate({ content, children, description, instructions }: PromptTemplateProps) {
+export default function PromptTemplate({ content, children, description, instructions, tips }: PromptTemplateProps) {
   const t = useTranslations('prompts');
   const [copySuccess, setCopySuccess] = useState(false);
 
@@ -101,6 +102,21 @@ export default function PromptTemplate({ content, children, description, instruc
             {displayContent}
           </pre>
         </div>
+        
+        {/* Tips section if available */}
+        {tips && (
+          <div className="mt-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-6 h-6 rounded-full bg-accent-100/10 flex items-center justify-center">
+                <i className="fas fa-lightbulb text-accent-100 text-sm"></i>
+              </div>
+              <h3 className="font-space text-xl font-bold tracking-tight">{t('tipsBestPractices')}</h3>
+            </div>
+            <div className="prose prose-invert prose-sm max-w-none">
+              {tips}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

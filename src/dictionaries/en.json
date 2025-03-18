@@ -239,6 +239,7 @@
     "description": "Description",
     "instructions": "Instructions",
     "tips": "Tips",
+    "tipsBestPractices": "Tips & Best Practices",
     "promptTemplate": "Prompt Template",
     "thePrompt": "The Prompt",
     "copyToUse": "Copy to use",

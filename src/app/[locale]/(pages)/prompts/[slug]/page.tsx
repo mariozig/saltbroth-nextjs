@@ -102,12 +102,14 @@ export default async function PromptPage({ params }: {
   const descriptionContent = extractComponentContent(prompt.content, 'PromptDescription');
   const instructionsContent = extractComponentContent(prompt.content, 'PromptInstructions');
   const templateContent = extractComponentContent(prompt.content, 'PromptTemplate');
+  const tipsContent = extractComponentContent(prompt.content, 'PromptTips');
   
   // Debug the extracted content
   console.log('Extracted content:');
   console.log('- Description:', descriptionContent ? 'Found' : 'Not found');
   console.log('- Instructions:', instructionsContent ? 'Found' : 'Not found');
   console.log('- Template:', templateContent ? 'Found' : 'Not found');
+  console.log('- Tips:', tipsContent ? 'Found' : 'Not found');
   
   // Extract LLM samples from the MDX content
   const llmSamples = extractLlmSamples(prompt.content);
@@ -239,6 +241,7 @@ export default async function PromptPage({ params }: {
                 content={templateContent}
                 description={descriptionContent}
                 instructions={instructionsContent}
+                tips={tipsContent}
               />
             )}
 
