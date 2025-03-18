@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" class="antialiased">
 <head>
+    <!-- Character encoding and viewport configuration -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Page title and description -->
     <title>Meeting Follow-Up Email Generator | Salt Broth</title>
     <meta name="description" content="Generate professional meeting follow-up emails with key points and action items">
+    
+    <!-- Font preloading for performance optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Typography: Loading Inter (body), JetBrains Mono (code), and Space Grotesk (headings) fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets and scripts -->
     <link href="css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind.config.js"></script>
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-black text-white min-h-screen font-sans text-base leading-relaxed tracking-normal selection:bg-accent-100/30 selection:text-white">
-    <!-- Animated Background -->
+    <!-- Animated Background: Creates a subtle gradient and glow effect -->
     <div class="fixed inset-0 -z-10">
+        <!-- Vertical gradient from black to accent color and back to black -->
         <div class="absolute inset-0 bg-gradient-to-b from-black via-accent-100/5 to-black"></div>
+        <!-- Radial gradient for a centered glow effect -->
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]"></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Main Navigation Bar: Fixed at the top with glass-morphic effect -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
+                <!-- Logo/Brand -->
                 <div class="flex items-center">
                     <a href="/" class="text-xl font-bold gradient-text">SALT BROTH</a>
                 </div>
+                <!-- Navigation Links -->
                 <div class="flex items-center space-x-4">
                     <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
                     <a href="categories.html" class="text-gray-300 hover:text-white transition-colors">Categories</a>
@@ -35,9 +50,10 @@
         </div>
     </nav>
 
+    <!-- Main Content Area: Starts below the fixed navbar -->
     <main class="pt-24 pb-16 px-4 sm:px-6 md:px-8">
         <div class="max-w-6xl mx-auto">
-            <!-- Category Path / Breadcrumbs -->
+            <!-- Breadcrumb Navigation: Shows hierarchical path to current page -->
             <nav aria-label="Category navigation" class="mb-8">
                 <div class="flex flex-wrap items-center gap-2 text-sm text-gray-400">
                     <a href="/" class="hover:text-white transition-colors">Home</a>
@@ -56,33 +72,39 @@
                 </div>
             </nav>
 
-            <!-- Prompt Header Section -->
+            <!-- Prompt Header Section: Contains title, description and compatibility info -->
             <header class="mb-12">
+                <!-- Title with icon and premium badge -->
                 <div class="flex items-center gap-4 mb-4">
+                    <!-- Icon container with accent background -->
                     <div class="w-12 h-12 rounded-xl bg-accent-200/20 flex items-center justify-center">
                         <i class="fas fa-envelope-open-text text-xl text-accent-200"></i>
                     </div>
                     
                     <div class="flex items-center gap-4">
                         <h1 class="text-3xl sm:text-4xl font-space font-bold tracking-tight">Meeting Follow-Up Email Generator</h1>
-                        <!-- Premium Badge (if applicable) -->
+                        <!-- Premium Badge: Indicates premium content with gradient text -->
                         <span class="bg-gradient-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent text-sm font-medium px-3 py-1 rounded-full border border-amber-500/30">Premium</span>
                     </div>
                 </div>
+                <!-- Description text -->
                 <p class="text-xl text-gray-400 max-w-3xl">
                     Transform your meetings into actionable outcomes. Generate professional follow-up emails that capture key points and next steps.
                 </p>
                 
-                <!-- LLM Compatibility Tags -->
+                <!-- LLM Compatibility Tags: Shows which AI models work with this prompt -->
                 <div class="flex flex-wrap gap-2 mt-6">
+                    <!-- ChatGPT compatibility tag with brand color -->
                     <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
                         <span class="w-2 h-2 rounded-full bg-[#10a37f] mr-2"></span>
                         ChatGPT
                     </span>
+                    <!-- Claude compatibility tag with brand color -->
                     <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
                         <span class="w-2 h-2 rounded-full bg-[#8e44ef] mr-2"></span>
                         Claude
                     </span>
+                    <!-- Llama compatibility tag with brand color -->
                     <span class="inline-flex items-center bg-white/5 hover:bg-white/10 px-3 py-1 rounded-lg text-sm font-medium">
                         <span class="w-2 h-2 rounded-full bg-[#4f46e5] mr-2"></span>
                         Llama
@@ -90,22 +112,27 @@
                 </div>
             </header>
 
-            <!-- Tabbed Content Area -->
+            <!-- Tabbed Content Area: Main content organized into navigable sections -->
             <div id="content-tabs" class="mb-12">
-                <!-- Tab Navigation -->
+                <!-- Tab Navigation: Horizontal button bar for switching between content panels -->
                 <div class="flex border-b border-white/10 mb-6 overflow-x-auto scrollbar-thin">
+                    <!-- The Prompt tab (default active) -->
                     <button id="tab-prompt" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg hover:text-white focus:outline-none transition-colors border-b-2 border-accent-100" data-tab="prompt-panel">
                         <i class="fas fa-file-alt mr-2"></i>The Prompt
                     </button>
+                    <!-- AI Results Comparison tab -->
                     <button id="tab-examples" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="examples-panel">
                         <i class="fas fa-code mr-2"></i>AI Results Comparison
                     </button>
+                    <!-- Description tab -->
                     <button id="tab-description" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="description-panel">
                         <i class="fas fa-info-circle mr-2"></i>Description
                     </button>
+                    <!-- Instructions tab -->
                     <button id="tab-instructions" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="instructions-panel">
                         <i class="fas fa-list-ol mr-2"></i>Instructions
                     </button>
+                    <!-- Tips tab with "New" badge -->
                     <button id="tab-tips" class="tab-btn relative whitespace-nowrap px-6 py-3 font-medium text-lg text-gray-300 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-accent-100/50" data-tab="tips-panel">
                         <div class="flex items-center">
                             <i class="fas fa-lightbulb mr-2"></i>Tips
@@ -114,18 +141,20 @@
                     </button>
                 </div>
 
-                <!-- Tab Panels -->
+                <!-- Tab Panels: Container for all content panels, only one visible at a time -->
                 <div id="tab-panels" class="relative">
-                    <!-- Prompt Template Panel (Default Active) -->
+                    <!-- Prompt Template Panel: Contains the main prompt template (Default Active) -->
                     <div id="prompt-panel" class="tab-panel">
+                        <!-- Glass-morphic card with hover effect -->
                         <div class="glass rounded-3xl p-8 relative group transition-all duration-300">
-                            <!-- Subtle hover effect for the entire panel -->
+                            <!-- Hover gradient overlay: Only visible on hover -->
                             <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-100/10 via-accent-200/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             
                             <div class="relative">
-                                <!-- Prompt Introduction -->
+                                <!-- Prompt Introduction: Title and copy button section -->
                                 <div class="mb-6">
                                     <div class="flex items-center justify-between gap-4 mb-4">
+                                        <!-- Section heading with icon -->
                                         <h2 class="font-space text-2xl font-bold tracking-tight flex items-center gap-3">
                                             <span class="p-2 rounded-lg bg-accent-100/10 text-accent-100">
                                                 <i class="fas fa-file-alt"></i>
@@ -133,32 +162,35 @@
                                             Meeting Follow-Up Email Template
                                         </h2>
                                         
-                                        <!-- Copy All Button -->
+                                        <!-- Copy All Button: Copies entire template to clipboard -->
                                         <button id="copy-all-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-100/10 hover:bg-accent-100/20 text-accent-100 text-sm font-medium transition-colors relative group">
                                             <span class="relative z-10 flex items-center gap-2">
                                                 <i class="fas fa-copy"></i>
-                                                <span>Copy Template</span>
+                                                <span>Copy All</span>
                                             </span>
                                         </button>
                                     </div>
+                                    <!-- Brief description of the prompt's purpose -->
                                     <p class="text-gray-400">This prompt helps create professional, actionable meeting follow-up emails. Simply copy the text using the button above and paste it into any AI system. Customize the [bracketed] sections with your meeting details.</p>
                                 </div>
 
-                                <!-- Prompt Template Container -->
+                                <!-- Prompt Template Container: Code-like display of the prompt -->
                                 <div class="relative rounded-xl overflow-hidden">
-                                    <!-- Code Window Header -->
+                                    <!-- Code Window Header: Mimics a code editor window -->
                                     <div class="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
+                                        <!-- Decorative window control dots -->
                                         <div class="flex items-center gap-1.5">
                                             <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
                                             <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
                                             <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
                                         </div>
-                                        <button id="copy-btn" class="px-2 py-1 text-xs text-gray-400 hover:text-white transition-colors">
+                                        <!-- Small copy button in window header -->
+                                        <button id="copy-btn" class="text-gray-400 hover:text-white transition-colors text-sm">
                                             <i class="fas fa-copy"></i>
                                         </button>
                                     </div>
                                     
-                                    <!-- Prompt Template Content -->
+                                    <!-- Prompt Template Content: The actual prompt text -->
                                     <pre id="prompt-template" class="font-mono text-[15px] text-gray-400 whitespace-pre-wrap leading-relaxed p-6 rounded-b-xl bg-black/40 border border-white/10 border-t-0 overflow-x-auto max-h-[500px] overflow-y-auto">Meeting Date: [Date]
 Duration: [Duration]
 Location: [Location]
