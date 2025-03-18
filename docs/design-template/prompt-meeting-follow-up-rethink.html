@@ -171,7 +171,9 @@
                                         </button>
                                     </div>
                                     <!-- Brief description of the prompt's purpose -->
-                                    <p class="text-gray-400">This prompt helps create professional, actionable meeting follow-up emails. Simply copy the text using the button above and paste it into any AI system. Customize the [bracketed] sections with your meeting details.</p>
+                                    <p class="text-gray-400">
+                                        This prompt helps create professional, actionable meeting follow-up emails. Simply copy the text using the button above and paste it into any AI system. Customize the [bracketed] sections with your meeting details.
+                                    </p>
                                 </div>
 
                                 <!-- Prompt Template Container: Code-like display of the prompt -->
@@ -424,9 +426,9 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                     <div class="absolute -left-[13px] top-0 h-6 w-6 rounded-full bg-accent-100/20 flex items-center justify-center">
                                         <span class="text-accent-100 text-sm font-bold">5</span>
                                     </div>
-                                    <h3 class="text-xl font-medium mb-3">Send your email</h3>
+                                    <h3 class="text-xl font-medium mb-3">Send your output</h3>
                                     <p class="text-gray-400">
-                                        Copy the generated email, make any final edits or personalizations, and send it to all meeting participants.
+                                        Copy the generated output, make any final edits or personalizations, and send it to all meeting participants.
                                     </p>
                                 </div>
                             </div>
@@ -443,7 +445,7 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                 <ul class="space-y-3 text-gray-400">
                                     <li class="flex items-start gap-2">
                                         <span class="text-accent-100 mt-1">•</span>
-                                        <span>Send the follow-up email within 24 hours of the meeting for maximum impact.</span>
+                                        <span>Send the follow-up output within 24 hours of the meeting for maximum impact.</span>
                                     </li>
                                     <li class="flex items-start gap-2">
                                         <span class="text-accent-100 mt-1">•</span>
@@ -491,13 +493,21 @@ Please write a professional follow-up email summarizing this meeting. The email 
                             </div>
                             
                             <!-- Example Outputs -->
+                            <!-- 
+                              EXAMPLE OUTPUTS SECTION
+                              Displays sample prompt outputs from different AI models for comparison.
+                              Each example follows the same structure but with model-specific styling.
+                              This section is crucial for understanding how different AI models interpret and generate content based on the same input prompt.
+                              It allows users to compare and contrast the outputs, identifying strengths and weaknesses of each model.
+                            -->
                             <div>
-                                <h3 class="font-medium text-lg mb-4">Generated Follow-up Email</h3>
+                                <h3 class="font-medium text-lg mb-4">Generated Output</h3>
                                 
                                 <!-- ChatGPT Example (Default Active) -->
+                                <!-- ChatGPT Output: Uses the OpenAI green color scheme for styling -->
                                 <div class="llm-panel" id="chatgpt-panel">
                                     <div class="bg-white/5 rounded-xl overflow-hidden">
-                                        <!-- Email Header -->
+                                        <!-- Output Header -->
                                         <div class="bg-[#10a37f]/10 px-6 py-4 flex items-center justify-between">
                                             <div>
                                                 <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
@@ -508,7 +518,7 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                             </div>
                                         </div>
                                         
-                                        <!-- Email Body -->
+                                        <!-- Output Body -->
                                         <div class="p-6 text-gray-300 text-sm">
                                             <p>Hi team,</p>
                                             <br>
@@ -550,9 +560,10 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                 </div>
                                 
                                 <!-- Claude Example (Hidden by Default) -->
+                                <!-- Claude Output: Uses the Anthropic purple color scheme for styling -->
                                 <div class="llm-panel hidden" id="claude-panel">
                                     <div class="bg-white/5 rounded-xl overflow-hidden">
-                                        <!-- Email Header -->
+                                        <!-- Output Header -->
                                         <div class="bg-[#8e44ef]/10 px-6 py-4 flex items-center justify-between">
                                             <div>
                                                 <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
@@ -563,7 +574,7 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                             </div>
                                         </div>
                                         
-                                        <!-- Email Body -->
+                                        <!-- Output Body -->
                                         <div class="p-6 text-gray-300 text-sm">
                                             <p>Dear Sarah, Michael, Alex, and Jamie,</p>
                                             <br>
@@ -644,9 +655,10 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                 </div>
                                 
                                 <!-- Llama Example (Hidden by Default) -->
+                                <!-- Llama Output: Uses the Meta blue color scheme for styling -->
                                 <div class="llm-panel hidden" id="llama-panel">
                                     <div class="bg-white/5 rounded-xl overflow-hidden">
-                                        <!-- Email Header -->
+                                        <!-- Output Header -->
                                         <div class="bg-[#4f46e5]/10 px-6 py-4 flex items-center justify-between">
                                             <div>
                                                 <p class="text-sm font-medium">From: <span class="text-gray-400">you@company.com</span></p>
@@ -657,7 +669,7 @@ Please write a professional follow-up email summarizing this meeting. The email 
                                             </div>
                                         </div>
                                         
-                                        <!-- Email Body -->
+                                        <!-- Output Body -->
                                         <div class="p-6 text-gray-300 text-sm">
                                             <p>Team,</p>
                                             <br>
@@ -832,6 +844,7 @@ Please write a professional follow-up email summarizing this meeting. The email 
                             </div>
                             
                             <!-- Pro Email Tips -->
+                            <!-- Writing Tips Section: Best practices for professional communications -->
                             <div class="mt-10">
                                 <h3 class="font-space text-xl font-medium mb-4">Writing Tips for Professional Emails</h3>
                                 <ul class="space-y-4">
