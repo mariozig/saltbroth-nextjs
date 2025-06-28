@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Meeting Follow-Up Email Generator | Salt Broth</title>
+    <meta
+      name="description"
+      content="Generate professional meeting follow-up emails with key points and action items"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-black text-white min-h-screen font-sans text-base leading-relaxed tracking-normal selection:bg-accent-100/30 selection:text-white"
+  >
+    <!-- Simplified background -->
+    <div class="fixed inset-0 -z-10">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black via-accent-100/5 to-black"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]"
+      ></div>
+    </div>
+
+    <!-- Main Navigation Bar from original template -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo/Brand -->
+          <div class="flex items-center">
+            <a href="/" class="text-xl font-bold gradient-text">SALT BROTH</a>
+          </div>
+          <!-- Navigation Links -->
+          <div class="flex items-center space-x-4">
+            <a href="/" class="text-gray-300 hover:text-white transition-colors"
+              >Home</a
+            >
+            <a
+              href="categories.html"
+              class="text-gray-300 hover:text-white transition-colors"
+              >Categories</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="pt-24 pb-16 px-4 sm:px-6 md:px-8">
+      <div class="max-w-3xl mx-auto">
+        <h1
+          class="font-space text-2xl md:text-3xl font-bold tracking-tight mb-2"
+        >
+          Meeting Follow-Up Email Generator
+        </h1>
+
+        <!-- Category breadcrumb moved lower -->
+        <nav aria-label="Category navigation" class="mb-6">
+          <div
+            class="flex flex-wrap items-center gap-2 text-xs md:text-sm text-gray-400"
+          >
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <svg
+              class="w-3 h-3 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+            <a
+              href="category-business.html"
+              class="hover:text-white transition-colors"
+              >Business</a
+            >
+            <svg
+              class="w-3 h-3 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+            <span class="text-white">Meeting Follow-Up</span>
+          </div>
+        </nav>
+
+        <!-- Improved description area with better styling -->
+        <div
+          class="glass rounded-2xl p-5 md:p-6 mb-8 border border-white/10 hover:border-white/20 transition-colors"
+        >
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 rounded-lg bg-accent-100/10 text-accent-100">
+              <i class="fas fa-info-circle"></i>
+            </span>
+            <h2 class="font-space text-xl font-medium">Prompt Guide & Usage</h2>
+          </div>
+          <div class="text-gray-300 leading-relaxed space-y-4 pl-1">
+            <p>
+              Meeting follow-up emails are essential for documenting
+              discussions, clarifying responsibilities, and maintaining
+              accountability. This prompt template helps you generate
+              professional, well-structured follow-ups with minimal effort.
+            </p>
+
+            <p>
+              Use this template to create comprehensive meeting summaries that
+              include all key discussion points, action items with clear
+              ownership, and next steps. Your follow-up emails will maintain a
+              professional tone while ensuring all participants are aligned on
+              outcomes.
+            </p>
+
+            <p class="text-sm text-gray-400">
+              Works with various meeting types including project discussions,
+              team syncs, and client consultations. Simply customize the
+              bracketed sections with your specific meeting details.
+            </p>
+          </div>
+        </div>
+
+        <!-- Prompt Card - The only essential component -->
+        <div class="glass rounded-2xl p-4 md:p-6 relative">
+          <!-- Prompt Header -->
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded-lg bg-accent-100/10 text-accent-100">
+                <i class="fas fa-file-alt"></i>
+              </span>
+              <h2 class="font-space text-xl font-medium">The Prompt</h2>
+            </div>
+
+            <!-- Copy Buttons -->
+            <div class="flex gap-2">
+              <button
+                id="copy-btn"
+                class="bg-white/5 hover:bg-white/10 p-2 rounded-lg transition-colors"
+                aria-label="Copy prompt"
+              >
+                <i class="fas fa-copy text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Brief description - mobile optimized -->
+          <p class="text-gray-400 text-sm mb-4">
+            Just copy and paste this prompt into any AI system. Customize the
+            [bracketed] sections with your meeting details.
+          </p>
+
+          <!-- Prompt Template Container - simplified -->
+          <div class="rounded-xl overflow-hidden mb-4">
+            <!-- Code Window Header -->
+            <div
+              class="flex items-center justify-between px-3 py-2 bg-white/5 border-b border-white/10"
+            >
+              <div class="flex items-center gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+              </div>
+              <div class="text-xs text-gray-400"></div>
+            </div>
+
+            <!-- Prompt Content -->
+            <pre
+              id="prompt-template"
+              class="p-4 overflow-x-auto bg-black/30 text-gray-300 text-sm font-mono"
+            >
+I need you to create a professional follow-up email summarizing a meeting that took place. 
+
+Meeting Details:
+Title: [Meeting Title]
+Date: [Date]
+Duration: [Duration]
+Location: [Location]
+Attendees: [List of attendees with roles]
+
+Key Discussion Points:
+[Bullet points of main topics discussed]
+
+Action Items:
+[List of action items with owners and deadlines]
+
+Next Steps:
+[Any planned follow-up meetings or future milestones]
+
+Please include:
+- A brief introduction thanking attendees
+- Clear section headings
+- All action items with owners and due dates
+- Next steps and timeline
+- A professional sign-off
+- Format the email for easy scanning</pre
+            >
+          </div>
+        </div>
+
+        <!-- LLM Output Examples - Removed pills/badges -->
+        <div class="mt-6 glass rounded-2xl p-4 md:p-6">
+          <div class="mb-4 flex items-center">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded-lg bg-accent-100/10 text-accent-100">
+                <i class="fas fa-robot"></i>
+              </span>
+              <h2 class="font-space text-xl font-medium">AI Outputs</h2>
+            </div>
+          </div>
+
+          <!-- LLM Tabs without pills -->
+          <div
+            class="flex border-b border-white/10 mb-4 overflow-x-auto scrollbar-thin"
+          >
+            <button
+              class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-white focus:outline-none transition-colors border-b-2 border-[#10a37f]"
+              data-llm="chatgpt"
+            >
+              ChatGPT
+            </button>
+            <button
+              class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-[#8e44ef]/50"
+              data-llm="claude"
+            >
+              Claude
+            </button>
+            <button
+              class="llm-tab-btn whitespace-nowrap px-4 py-2 font-medium text-sm text-gray-400 hover:text-white focus:outline-none transition-colors border-b-2 border-transparent hover:border-[#4f46e5]/50"
+              data-llm="llama"
+            >
+              Llama
+            </button>
+          </div>
+
+          <!-- Output Panels -->
+          <div>
+            <h3 class="font-medium text-lg mb-4">Generated Output</h3>
+
+            <!-- ChatGPT Example (Default Active) -->
+            <div class="llm-panel" id="chatgpt-panel">
+              <div class="bg-white/5 rounded-xl overflow-hidden">
+                <!-- Output Header -->
+                <div
+                  class="bg-[#10a37f]/10 px-4 py-3 flex items-center justify-between"
+                >
+                  <div></div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="text-xs px-2 py-1 rounded bg-[#10a37f]/20 text-[#10a37f]"
+                      >ChatGPT</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Output Body -->
+                <div class="p-4 text-gray-300 text-sm">
+                  <p>Hi team,</p>
+                  <br />
+                  <p>
+                    Thank you all for your participation in today's website
+                    redesign meeting. I wanted to provide a summary of what we
+                    discussed and outline our next steps.
+                  </p>
+                  <br />
+                  <p><strong>Meeting Details:</strong></p>
+                  <p>Date: June 15, 2023</p>
+                  <p>Time: 10:00 AM - 11:00 AM EST</p>
+                  <p>Location: Conference Room A / Zoom</p>
+                  <p>
+                    Attendees: Sarah Johnson, Michael Chen, Alex Rodriguez,
+                    Jamie Smith
+                  </p>
+                  <br />
+                  <p><strong>Key Points Discussed:</strong></p>
+                  <ol class="list-decimal pl-5 space-y-1">
+                    <li>Website redesign timeline and key milestones</li>
+                    <li>
+                      Implementation strategy for the new brand guidelines
+                    </li>
+                    <li>Content migration approach and considerations</li>
+                  </ol>
+                  <br />
+                  <p><strong>Action Items:</strong></p>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>
+                      <strong>Michael Chen:</strong> Create detailed project
+                      timeline (Due: June 20)
+                    </li>
+                    <li>
+                      <strong>Alex Rodriguez:</strong> Prepare wireframes for
+                      homepage (Due: June 25)
+                    </li>
+                    <li>
+                      <strong>Jamie Smith:</strong> Audit existing content (Due:
+                      June 22)
+                    </li>
+                  </ul>
+                  <br />
+                  <p><strong>Next Steps:</strong></p>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>
+                      We will establish weekly check-in meetings; calendar
+                      invites to follow
+                    </li>
+                    <li>
+                      I will share access to the design system by end of day
+                    </li>
+                    <li>
+                      Michael will set up our shared project management board
+                    </li>
+                  </ul>
+                  <br />
+                  <p>
+                    Please review this summary and let me know if I've missed
+                    anything important. I'm looking forward to working on this
+                    project with you all.
+                  </p>
+                  <br />
+                  <p>Best regards,</p>
+                  <p>[Your Name]</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Claude Example (Hidden by Default) -->
+            <div class="llm-panel hidden" id="claude-panel">
+              <div class="bg-white/5 rounded-xl overflow-hidden">
+                <!-- Output Header -->
+                <div
+                  class="bg-[#8e44ef]/10 px-4 py-3 flex items-center justify-between"
+                >
+                  <div></div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="text-xs px-2 py-1 rounded bg-[#8e44ef]/20 text-[#8e44ef]"
+                      >Claude</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Output Body -->
+                <div class="p-4 text-gray-300 text-sm">
+                  <p>Dear Sarah, Michael, Alex, and Jamie,</p>
+                  <br />
+                  <p>
+                    Thank you for your valuable contributions during today's
+                    website redesign meeting. I've summarized our discussion
+                    points, action items, and next steps below for everyone's
+                    reference.
+                  </p>
+                  <br />
+                  <p class="text-lg font-medium">Meeting Overview</p>
+                  <hr class="border-white/10 my-2" />
+                  <p>
+                    <strong>Date & Time:</strong> June 15, 2023 (10:00 AM -
+                    11:00 AM EST)
+                  </p>
+                  <p><strong>Location:</strong> Conference Room A / Zoom</p>
+                  <p><strong>Attendees:</strong></p>
+                  <ul class="list-disc pl-5 space-y-0.5 mb-4">
+                    <li>Sarah Johnson (Marketing Lead)</li>
+                    <li>Michael Chen (Product Manager)</li>
+                    <li>Alex Rodriguez (UX Designer)</li>
+                    <li>Jamie Smith (Content Strategist)</li>
+                  </ul>
+                  <br />
+                  <p class="text-lg font-medium">Key Discussion Points</p>
+                  <hr class="border-white/10 my-2" />
+                  <div class="space-y-3">
+                    <div>
+                      <p class="font-medium">
+                        1. Website Redesign Timeline and Milestones
+                      </p>
+                      <p class="text-gray-400 pl-4">
+                        We reviewed the overall project scope and discussed key
+                        delivery dates.
+                      </p>
+                    </div>
+                    <div>
+                      <p class="font-medium">
+                        2. New Brand Guidelines Implementation
+                      </p>
+                      <p class="text-gray-400 pl-4">
+                        We agreed on how the new visual identity will be
+                        incorporated into the website design.
+                      </p>
+                    </div>
+                    <div>
+                      <p class="font-medium">3. Content Migration Strategy</p>
+                      <p class="text-gray-400 pl-4">
+                        Jamie presented initial thoughts on content auditing and
+                        migration.
+                      </p>
+                    </div>
+                  </div>
+                  <br />
+                  <p class="text-lg font-medium">Action Items</p>
+                  <hr class="border-white/10 my-2" />
+                  <table class="w-full text-left">
+                    <thead>
+                      <tr>
+                        <th class="pb-2">Owner</th>
+                        <th class="pb-2">Task</th>
+                        <th class="pb-2">Due Date</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-400">
+                      <tr>
+                        <td class="pr-2 py-1">Michael</td>
+                        <td class="pr-2 py-1">
+                          Create detailed project timeline
+                        </td>
+                        <td class="py-1">June 20</td>
+                      </tr>
+                      <tr>
+                        <td class="pr-2 py-1">Alex</td>
+                        <td class="pr-2 py-1">
+                          Prepare wireframes for homepage
+                        </td>
+                        <td class="py-1">June 25</td>
+                      </tr>
+                      <tr>
+                        <td class="pr-2 py-1">Jamie</td>
+                        <td class="pr-2 py-1">Audit existing content</td>
+                        <td class="py-1">June 22</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br />
+                  <p>
+                    I look forward to our continued collaboration on this
+                    exciting project. Please let me know if you have any
+                    questions or need any clarification on the items above.
+                  </p>
+                  <br />
+                  <p>Best regards,</p>
+                  <p>[Your Name]</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Llama Example (Hidden by Default) -->
+            <div class="llm-panel hidden" id="llama-panel">
+              <div class="bg-white/5 rounded-xl overflow-hidden">
+                <!-- Output Header -->
+                <div
+                  class="bg-[#4f46e5]/10 px-4 py-3 flex items-center justify-between"
+                >
+                  <div></div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="text-xs px-2 py-1 rounded bg-[#4f46e5]/20 text-[#4f46e5]"
+                      >Llama</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Output Body -->
+                <div class="p-4 text-gray-300 text-sm">
+                  <p>Team,</p>
+                  <br />
+                  <p>
+                    Thanks for participating in our website redesign meeting
+                    today. Here's a summary of what we covered and the action
+                    items we identified.
+                  </p>
+                  <br />
+                  <p>📋 <strong>MEETING RECAP</strong></p>
+                  <p>Date: June 15, 2023</p>
+                  <p>Duration: 1 hour</p>
+                  <p>Attendees: Sarah, Michael, Alex, Jamie</p>
+                  <br />
+                  <p>🔑 <strong>KEY POINTS</strong></p>
+                  <ul class="list-disc pl-5 mb-4">
+                    <li>Reviewed project scope and timeline requirements</li>
+                    <li>
+                      Discussed brand guideline integration for consistent look
+                      and feel
+                    </li>
+                    <li>
+                      Evaluated content migration needs and potential challenges
+                    </li>
+                  </ul>
+                  <br />
+                  <p>✅ <strong>ACTION ITEMS</strong></p>
+                  <div class="space-y-3 pl-2">
+                    <div class="flex items-center gap-3">
+                      <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                        <span class="text-xs font-bold">MC</span>
+                      </div>
+                      <div>
+                        <p class="font-medium">Michael Chen</p>
+                        <p class="text-gray-400 text-xs">
+                          Create project timeline document by June 20
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                        <span class="text-xs font-bold">AR</span>
+                      </div>
+                      <div>
+                        <p class="font-medium">Alex Rodriguez</p>
+                        <p class="text-gray-400 text-xs">
+                          Draft homepage wireframes by June 25
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <div class="bg-[#4f46e5]/10 text-[#4f46e5] p-1.5 rounded">
+                        <span class="text-xs font-bold">JS</span>
+                      </div>
+                      <div>
+                        <p class="font-medium">Jamie Smith</p>
+                        <p class="text-gray-400 text-xs">
+                          Complete content audit by June 22
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <p>📆 <strong>NEXT STEPS</strong></p>
+                  <ul class="list-disc pl-5 mb-4">
+                    <li>Weekly status meetings starting next Thursday</li>
+                    <li>Design system access will be shared today</li>
+                    <li>Project management board setup by tomorrow</li>
+                  </ul>
+                  <br />
+                  <p>
+                    Let me know if you have any questions or if I missed
+                    anything.
+                  </p>
+                  <br />
+                  <p>Regards,</p>
+                  <p>[Your Name]</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-white/10">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 md:px-8">
+        <div class="flex flex-col sm:flex-row justify-between items-center">
+          <div class="mb-4 sm:mb-0">
+            <p class="text-gray-400 text-xs sm:text-sm">
+              &copy; 2025 Salt Broth. All rights reserved.
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fab fa-discord"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Copy functionality
+        const copyBtn = document.getElementById("copy-btn");
+        const promptTemplate = document.getElementById("prompt-template");
+
+        if (copyBtn && promptTemplate) {
+          copyBtn.addEventListener("click", async () => {
+            try {
+              await navigator.clipboard.writeText(promptTemplate.textContent);
+
+              // Change button state temporarily
+              const originalHTML = copyBtn.innerHTML;
+              copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+              copyBtn.classList.add("text-green-500");
+
+              // Reset after 2 seconds
+              setTimeout(() => {
+                copyBtn.innerHTML = originalHTML;
+                copyBtn.classList.remove("text-green-500");
+              }, 2000);
+            } catch (err) {
+              console.error("Failed to copy: ", err);
+            }
+          });
+        }
+
+        // LLM panel switching
+        const llmTabBtns = document.querySelectorAll(".llm-tab-btn");
+        const llmPanels = document.querySelectorAll(".llm-panel");
+
+        llmTabBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const llmType = btn.getAttribute("data-llm");
+
+            // Update button states
+            llmTabBtns.forEach((b) => {
+              b.classList.remove(
+                "text-white",
+                "border-[#10a37f]",
+                "border-[#8e44ef]",
+                "border-[#4f46e5]"
+              );
+              b.classList.add("text-gray-400", "border-transparent");
+            });
+
+            // Update active button
+            btn.classList.remove("text-gray-400", "border-transparent");
+            btn.classList.add("text-white");
+
+            // Add appropriate border color based on LLM type
+            if (llmType === "chatgpt") {
+              btn.classList.add("border-[#10a37f]");
+            } else if (llmType === "claude") {
+              btn.classList.add("border-[#8e44ef]");
+            } else if (llmType === "llama") {
+              btn.classList.add("border-[#4f46e5]");
+            }
+
+            // Show selected panel, hide others
+            llmPanels.forEach((panel) => {
+              if (panel.id === `${llmType}-panel`) {
+                panel.classList.remove("hidden");
+              } else {
+                panel.classList.add("hidden");
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
