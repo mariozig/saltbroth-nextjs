@@ -2,7 +2,7 @@
   "metadata": {
     "title": "SALTBROTH",
     "description": "Mercado de Prompts de IA - Prompts de IA listos para usar que funcionan como magia",
-    "titleTemplate": "{title} | SALTBROTH",
+    "titleTemplate": "%s | SALTBROTH",
     "promptTitleTemplate": "{title} - {category} | SALTBROTH",
     "siteUrl": "https://saltbroth.com",
     "siteImage": "/images/saltbroth-og.jpg",
@@ -90,10 +90,10 @@
         "marketing": "Crea contenido de marketing convincente que convierte y genera engagement"
       }
     },
-    "llms_description": "Explora nuestra colección de modelos de lenguaje de IA compatibles",
+    "llmsDescription": "Explora nuestra colección de modelos de lenguaje de IA compatibles",
     "features": "Características",
     "about": "Acerca de",
-    "compatible_prompts": "Prompts Compatibles",
+    "compatiblePrompts": "Prompts Compatibles",
     "logout": "Cerrar sesión",
     "footer": {
       "about": "Sobre Nosotros",
@@ -244,6 +244,7 @@
     "category": "Categoría",
     "browseCategories": "Explorar Categorías",
     "browseCategoriesDescription": "Explora nuestra colección de categorías de prompts para encontrar los prompts de IA perfectos para tus necesidades",
+    "allPrompts": "Todos los Prompts",
     "subcategories": "Subcategorías",
     "promptsInCategory": "Prompts en esta categoría",
     "noPrompts": "No se encontraron prompts en esta categoría",
