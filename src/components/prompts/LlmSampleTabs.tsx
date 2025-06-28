@@ -156,7 +156,7 @@ export function LlmSampleTabs({ children }: LlmSampleTabsProps) {
  * Component for displaying a single LLM sample output
  * Used within the LlmSampleTabs component
  */
-export function LlmSample({ slug, color, children }: LlmSampleProps) {
+export function LlmSample({ children }: LlmSampleProps) {
   // This component serves as a data container for LlmSampleTabs
   // The actual rendering is handled by LlmSampleTabs
   return <>{children}</>;

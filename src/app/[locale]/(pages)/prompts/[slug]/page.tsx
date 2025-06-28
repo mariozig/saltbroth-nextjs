@@ -1,7 +1,6 @@
 import { getContentBySlug, getPromptBreadcrumbs, type Prompt, type LLM } from '@/lib/content';
 import { type Locale, defaultLocale } from '@/config/i18n';
 import { notFound } from 'next/navigation';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import { LlmSampleTabs } from '@/components/prompts/LlmSampleTabs';
 import { LlmSample } from '@/components/prompts/LlmSample';
 import { extractComponentContent, extractLlmSamples } from '@/lib/mdx-utils';
@@ -9,16 +8,6 @@ import PromptTemplate from '@/components/prompts/PromptTemplate';
 import { Metadata } from 'next';
 import React from 'react';
 
-function getLlmColor(slug: string): string {
-  // Sample colors for different LLMs
-  const colors: Record<string, string> = {
-    'chatgpt': '#10a37f',
-    'claude': '#8e44ef',
-    'llama': '#4f46e5',
-    'default': '#ffffff'
-  };
-  return colors[slug] || colors.default;
-}
 
 /**
  * Generate metadata for the prompt page
@@ -115,7 +104,7 @@ export default async function PromptPage({ params }: {
   const llmSamples = extractLlmSamples(prompt.content);
 
   // Import messages for the current locale
-  const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
+  // const messages = (await import(`../../../../../dictionaries/${locale}.json`)).default;
 
   // Helper function to create locale-aware URLs
   const getLocalizedPath = (path: string) => {

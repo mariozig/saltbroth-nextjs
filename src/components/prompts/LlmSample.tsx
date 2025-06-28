@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface LlmSampleProps {
-  slug: string;
-  color: string;
+  // Keeping these in the interface for future use and API consistency
+  slug?: string;
+  color?: string;
   children: React.ReactNode;
 }
 
@@ -13,7 +14,7 @@ interface LlmSampleProps {
  * Component for displaying a sample output from a specific LLM
  * Used within LlmSampleTabs on prompt detail pages
  */
-export function LlmSample({ slug, color, children }: LlmSampleProps) {
+export function LlmSample({ children }: LlmSampleProps) {
   const t = useTranslations('prompts');
   const [copied, setCopied] = useState(false);
   

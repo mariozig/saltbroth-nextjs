@@ -55,7 +55,8 @@ export function extractLlmSamples(mdxContent: string): Array<{ slug: string; col
     
     let sampleMatch;
     while ((sampleMatch = sampleRegex.exec(tabsContent)) !== null) {
-      const [_, slug, color, content] = sampleMatch;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [fullMatch, slug, color, content] = sampleMatch;
       samples.push({
         slug,
         color,

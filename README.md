@@ -167,6 +167,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-local-anon-key
 
 # RevenueCat Configuration
 NEXT_PUBLIC_REVENUECAT_API_KEY=your-sandbox-key
+
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-PG904WC3ZM     # Google Analytics measurement ID
 ```
 
 #### Production (.env.production)
@@ -180,6 +183,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-prod-anon-key
 
 # RevenueCat Configuration
 NEXT_PUBLIC_REVENUECAT_API_KEY=your-prod-key
+
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-PG904WC3ZM     # Google Analytics measurement ID
 ```
 
 The `NEXT_PUBLIC_SITE_URL` is crucial for:
@@ -344,6 +350,7 @@ SALTBROTH is hosted on Vercel. To deploy your app via command line:
    - NEXT_PUBLIC_SUPABASE_URL
    - NEXT_PUBLIC_SUPABASE_ANON_KEY
    - NEXT_PUBLIC_REVENUECAT_API_KEY
+   - NEXT_PUBLIC_GA_MEASUREMENT_ID
 3. Enable Automatic CI/CD
 
 ## Learn More
