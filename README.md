@@ -47,9 +47,9 @@ src/app/
 
 #### Page Title and Metadata Structure
 - Implemented consistent page title format across the site:
-  - Home: "SALTBROTH Prompts"
-  - Categories: "{Category Name} | SALTBROTH Prompts"
-  - Prompts: "{Prompt Title} - {Category} | SALTBROTH Prompts"
+  - Home: "SALTBROTH"
+  - Categories: "{Category Name} | SALTBROTH"
+  - Prompts: "{Prompt Title} - {Category} | SALTBROTH"
 - Added comprehensive metadata for improved search engine visibility
 - Configured Open Graph and Twitter card metadata for better social sharing
 

@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "title": "SALTBROTH Prompts",
+    "title": "SALTBROTH",
     "description": "AI Prompt Marketplace - Ready-to-use AI prompts that work like magic",
-    "titleTemplate": "{title} | SALTBROTH Prompts",
-    "promptTitleTemplate": "{title} - {category} | SALTBROTH Prompts",
+    "titleTemplate": "{title} | SALTBROTH",
+    "promptTitleTemplate": "{title} - {category} | SALTBROTH",
     "siteUrl": "https://saltbroth.com",
     "siteImage": "/images/saltbroth-og.jpg",
     "login": "Log In",
